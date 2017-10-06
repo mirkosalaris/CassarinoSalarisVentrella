@@ -1,0 +1,26 @@
+Goals:
+
+- A person can sign up to the app
+- Users can create meetings and appointments
+- When the user creates an appointment, he can specify directly the travel mean chosen, asks the app for suggetions, leaves it unspecified
+- The app should suggest solutions according to the appointement and the weather
+	- appointment type (no bike if sweating is a problem)
+	- eventual passengers
+	- eventual baggages
+
+- The app should notify the user about the incoming event:
+	- asking for confirmation on the travel means previously planned
+	- in case no travel mean was selected, suggesting one
+	- communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions
+	
+- For each travel mean, users can set constraints on time of the day, minimum and maximum distances
+- Users can set flexibles breaks window time (e.g. lunch)
+- Users can set the preference over eco friendly solutions
+   (gli utenti possono settare la preferenza verso mezzi eco friendly)
+
+- The user should be able to consult in advance the daily schedule
+- Users can associate a credit card to the account
+- The app should allow users to buy transportation tickets
+- the app should locate the nearest vehicle if a vehicle sharing system is the means of transport of choice
+
+
