@@ -8,7 +8,6 @@ Alex decides that he'll take a bike, althought the app suggests not because of t
 in a shopping center with his family, he complitely forgotten that he has a train but Travlendar+ solves the problem
 by notifying him the appointment. At that point, Alex has not more time and chooses to buy the tickets using the app.
 While he is on the train Travlendar+ suggests him to choose another transport means (instead of a bike) from the station to the university
-because of the bad weather conditions. Alex accepts the advise and decides to take a bus. At the end Alex carries out his task 
-without any problems thanks Travendlar+ that becomes essential for him!
+because of the bad weather conditions. Alex accepts the advise and decides to take a bus.
 
 
