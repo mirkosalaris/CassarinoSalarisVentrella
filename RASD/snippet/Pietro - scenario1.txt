@@ -1,13 +1,17 @@
-Alex is a professor of Bologna University, he has a short memory and a bad organization so he decides to
-entrust himself to Travlendar+. Alex downloads it on occasion of a work's trip. He enrols himself and decides to insert his credit card
-data for an eventual purchase from the app. He needs to reach University of Parma 
-in order to make a conference regarding Artificial Intelligence in which he is specialized. Alex sets up the app to arrive 
+Alex is a professor of Bologna University, he has a short memory and is very badly organized, so he decides to
+rely on Travlendar+. Alex downloads it on occasion of a work trip. He signs up and decides to insert his credit card
+data for an eventual purchase from the app. He needs to reach the University of Parma 
+to hold a conference. Alex sets up the app to arrive 
 in Parma by train. Travlendar+ asks Alex the kind of event and he specifies it is a formal work meeting. 
-The app asks him which transport means he wants to take in order to reach university from railway station. 
-Alex decides that he'll take a bike, althought the app suggests not because of the formal type of meeting. The departure day Alex is 
-in a shopping center with his family, he complitely forgotten that he has a train but Travlendar+ solves the problem
-by notifying him the appointment. At that point, Alex has not more time and chooses to buy the tickets using the app.
-While he is on the train Travlendar+ suggests him to choose another transport means (instead of a bike) from the station to the university
-because of the bad weather conditions. Alex accepts the advise and decides to take a bus.
+The app asks him which transport means he wants to take in order to get to the university from the railway station.
+Alex opts to go by bicycle, although the app didn't suggest it because of the formal type of meeting. The departure day Alex is 
+in a shopping center with his family, he has completely forgotten that he has a train to take, but Travlendar+ solves the problem
+by notifying him of the appointment. At that point, Alex has no more time and chooses to buy the train tickets using the app.
+While he is on the train, Travlendar+ suggests him to choose another transport means (instead of a bike)
+because of the bad weather conditions. Alex accepts the advice and decides to take a bus.
 
-
+-------
+- "the app didn't suggest it" instead of "the app suggests not to" because it would be a functionality our app doesn't possess.
+- add "train" before "tickets"
+- minor grammatical/syntactical corrections
+- remove "regarding Artificial Intelligence in wich he is specialized", not useful
