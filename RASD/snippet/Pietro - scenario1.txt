@@ -5,6 +5,7 @@ to hold a conference. Alex sets up the app to arrive
 in Parma by train. Travlendar+ asks Alex the kind of event and he specifies it is a formal work meeting. 
 The app asks him which transport means he wants to take in order to get to the university from the railway station.
 Alex opts to go by bicycle, although the app didn't suggest it because of the formal type of meeting. The departure day Alex is 
+Alex opts to go by bicycle, although the app suggest not to, because of the formal type of meeting. The departure day Alex is 
 in a shopping center with his family, he has completely forgotten that he has a train to take, but Travlendar+ solves the problem
 by notifying him of the appointment. At that point, Alex has no more time and chooses to buy the train tickets using the app.
 While he is on the train, Travlendar+ suggests him to choose another transport means (instead of a bike)
