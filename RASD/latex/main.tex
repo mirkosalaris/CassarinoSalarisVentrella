@@ -2,6 +2,7 @@
 \usepackage{graphicx} % to include graphicx elements
 \usepackage{tabu} % to use tables
 \usepackage{geometry} % to define page layout
+\usepackage[pdftex, colorlinks]{hyperref} % to use href
 
 %----- Define page layout -----
  \geometry{
@@ -15,23 +16,7 @@
 \begin{document}
 
 %TITLE PAGE
-
-\begin{titlepage}
-
-\title{
-		\includegraphics[scale=0.5]{Images/PolimiLogo}
-		\bigskip
-		\Huge{\textbf{\\Travlendar}}\\
-		\LARGE{\bigskip Requirement Analysis and Specification Document}
-		}
-\author{Mirko Salaris, 
-		Piervincenzo Ventrella, 
-		Pietro Cassarino
-}
-
-\maketitle
-
-\end{titlepage}
+\input{titlePage}
 
 %Define deliverable specific info
 %Replace cell contents where needed
@@ -51,6 +36,55 @@
 \hline
 \end{tabu}
 \end{table}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\newpage
+\renewcommand{\contentsname}{Table of Contents} % rename from "Contents" to "Table of Contents"
+{\hypersetup{hidelinks} % avoid coloring table of contents
+\tableofcontents
+}
+
+\newpage
+\addcontentsline{toc}{section}{List of Figures}
+\listoffigures
+\addcontentsline{toc}{section}{List of Tables}
+\listoftables
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Introduction}
+\label{sect:introduction}
+\input{sections/introduction}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Overall Description}
+\label{sect:overview}
+\input{sections/overview}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Specific Requirements}
+\label{sect:requirements}
+\input{sections/requirements}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Formal Analysis Using Alloy}
+\label{sect:alloy}
+\input{sections/alloy}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{Effort Spent}
+\label{sect:effort}
+\input{sections/effort}
+
+%------------------------------------------------------------------------------------------------------------------------------------------------
+\clearpage
+\section{References}
+\label{sect:references}
+\input{sections/references}
 
 
 \end{document}
