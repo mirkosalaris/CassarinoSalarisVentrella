@@ -4,7 +4,7 @@ After the installation, he has to register to the app.
 The first thing he creates is his weekly program. We work from Monday to 
 Friday, from 8 am to 16 pm.
 
-There is an actual meeting scheduled for Friday at 8 pm, so he creates a new
+There is an actual meeting coming up on Friday at 8 pm, so he creates a new
 meeting in the app. After setting the time and the day, he invites his employees
 to join the meeting. He will remain in his office, so he will not need to use
  any travel means.
