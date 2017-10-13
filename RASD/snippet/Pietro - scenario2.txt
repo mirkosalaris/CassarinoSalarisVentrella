@@ -1,8 +1,0 @@
-Luca is a meteorologist who works for a laboratory in Venice. He knows very well all the climatic problem that 
-humans are creating in their Country. Luca finds Travlendar+ very appropriate to help in solving this problematic. He likes to opt 
-for an Eco-friendly solution by setting up this preference in the app settings. In this way he can avoid, at least in this aspect,
-further damaging the environment. His favorite functionality is bike sharing because of its innovative localization system and its 
-low environmental impact.
-
-------
-- rephrased "For this reason Luca uses Travlendar+ for one month yet", trying to convey the same meaning
