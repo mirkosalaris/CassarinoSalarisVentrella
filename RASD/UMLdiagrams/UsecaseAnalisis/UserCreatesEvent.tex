@@ -1,0 +1,68 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx} % to include graphicx elements
+\usepackage{tabu} % to use tables
+\usepackage{geometry} % to define page layout
+\usepackage[pdftex, colorlinks]{hyperref} % to use href
+\usepackage{ragged2e}
+
+
+\begin{document}
+\begin{tabular}{|c|}
+	
+	\hline 
+	\textbf{Use case:} User creates event
+	\\
+	\hline 
+	\textbf{Actors:} User
+	\\ 
+	\hline 
+	\textbf{Entry conditions:} User must be logged
+	\\ 
+	\hline 
+	\textbf{Flow ofevents:}
+	\\
+	The user creates an event (a meeting, appointment or generic event) giving it a name;
+	\\
+	User specifies the location of the event;
+	\\
+	User specifies details such as passengers or baggage;
+	\\
+	User selects a travel mean taking to account app’s suggestion;
+	\\
+	The app takes note of the settings and send a confirmation;
+	\\
+	The app redirects the user to the main page.
+	
+	\\ 
+	\hline 
+	\textbf{Secondary Flows:}
+	\\
+	User doesn’t specify a travel mean and let it blank;
+	\\
+	The app takes anyway note of the setting and alert the user of the missing
+	\\
+	information;
+	The app redirects the user to the main page.
+	
+	\\ 
+	\hline 
+	\textbf{Exceptions:}
+	\\ Warnings messages are created in the following cases:
+	\\
+	-	User creates an event that overlaps another event;
+	\\
+	-	User creates an event with a location that is unreachable in the 
+	\\ allocated time;
+	\\
+	-	User creates an event that violates the set constraints about the break windows.
+	
+	\\ 
+	\hline 
+	\textbf{Post conditions:}
+	\\
+	The user is successfully redirected to the main page.
+	\\
+	\hline
+
+\end{tabular} 
+\end{document}
