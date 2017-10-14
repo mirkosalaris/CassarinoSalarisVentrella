@@ -42,27 +42,138 @@
 			\end{tabu}
 			\end{table}
 			\\
-		\textbf{**use case name**}
-		\begin{table}[h!]
+		\textbf{Sign Up}
+			\begin{table}[h!]
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-				\hline\textbf{Use case:} & **text**
+				\hline\textbf{Use case:} & Sign Up
 				\\
-				\hline\textbf{Actors:} & **text**
+				\hline\textbf{Actors:} & Person
 				\\
-				\hline\textbf{Entry condition:} & **text**
+				\hline\textbf{Entry condition:} &user must be not already logged;
 				\\
-				\hline\textbf{Flow of events:} & **text**
+				\hline\textbf{Flow of events:} & the person inserts full name and email contact;\newline
+				the app send an email with the confirmation link;\newline
+				the person give the confirmation trough the link on the mail;\newline
+				the app give the welcome to the new user.
+				
 				\\
-				\hline\textbf{Secondary flows:} & **text**
+				\hline\textbf{Secondary flows:} & none.
 				\\
-				\hline\textbf{Exceptions:} & **text**
+				\hline\textbf{Exceptions:} &the person inserts a wrong email contact;\newline
+				the sign up cannot proceed.
+				
 				\\
-				\hline\textbf{Post conditions:} & **text**
+				\hline\textbf{Post conditions:} & the person is successfully signed up and become an actual logged user.
 				\\
 				\hline
 			\end{tabu}
 		\end{table}
-	\subsubsection{Class diagram}
+			\textbf{Sign Up}
+		\begin{table}[h!]
+			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+				\hline\textbf{Use case:} & Initial settings configuration
+				\\
+				\hline\textbf{Actors:} & User
+				\\
+				\hline\textbf{Entry condition:} & the User just has just completed the sign up process;\newline
+				user must be logged.
+				
+				\\
+				\hline\textbf{Flow of events:} & User insert sequentially the following  information:
+				\begin{itemize}
+				\item 	Credit card;
+				\item 	Driving licence;
+				\item 	Break time windows;
+				\item	Interest for Eco-friendly solutions on the travel means.
+				\item	Constraints on travel means.
+				\end{itemize}
+				The app, for each step,  check the info and send a confirmation;
+				The app redirects the user to the main page.
+				
+				\\
+				\hline\textbf{Secondary flows:} & User skips to specify one or more information that could be specified later in the settings.\newline
+				The app notifies the user about the missing information and redirects anyway the user to the main page.
+				
+				\\
+				\hline\textbf{Exceptions:} & user inserts inconsistent information (incorrect credid-card/licence information, break time shorter than 30 minutes);\newline
+				The app allerts the user and asks him to insert again the info.
+				\\
+				\hline\textbf{Post conditions:} & the set configurations are successfully saved and the user is redirected to the main page.
+				\\
+				\hline
+			\end{tabu}
+		\end{table}
+		\begin{table}[h!]
+		\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+			\hline\textbf{Use case:} & User visualizes the appointment.
+			\\
+			\hline\textbf{Actors:} & User
+			\\
+			\hline\textbf{Entry condition:} & user must be logged;\newline
+			the event must exist;
+			
+			\\
+			\hline\textbf{Description:} & user visualize an appointment and eventually:
+				\begin{itemize}
+			\item If not specified yet, set a travel mean;
+			\item 	Modify the previous travel mean or other detail such as location, baggage or passengers;
+			\item Buy a ticket for the travel mean;
+			\item 	Rent a shared vehicle if is the proper time to do that and locate the nearest one;
+			\item 	Delete the appointment. 
+		\end{itemize}
+		\end{tabu}
+	\end{table}
+
+	\begin{table}[h!]
+	\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+		\hline\textbf{Use case:} & User buy travel ticket
+		\\
+		\hline\textbf{Actors:} & User
+		\\
+		\hline\textbf{Entry condition:} & user must be logged; \newline
+		user must have added a payment card .
+		
+		\\
+		\hline\textbf{Flow of events:} &User select an event;\newline
+		User,  through the app, searches for tickets for the specified travel mean; \newline
+		User select the ticket’s option and picks one;\newline
+		User proceeds with the payment;\newline
+		The payment operation ends successfully;\newline
+		The app send a confirmation and redirects the user to the main page;
+		
+		\\
+		\hline\textbf{Secondary flows:} & none
+		\\
+		\hline\textbf{Exceptions:} & The payment is rejected (not enough credit, expired card, ..);\newline
+		The app notifies the user; \newline
+		The app redirect the user to the home page;
+		
+		\\
+		\hline\textbf{Post conditions:} & User successfully books the tickets and is redirected to the main page.
+		\\
+		\hline
+	\end{tabu}
+\end{table}
+	\begin{table}[h!]
+	\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+		\hline\textbf{Use case:} & empty table left here for neccessity
+		\\
+		\hline\textbf{Actors:} & **text**
+		\\
+		\hline\textbf{Entry condition:} & **text**
+		\\
+		\hline\textbf{Flow of events:} & **text**
+		\\
+		\hline\textbf{Secondary flows:} & **text**
+		\\
+		\hline\textbf{Exceptions:} & **text**
+		\\
+		\hline\textbf{Post conditions:} & **text**
+		\\
+		\hline
+	\end{tabu}
+\end{table}
+	\subsubsection{Class diagram //this part should apper below }
 	\subsubsection{Activity diagrams}
 		\textbf{Registration diagram} \\
 		\indent \textit{TODO: here an image will be attached}
@@ -75,7 +186,7 @@
 	\subsubsection{Standard compliance}
 	\subsubsection{Hardware limitations}
 	\subsubsection{Any other constraint}
-\subsection{Software System Attributes}
+\subsection{Software System Attributes} 
 	\subsubsection{Reliability}
 	\subsubsection{Availability}
 	\subsubsection{Security}
