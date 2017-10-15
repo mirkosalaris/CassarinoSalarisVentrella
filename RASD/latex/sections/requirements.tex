@@ -6,11 +6,15 @@
 \subsection{UML modeling}
 	\subsubsection{Use Case diagram}
 		\textbf{Diagram} \\
-		\indent \textit{TODO: here an image will be attached}
+		\indent\textit{TODO: here an image will be attached}
 		\newline
-		\textbf{User creates event}
 		\renewcommand{\arraystretch}{1.6} % increase line height
-			\begin{table}[h!]
+		
+		\medskip %leave a bit of space before the next 'section'
+		\vbox{ % to avoid page breaking
+			\noindent
+			\textbf{User creates event}
+			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
 				\hline\textbf{Use case:} & User creates an event
 				\\
@@ -40,10 +44,13 @@
 				\\
 				\hline
 			\end{tabu}
-			\end{table}
-			\\
-		\textbf{Sign Up}
-			\begin{table}[h!]
+			\bigskip %leave a bit of space after the table
+		}
+		
+		\vbox{ % to avoid page breaking
+			\noindent
+			\textbf{Sign Up}
+			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
 				\hline\textbf{Use case:} & Sign Up
 				\\
@@ -67,9 +74,13 @@
 				\\
 				\hline
 			\end{tabu}
-		\end{table}
-			\textbf{Sign Up}
-		\begin{table}[h!]
+			\bigskip %leave a bit of space after the table
+		}
+		
+		\vbox{ % to avoid page breaking
+			\noindent
+			\textbf{Initial settings configuration}
+			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
 				\hline\textbf{Use case:} & Initial settings configuration
 				\\
@@ -102,78 +113,69 @@
 				\\
 				\hline
 			\end{tabu}
-		\end{table}
-		\begin{table}[h!]
-		\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-			\hline\textbf{Use case:} & User visualizes the appointment.
-			\\
-			\hline\textbf{Actors:} & User
-			\\
-			\hline\textbf{Entry condition:} & user must be logged;\newline
-			the event must exist;
-			
-			\\
-			\hline\textbf{Description:} & user visualize an appointment and eventually:
+			\bigskip %leave a bit of space after the table
+		}
+		
+		\vbox{ % to avoid page breaking
+			\noindent
+			\textbf{User visualizes the appointment}
+			\medskip\\
+			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+				\hline\textbf{Use case:} & User visualizes the appointment.
+				\\
+				\hline\textbf{Actors:} & User
+				\\
+				\hline\textbf{Entry condition:} & user must be logged;\newline
+				the event must exist;
+				
+				\\
+				\hline\textbf{Description:} & user visualize an appointment and eventually:
 				\begin{itemize}
-			\item If not specified yet, set a travel mean;
-			\item 	Modify the previous travel mean or other detail such as location, baggage or passengers;
-			\item Buy a ticket for the travel mean;
-			\item 	Rent a shared vehicle if is the proper time to do that and locate the nearest one;
-			\item 	Delete the appointment. 
-		\end{itemize}
-		\end{tabu}
-	\end{table}
-
-	\begin{table}[h!]
-	\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-		\hline\textbf{Use case:} & User buy travel ticket
-		\\
-		\hline\textbf{Actors:} & User
-		\\
-		\hline\textbf{Entry condition:} & user must be logged; \newline
-		user must have added a payment card .
+					\item If not specified yet, set a travel mean;
+					\item Modify the previous travel mean or other detail such as location, baggage or passengers;
+					\item Buy a ticket for the travel mean;
+					\item Rent a shared vehicle if is the proper time to do that and locate the nearest one;
+					\item Delete the appointment. 
+				\end{itemize}\\
+				\hline
+			\end{tabu}\\
+			\bigskip %leave a bit of space after the table
+		}
 		
-		\\
-		\hline\textbf{Flow of events:} &User select an event;\newline
-		User,  through the app, searches for tickets for the specified travel mean; \newline
-		User select the ticket’s option and picks one;\newline
-		User proceeds with the payment;\newline
-		The payment operation ends successfully;\newline
-		The app send a confirmation and redirects the user to the main page;
-		
-		\\
-		\hline\textbf{Secondary flows:} & none
-		\\
-		\hline\textbf{Exceptions:} & The payment is rejected (not enough credit, expired card, ..);\newline
-		The app notifies the user; \newline
-		The app redirect the user to the home page;
-		
-		\\
-		\hline\textbf{Post conditions:} & User successfully books the tickets and is redirected to the main page.
-		\\
-		\hline
-	\end{tabu}
-\end{table}
-	\begin{table}[h!]
-	\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-		\hline\textbf{Use case:} & empty table left here for neccessity
-		\\
-		\hline\textbf{Actors:} & **text**
-		\\
-		\hline\textbf{Entry condition:} & **text**
-		\\
-		\hline\textbf{Flow of events:} & **text**
-		\\
-		\hline\textbf{Secondary flows:} & **text**
-		\\
-		\hline\textbf{Exceptions:} & **text**
-		\\
-		\hline\textbf{Post conditions:} & **text**
-		\\
-		\hline
-	\end{tabu}
-\end{table}
-	\subsubsection{Class diagram //this part should apper below }
+		\vbox{ % to avoid page breaking
+			\noindent
+			\textbf{User buy travel ticket}
+			\medskip\\
+			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
+				\hline\textbf{Use case:} & User buy travel ticket
+				\\
+				\hline\textbf{Actors:} & User
+				\\
+				\hline\textbf{Entry condition:} & user must be logged; \newline
+				user must have added a payment card .
+				
+				\\
+				\hline\textbf{Flow of events:} &User select an event;\newline
+				User,  through the app, searches for tickets for the specified travel mean; \newline
+				User select the ticket’s option and picks one;\newline
+				User proceeds with the payment;\newline
+				The payment operation ends successfully;\newline
+				The app send a confirmation and redirects the user to the main page;
+				
+				\\
+				\hline\textbf{Secondary flows:} & none
+				\\
+				\hline\textbf{Exceptions:} & The payment is rejected (not enough credit, expired card, ..);\newline
+				The app notifies the user; \newline
+				The app redirect the user to the home page;
+				
+				\\
+				\hline\textbf{Post conditions:} & User successfully books the tickets and is redirected to the main page.
+				\\
+				\hline
+			\end{tabu}
+		}
+	\subsubsection{Class diagram}
 	\subsubsection{Activity diagrams}
 		\textbf{Registration diagram} \\
 		\indent \textit{TODO: here an image will be attached}
