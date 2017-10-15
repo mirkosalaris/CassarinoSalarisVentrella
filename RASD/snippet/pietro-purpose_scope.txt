@@ -7,22 +7,21 @@ application.
 
 
 --- Scope:
-Travlendar+ is an application that allows people who use it to organize and track their appointments and meeting by 
-registering them into the application. A person becomes an User of Travlendar+ by registering himself on the form. 
-After this phase, user can start to use basic functionality of the app (e.g. register appointments and organize meetings). 
+Travlendar+ is an application that allows people to organize and to track their appointments and meeting by 
+registering them into the application. A person becomes a User of Travlendar+ by registering himself to the app. 
+After this phase, users can start to use basic functionalities of the app (e.g. register appointments and organize meetings). 
 
-When User creates an event, he can consider, for the travel, eventual passengers or baggages, so the app suggests the better 
-trip choice. Travlendar+ allows users to visualize their planned schedule too. The app works considering some constraint aspects 
-that can influence travels and trips (e.g. wheatear conditions, strikes, etc.). 
+The app allows users to create appointments, eventually inviting other users of the app, facilitating communication issues.
+The goal of Travlendar+ is to organize in the best way all daily commitments of its users considering all the possible
+problems that can influence travels and trips (e.g. weather conditions, strikes, etc.).
 
-The dynamicity of the software allows user to set some personal preferences, for example set a flexible break window time for 
-having free time, choose eco-friendly solutions for his trips, make a list of favourite transportation means. 
+When a User creates an event, he can add, for the travel, eventual passengers or baggage, so that the app can suggest better 
+trip choices. Travlendar+ allows users to visualize their planned schedule too. 
 
-The system interfaces with other firms (e.g. transportation company, territory maps company, sharing transportation company) 
-that allows user to increment usability of the app. User has the possibility to compile an initial configuration to use 
-all the functionality that Travlendar+ offers. He can buy tickets and pass for transportation means and he can use sharing services 
-by serving GPS in his mobile device.  Because of this innovative technique a User of Travlendar+ has the possibility to monitor in 
-real time the presence of vehicles to rent. 
+The dynamicity of the software allows users to set some personal preferences, for example, to set a flexible break window time for 
+having free time or lunch, to choose eco-friendly solutions for his trips, to deactivate some transportation means. 
 
-The app allows user to create meeting and to invite other users of the app facilitating communication issues. The goal of Travlendar+ 
-is to organize in the better way all daily commitments of his users considering all the possible problems that can be cause by external agents. 
+The system interfaces with other firms (e.g. transportation companies, territory maps companies, sharing transportation companies) 
+to offer a more comprehensive user experience. In this way, a User has the possibility to buy tickets and passes for transportation means, 
+as well as using shared transport services, directly from the app.
+This means that a user can use services of other companies (the ones with an agreement with Travlendar+), without leaving the app.
