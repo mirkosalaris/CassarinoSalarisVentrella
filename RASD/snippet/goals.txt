@@ -2,7 +2,7 @@ Goals:
 
 - A person can sign up to the app
 - Users can create meetings and appointments
-- When the user creates an appointment, he can specify directly the travel mean chosen, asks the app for suggetions, leaves it unspecified
+#- When the user creates an appointment, he can specify directly the travel mean chosen, asks the app for suggetions, leaves it unspecified
 - The app should suggest solutions according to the appointement and the weather
 	- appointment type (no bike if sweating is a problem)
 	- eventual passengers
@@ -22,5 +22,45 @@ Goals:
 - Users can associate a credit card to the account
 - The app should allow users to buy transportation tickets
 - the app should locate the nearest vehicle if a vehicle sharing system is the means of transport of choice
+
+
+
+Goals:
+The system should:
+- allows a Person to use the app in his/her device default language
+- allows a Person to become a registered User after providing credentials
+- allows a Person to log in
+- allows a new User to access the welcome page
+- allows User to add credit card data
+- allows User to add driving license
+- allows a User to set personal preferences:
+	- specify his/her preference for eco-friendly solution
+	- set break time windows, either flexible or fixed
+	- set time slot in which the use of specific transportation means should be avoided
+	- set a minimum distance below which a specific transportation mean should be avoided
+	- set a maximum distance beyond which a specific transportation mean should be avoided
+	- set a specific transportation mean as permanently disabled
+- allows User to create a new appointment, specifying its details
+- allows User to visualize his/her appointments, updating its details
+- allows User to specify the details of appointments: date and time, location, type of appointment, passengers, baggage
+- during the specification of details of an appointment:
+	- allows User to visualize suggested travel solutions and to choose one of them
+	- before the choice, allows User to set a preferred transportation mean
+	- allows User to invite other persons to the appointment
+	- allows User to specify if he/she owns a ticket, either ordinary or a pass (eventually specifying the deadline)
+- allows User to buy ticket for an appointment: the ticket can be either ordinary or a season pass
+- allows User to delete an existing appointment
+- allows User to visualize daily/weekly schedule
+- allows User to invite other persons to his/her appointment
+- allows User to rent a shared vehicle for an incoming appointment
+- allows User to locate nearest vehicle of a vehicle sharing system, if that is the transport means of choice
+
+- should show suggestions based on: traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers
+- should notify the User about incoming appointments
+	- asking for confirmation on the transportation means previously planned
+	- in case no transportation mean was selected, suggesting one
+	- communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions
+
+
 
 
