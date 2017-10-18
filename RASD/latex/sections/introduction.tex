@@ -11,6 +11,50 @@ The dynamicity of the software allows users to set some personal preferences, fo
 The system interfaces with other firms (e.g. transportation companies, territory maps companies, sharing transportation companies) to offer a more comprehensive user experience. In this way, a User has the possibility to buy tickets and passes for transportation means, as well as using shared transport services, directly from the app.
 This means that a user can use services of other companies (the ones with an agreement with Travlendar+), without leaving the app.
 
+\subsubsection{Goals}
+The system should:
+	\begin{enumerate}[label={[G\arabic*]}]
+		\item allows a Person to use the app in his/her device default language
+		\item allows a Person to become a registered User after providing credentials
+		\item allows a Person to log in
+		\item allows a new User to access the welcome page
+		\item allows User to add credit card data
+		\item allows User to add driving license
+		\item allows a User to set personal preferences:
+		\begin{enumerate}[label=\theenumi\#{\arabic*}]
+			\item specify his/her preference for eco-friendly solution
+			\item set break time windows, either flexible or fixed
+			\item set time slot in which the use of specific transportation means should be avoided
+			\item set a minimum distance below which a specific transportation mean should be avoided
+			\item set a maximum distance beyond which a specific transportation mean should be avoided
+			\item set a specific transportation mean as permanently disabled
+		\end{enumerate}
+		\item allows User to create a new appointment, specifying its details
+		\item allows User to visualize his/her appointments, updating its details
+		\item allows User to specify the details of appointments: date and time, location, type of appointment, passengers, baggage
+		\item during the specification of details of an appointment:
+		\begin{enumerate}[label=\theenumi\#{\arabic*}]
+			\item allows User to visualize suggested travel solutions and to choose one of them
+			\item before the choice, allows User to set a preferred transportation mean
+			\item allows User to invite other persons to the appointment
+			\item allows User to specify if he/she owns a ticket, either ordinary or a pass (eventually specifying the deadline)
+		\end{enumerate}
+		\item allows User to buy ticket for an appointment: the ticket can be either ordinary or a season pass
+		\item allows User to delete an existing appointment
+		\item allows User to visualize daily/weekly schedule
+		\item allows User to invite other persons to his/her appointment
+		\item allows User to rent a shared vehicle for an incoming appointment
+		\item allows User to locate nearest vehicle of a vehicle sharing system, if that is the transport means of choice
+
+		\item show suggestions based on: traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers
+		\item notify the User about incoming appointments
+		\begin{enumerate}[label=\theenumi\#{\arabic*}]
+			\item asking for confirmation on the transportation means previously planned
+			\item in case no transportation mean was selected, suggesting one
+			\item communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions
+		\end{enumerate}
+	\end{enumerate}
+
 \subsection{Definitions, Acronyms, Abbreviations}
 	\subsubsection{Definitions}
 		\begin{description}
@@ -18,7 +62,6 @@ This means that a user can use services of other companies (the ones with an agr
 			\item[- \textit{welcome page}:] %TODO describe the definition
 			\item[- \textit{personal preferences}:] %TODO describe the definition
 		\end{description}
-		
 	\subsubsection{Acronyms}
 	\subsubsection{Abbreviations}
 \subsection{Revision history}
