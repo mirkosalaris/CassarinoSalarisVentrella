@@ -13,61 +13,60 @@ The system interfaces with other firms (e.g. transportation companies, territory
 \subsubsection{Goals}
 The system should:
 	\begin{enumerate}[label={[G\arabic*]}]
-		\item allows a Person to use the app in his/her device default language
-		\item allows a Person to become a registered User after providing credentials
-		\item allows a Person to log in
-		\item allows a new User to access the welcome page
-		\item allows User to add credit card data
-		\item allows User to add driving license
-		\item allows a User to set personal preferences:
+		\item \label{G_dev_language} allow a Person to use the app in his/her device language, if the language is one of the \defined{supported languages}, English otherwise
+		\item \label{G_become_registered} allow a Person to become a registered User after providing credentials
+		\item \label{G_log_in} allow a Person to log in
+		\item \label{G_welcome_page} allow a new User to access the welcome page
+		\item \label{G_add_credit_card} allow User to add credit card data
+		\item \label{G_add_licence} allow User to add driving license
+		\item \label{G_pers_preferences} allow a User to set personal preferences:
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item specify his/her preference for eco-friendly solution
-			\item set break time windows, either flexible or fixed
-			\item set time slot in which the use of specific transportation means should be avoided
-			\item set a minimum distance below which a specific transportation mean should be avoided
-			\item set a maximum distance beyond which a specific transportation mean should be avoided
-			\item set a specific transportation mean as permanently disabled
+			\item \label{G_eco_friendly} specify his/her preference for eco-friendly solution
+			\item \label{G_break_windows} set break time windows, either flexible or fixed
+			\item \label{G_time_slot} set time slot in which the use of specific transportation means should be avoided
+			\item \label{G_min_distance} set a minimum distance below which a specific transportation mean should be avoided
+			\item \label{G_max_distance} set a maximum distance beyond which a specific transportation mean should be avoided
+			\item \label{G_transp_disabled} set a specific transportation mean as permanently disabled
 		\end{enumerate}
-		\item allows User to create a new appointment, specifying its details
-		\item allows User to visualize his/her appointments, updating its details
-		\item allows User to specify the details of appointments: date and time, location, type of appointment, passengers, baggage
-		\item during the specification of details of an appointment:
+		\item \label{G_new_appointment} allow User to create a new appointment, specifying its details
+		\item \label{G_visualize&update} allow User to visualize his/her appointments, eventually updating its details
+		\item \label{G_choose_sug} during the specification of details of an appointment, allow User to visualize suggested travel solutions and to choose one of them
+		\item \label{G_change_preferred_transp} during the specification of details of an appointment, before the choice, allow User to set a preferred transportation mean
+		\item \label{G_invite} during the specification of details of an appointment, allow User to invite other persons to the appointment
+		\item \label{G_owns_ticket} during the specification of details of an appointment, if for the selected travel solution a ticket is expected, allow User to specify if he/she owns a ticket, either ordinary or a pass (eventually specifying the deadline)
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item allows User to visualize suggested travel solutions and to choose one of them
-			\item before the choice, allows User to set a preferred transportation mean
-			\item allows User to invite other persons to the appointment
-			\item allows User to specify if he/she owns a ticket, either ordinary or a pass (eventually specifying the deadline)
+			\item \label{G_buy_ticket} if the user does not own a ticket and the transportation company is \defined{affiliated} with Travlendar+, he/she can buy it
 		\end{enumerate}
-		\item allows User to buy ticket for an appointment: the ticket can be either ordinary or a season pass
-		\item allows User to delete an existing appointment
-		\item allows User to visualize daily/weekly schedule
-		\item allows User to invite other persons to his/her appointment
-		\item allows User to locate nearest vehicle of a vehicle sharing system, if that is the transport means of choice of an incoming appointment
-			\item allows User to being redirected to the company's app to proceed with the renting
-
-		\item show suggestions based on: traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers
-		\item notify the User about incoming appointments
+		\item \label{G_visualize_schedule} allow User to visualize daily/weekly schedule
+		\item \label{G_delete} allow User to delete an existing appointment
+		\item \label{G_locate} allow User to locate nearest vehicle of a vehicle sharing system, if that is the transportation mean of choice of an incoming appointment
+		\item \label{G_redirection} allow User to being redirected to the company's app to proceed with the renting of the selected shared vehicle
+		\item \label{G_show_suggestions} show suggestions based on: traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers
+		\item \label{G_notify} notify the User about incoming appointments
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item asking for confirmation on the transportation means previously planned
-			\item in case no transportation mean was selected, suggesting one
-			\item communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions
+			\item \label{G_confirmation} asking for confirmation on the transportation means previously planned
+			\item \label{G_notify_suggestions} in case no transportation mean was selected, suggesting one
+%			\item \label{G_complications} communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions
 		\end{enumerate}
 	\end{enumerate}
 
 \subsection{Definitions, Acronyms, Abbreviations}
 	\subsubsection{Definitions}
 		\begin{description}
-			% NB: use \item[- \textit{ *label* }:] description
-			\item[- \textit{welcome page}:] after completing the sign up process,when the user logs in for the first time, he is redirected to this page where sequentially the app asks him to insert credit-card data, driving licence data and set his preferences 
-			The user can skip any of this phases and complete them in a second time. After this process, the initial settings configuration is completed
+			% TODO Sort alphabetically
+			\item[- \textit{welcome page}:] after completing the sign up process,when the user logs in for the first time, he is redirected to this page where sequentially the app asks him to insert credit-card data, driving licence data and set his preferences the user can skip any of this phases and complete them in a second time. After this process, the initial settings configuration is completed
 			\item[- \textit{personal preferences}:] with this term we mean that here the user can:\newline
 			- specify break time windows; \newline
 			- specify the interest or not for eco-friendly solutions;\newline
 			- specify constraints, such as avoiding  bike, on the travel means solutions).
+			\item[- \textit{supported languages}:]
+			\item[- \textit{valid credentials}:]
+			\item[- \textit{appointment details}:]
+			\item[- \textit{incoming appointment}:]
+			\item[- \textit{affiliated company}:]
 		\end{description}
 	\subsubsection{Acronyms}
 		\begin{description}
-		% NB: use \item[- \textit{ *label* }:] description
 		\item[- \textit{S2B}:] System to Be;
 		\item[- \textit{API}:] Application Programming Interface.
 	\end{description}

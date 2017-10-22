@@ -1,0 +1,132 @@
+G1:
+	R: the app must change his interface language to the language of the device
+	D: the user's device should allow the app to retrieve the language settings
+	
+G2:
+	R: the S2B must accept a name, a surname and an email
+	R: the registration fails if the inserted email is already associated to an account
+	R: the S2B must send an email with an activation link to the address provided by the user, after receiving the data
+	R: after the confirmation from the email link, the S2B has to create a new account for the User
+	D: an email corresponds to a unique person
+	D: the email sent by the S2B is always received by the user
+	
+G3:
+	R: the S2B must store emails and passwords of the Users
+	R: the S2B must grant access to the User if and only if the User inserts an existing email and the associated password
+	D: the User shall remember his password
+
+G4:
+	R: the first time a User logs in, the S2B must redirect him/her to the welcome page
+	## save the fact that the user has logged in for the first time
+	
+G5:
+	R: the S2B must forward the credit card data to a credit institution to validate them
+
+G6:
+	R: the S2B must forward the driving license to the Driver Licensing Institute to validate them
+
+G7:
+	R: the S2B must provide to the User the possibility to change and store the preferences values
+	R: the S2B must accept only valid values:
+		- minimum/maximum distance in distance constraints should be greater than zero
+		- field 'at least' of flexible break time windows should be less than 24 hours
+
+G8:
+	R: the S2B must allow the User to create only appointments in the future
+	R: the S2B must warn the User when he/she create an appointment that overlaps with others previosly created
+	R: the S2B must warn the User when he/she create an unreachable appointment
+	
+
+
+------------------------------
+Requirements:
+G1:
+-> change G1 to "... if the language is one of the *main languages*, English otherwise"
+	R: the app must retrieve the language settings from the device
+	R: the app should be able to display its content in all the *main languages* 
+	
+	D: the user's device should allow the app to retrieve the language settings
+
+G2:
+	R: the system must provide a way to begin the registration process
+	R: after the insertion of the credentials and their validation*, the system has to send to the provided address an email with an activation link
+	R: the registration fails if the inserted email is already associated to an account
+	R: when the Person confirm through the activation link, he/she becomes a User
+	R: in the case of non valid* credentials, the system must reject them and restart the registration process
+	
+	*valid credentials: (unique emails and so on and so forth) 
+	
+	D: when the S2B sends an email, it is always received by the receiver
+	
+	
+---------------------------------------------
+G8:
+	R: the system must provide a way to start the creation of a new appointment
+	R: during the process the user shall insert the *appointment details*
+
+G9:
+-> change to "... EVENTUALLY updating its details"
+	R: the system provide a way to visualize created appointments
+	R: after visualizing an appointment, a user can choose to edit its details
+
+what about G10?? It is really a Goal? If we just define "appointment's details" in the definition section?
+What about G11? G11 is not a goal, it is a group of goals. Can we merge them into G9?
+
+G11#1 and G11#2:
+	R: when time and location of the current appointment are set, the S2B produces a list of travel solutions with associated suggestions
+	R: the S2B provide the user the possibility to choose one of the travel solutions or leave the travel plan unspecified
+	R: the S2B also provide the possibility to choose to select a preferred trasportation mean
+	R: when a new preferred transportation mean is selected the S2B has to recompute the list of solutions according to the new preference
+	
+G11#3: (PROPOSAL: can this be a goal by itself?)
+	R: when time and location of the current appointment are set, the S2B offers the possibility to invite other users or persons, through their emails.
+	R: when a User or a Person is invited, the S2B will inform him/her sending an email
+	
+	D: (the same for G2) when the S2B sends an email, it is received by the receiver
+
+G11#4: change saying the you either has a ticket or you can buy one
+	R: when the user selects a travel solution for which a ticket is exepected, the S2B asks the User to either:
+		- specify if he/she owns a ticket (either ordinary or a pass, in which case the deadline has to be inserted)
+		- buy a ticket (options available only for transportation means of affiliated companies)
+
+--------
+G12: Is this necessary after the change in G11#4?
+-> change to "...or a season pass, depending on the affiliated company"
+
+G13: (PROPOSAL: swap G13 and G14 and use 2 req. for G13: in the schedule the user can select an appointment, selected ap. can be deleted)
+	R: when an appointment exists and is in the future, the S2B provides the possibility to delete it
+
+G14:
+	R: existing appointments can be viewed together as a schedule view
+	R: the schedule can be daily or weekly
+	
+G15: (??? Already in G11)
+
+G16: (define *incoming*)
+	R: when an user visualize an incoming appointment for which a vehicle sharing system has to be used, the S2B provides a localization service
+	
+	D: the User's device has a working GPS installed, to which the app has access
+	D: the affiliated companies provide a localization service APIs
+	
+G17: (it can be misunderstood. Change it to "redirect user to the company's app to process with the renting of a shared vehicle")
+	R: the S2B offers the possibility to rent a vehicle
+	R: when the user selects a vehicle to rent, the app redirects him/her to the right company's app or site
+
+G18:
+	R: a reference to requirement of G11#1 G G11#2?
+	R: if weather forecast are bad: foot, bicycle motorbike are discouraged
+	R: if strikes have been announced, public transport is discouraged
+	R: in case of baggage or passengers a car is recommended
+	R: in case of a work appointment, bicycle is discouraged
+	
+	D: Google Maps services take traffic into consideration
+	
+G19:
+	R: when an appointment becomes incoming, a notification is sent to the user
+	R: if a travel plan has not already been choosen, the notification suggests one
+	R: if a travel plan has already been choosen but at the moment better travel plans are available (according to new weather forecast and news on traffic and strikes), the notification suggests a new feasible solution
+	
+	
+----- ADD GOAL: when a user is invited to an appointment he/she can accept or decline. If he/she accepts, an appointment is created in his/her personal ??travlendar??
+----- ADD GOAL: add manager goals
+	
