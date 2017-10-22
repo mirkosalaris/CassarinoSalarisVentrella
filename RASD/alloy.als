@@ -1,28 +1,51 @@
-abstract sig Ride {
-	makeUse: lone Ticket,
-	associatedWith: TransportationMean
+//primitive signatures 
+sig Name {}
+
+sig Surname {}
+
+sig Email {}
+
+sig Address {}
+
+sig Double {}
+
+sig Time {}
+
+sig Date {}
+
+enum Bool {
+	True,
+	False
+	}
+
+//signatures
+sig Ride {
+	makeUseTicket: lone Ticket,
+	byTranMean: TransportationMean,
+	fromLocation: Location,
+	toLocation: Location
 	}	
 
-abstract sig PersonalRide extends Ride {}
-
-abstract sig CompanyCustomRide {}
+sig TransportationCompany {}
 
 abstract sig Ticket {
-	usedFor: some TransportationMean
+	usedFor: some TransportationMean,
+	providedByCompany: TransportationCompany
 	}
 
 sig User {
-	name: String,
-	surname: String,
-	email: String,
+	name: Name,
+	surname: Surname,
+	email: Email,
 	ownsTicket: set Ticket,
 	setPreferences: Preferences,
 	hasConstraints: set TransportationMeanConstraint,
 	speaksLanguage: Language,
-	setBreakWindows: BreakWindow,
+	setBreakWindows: set BreakWindow,
 	createsAppointment: set Appointment,
 	partecipatesToAppointment: set Appointment,
-	hasTravelPlan: set TravelPlan
+	hasTravelPlan: set TravelPlan,
+	currentlyAtLoc: Location
 	}
 
 sig Appointment {
@@ -34,9 +57,9 @@ sig Appointment {
 	}
 
 sig Location {
-	address: String,
-	latitude: Int,
-	longitude: Int
+	address: Address,
+	latitude: Double,
+	longitude: Double
 	}
 
 enum AppointmentType {
@@ -77,26 +100,33 @@ enum Language {
 	}
 
 abstract sig TransportationMean {
-	hasConstraint: set TransportationMeanConstraint
+	belongsToCompany: TransportationCompany
 	}
 
 one sig Foot, Car, Taxi, Metro, Tram extends TransportationMean {}
 
 sig Preferences {
 	ecoFriendly: Bool,
-	disabledTranMean: set TransportattionMean
+	disabledTranMean: set TransportationMean
 	}
 
-abstract sig TransportationMeanConstraint {}
-
-sig DistanceConstraint extends TransportationMeanConstraint {
-	value: Int,
-	minMax: Bool
+abstract sig TransportationMeanConstraint {
+	associatedToTranMean: TransportationMean
 	}
 
-sig TimeWindowConstraint {
+sig DistanceConstraint extends TransportationMeanConstraint { 
+	fromValue: Int,
+	toValue: Int
+	}
+
+sig TimeWindowConstraint extends TransportationMeanConstraint{
 	from: Time,
 	to: Time
 	}
+
+
+pred show {}
+
+run show
 
 
