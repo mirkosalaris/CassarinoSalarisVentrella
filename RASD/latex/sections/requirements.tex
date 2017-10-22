@@ -23,9 +23,19 @@
 	\subsubsection{Use Case diagram}
 		\smallskip
 		\begin{figure}[H]	
-			\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram}}
-			\caption{Use Case diagram}
+			\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram1}}
+			\caption{User Use Case diagram}
 		\end{figure}
+
+	\begin{figure}[H]	
+	\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram2}}
+	\caption{ specify details }
+\end{figure}
+
+	\begin{figure}[H]	
+	\centerline{\includegraphics[scale= 0.7]{Images/UseCaseDiagram3}}
+	\caption{Manager Use Case diagram}
+\end{figure}
 
 
 		\renewcommand{\arraystretch}{1.6} % increase line height
@@ -33,10 +43,10 @@
 		\medskip %leave a bit of space before the next 'section'
 		\vbox{ % to avoid page breaking
 			\noindent
-			\textbf{User creates event}
+			\textbf{User creates appointment}
 			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-				\hline\textbf{Use case:} & User creates an event
+				\hline\textbf{Use case:} & User creates an appointment
 				\\
 				\hline\textbf{Actors:} & User
 				\\
@@ -146,7 +156,7 @@
 				\hline\textbf{Actors:} & User
 				\\
 				\hline\textbf{Entry condition:} & user must be logged;\newline
-				the event must exist;
+				the user must have selected the appointment from the schedule;
 				
 				\\
 				\hline\textbf{Description:} & user visualize an appointment and eventually:
@@ -232,9 +242,8 @@ We chose to omit the Sequence Diagram in this phase and leave it for the Design 
 \subsection{Functional Requirements}
 \subsection{Performance Requirements}
 The system has to be able to respond to a possibly great number of simultaneous requests and
-more generally to a great number of request throughout the day. Basing the analysis on
-competitors' results an average of 200000 (two hundred thousands) subscribed users and
-10000 (ten thousands) reservations per day may have to be expected and so correctly managed.
+more generally to a great number of request throughout the day.
+The S2B, at least for the start, will only be available for the Lombardy region. Based on demographic analysis (number of inhabitants, number of people under the age of 60, number of smartphones sold over the past 2 years), it was decided to design the S2B to support 100,000 users simultaneously, but scalability needs to be guaranteed.
 \subsection{Design Constraints}
 	\subsubsection{Standard compliance}
 	\subsubsection{Hardware limitations}
