@@ -16,8 +16,14 @@
 		\end{figure}
 	
 	\subsubsection{Hardware Interfaces}
+	The main hardware interface of the system consists in the access to the GPS data
+	in the mobile application. The application also requires Internet connectivity
+	and internal storage access.
 	
 	\subsubsection{Software Interfaces}
+	The mobile application must support Android,iOS and the remaining main OSs (further details are discussed in paragraph 3.6.5 Portability). The web application
+	works on any web server that supports Java. The back-end stores its data in a
+	DBMS and can run on every platform that supports the JVM.
 	\subsubsection{Communication Interfaces}
 \subsection{UML modeling}
 	\subsubsection{Use Case diagram}
@@ -238,7 +244,7 @@
 %		\end{figure}
 
 \subsubsection{Sequence Diagram}
-We chose to omit the Sequence Diagram in this phase and leave it for the Design Part.
+We chose to omit the Sequence Diagram considering that the Activity diagram in this phase will fit better.
 \subsection{Functional Requirements}
 \subsection{Performance Requirements}
 The system has to be able to respond to a possibly great number of simultaneous requests and
@@ -246,6 +252,8 @@ more generally to a great number of request throughout the day.
 The S2B, at least for the start, will only be available for the Lombardy region. Based on demographic analysis (number of inhabitants, number of people under the age of 60, number of smartphones sold over the past 2 years), it was decided to design the S2B to support 100,000 users simultaneously, but scalability needs to be guaranteed.
 \subsection{Design Constraints}
 	\subsubsection{Standard compliance}
+	To ensure interoperability the S2B will follow the W3C web standard and will be as adherent as possible to  coding practices in relation to the use of HTML/XHTM, CSS and Java programming language
+	Moreover the use of private libraries will be avoided.
 	\subsubsection{Hardware limitations}
 		\begin{itemize}
 		\item Mobile App: \newline
@@ -286,4 +294,3 @@ In addition,when the user wants to buy tickets or rent a shared vehicle, the sto
 	\subsubsection{Portability}
 	The S2B must be able to run in all main mobile OS(Android, iOS, Nokia OS, blackBerry OS, windows-phone OS) and being supported by all the main Web Browser(Google Crome, Safari,FireFox, Microsoft Edge, Internet Explorer, ...)\newline
 	
-	scalability,accurancy,performance?
