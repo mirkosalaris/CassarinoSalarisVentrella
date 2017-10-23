@@ -23,6 +23,16 @@
 % used to identify words defined in definitions section
 \newcommand{\defined}[1]{{#1}}
 
+% this is to create labels like \mylabel{arg1}{arg2}. The first one is the part that you call with \ref{arg1} (or with \myref), the second part will be just copy-pasted after the ref link
+\makeatletter
+\newcommand{\mylabel}[2]{{#2} \label{#1}%
+	{\protected@write \@auxout {}{\string \newlabel {#1.text}{{~#2}{\thepage}{}{}{}} } \hypertarget{#1}{}}}
+\makeatother
+
+% to be used to actually exploit \mylabel
+\newcommand{\myref}[1]{\ref{#1}\ref{#1.text}}
+
+
 %----- Define page layout -----
  \geometry{
  left=25mm,

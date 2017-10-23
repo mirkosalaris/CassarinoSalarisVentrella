@@ -246,107 +246,119 @@
 \subsubsection{Sequence Diagram}
 We chose to omit the Sequence Diagram considering that the Activity diagram in this phase will fit better.
 \subsection{Functional Requirements}
-	\ref{G_dev_language} 
+	\myref{G-dev-language}
 	\begin{enumerate}[label={[R\arabic*]}]
-		\item the app must retrieve the language settings from the device
-		\item the app should be able to display its content in all the \defined{supported languages}
+		\item \mylabel{R-retrieve-language}{the app must retrieve the language settings from the device}
+		\item \mylabel{R-display}{the app should be able to display its content in all the \defined{supported languages}}
 	\end{enumerate}
 	\begin{itemize}
-		\item[] \ref{D_retrieve_language}
+		\item[] \myref{D-retrieve-language}
 	\end{itemize}
 
-	\noindent\ref{G_become_registered}
+	\bigskip
+	\noindent\myref{G-become-registered}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	
-		\item \label{R_begin_registration} the system must provide a way to begin the registration process
-		\item \label{R_send_email} after the insertion of the credentials and their \defined{validation}, the system has to send to the provided address an email with an activation link
-		\item \label{R_unique_email} the registration fails if the inserted email is already associated to an account
-		\item \label{R_user_after_activation} when the Person confirms through the activation link, he/she becomes a User
-		\item \label{R_restart} in the case of non \defined{valid credentials}, the system must reject them and restart the registration process
+		\item \mylabel{R-begin-registration}{the S2B must provide a way to begin the registration process}
+		\item \mylabel{R-send-email}{after the insertion of the credentials and their \defined{validation}, the S2B has to send to the provided address an email with an activation link}
+		\item \mylabel{R-unique-email}{the registration fails if the inserted email is already associated to an account}
+		\item \mylabel{R-user-after-activation}{when the Person confirms through the activation link, he/she becomes a User}
+		\item \mylabel{R-restart}{in the case of non \defined{valid credentials}, the system must reject them and restart the registration process}
 	\end{enumerate}
 	\begin{itemize}
-		\item[] \ref{D_email_always_received}
+		\item[] \myref{D-email-always-received}
+		\item[] \myref{D-everyone-email}
 	\end{itemize}
-	
-	\noindent\ref{G_new_appointment}
+
+	\bigskip
+	\noindent\myref{G-new-appointment}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_new_appointment} the system must provide a way to start the creation of a new appointment
-	\item \label{R_appointment_details} during the process the user shall insert the \defined{appointment details}	
+		\item \mylabel{R-new-appointment}{the system must provide a way to start the creation of a new appointment}
+		\item \mylabel{R-appointment-details}{during the process the user shall insert the \defined{appointment details}}
+	\end{enumerate}
+
+	\bigskip
+	\noindent\myref{G-visualize-update}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-visualize}{the system provides a way to visualize created appointments}
+		\item \mylabel{R-edit-details}{after visualizing an appointment, a user can choose to edit its details}
+	\end{enumerate}
+
+	\bigskip
+	\noindent\myref{G-choose-sug} \textbf{and} \myref{G-change-preferred-transp}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-solutions}{when time and location of the current appointment are set, the S2B produces a list of travel solutions with associated suggestions}
+		\item \mylabel{R-choose-solution}{the S2B provide the user the possibility to choose one of the travel solutions or leave the travel plan unspecified}
+		\item \mylabel{R-select-preferred}{the S2B also provide the possibility to choose a preferred transportation mean}
+		\item \mylabel{R-recompute-solutions}{when a new preferred transportation mean is selected the S2B has to recompute the list of solutions according to the new preference}
 	\end{enumerate}
 	
-	\noindent\ref{G_visualize&update}
+	\bigskip
+	\noindent\myref{G-invite}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \label{R_visualize} the system provides a way to visualize created appointments
-		\item \label{R_edit_details} after visualizing an appointment, a user can choose to edit its details
-	\end{enumerate}
-	
-	\noindent\ref{G_choose_sug} and \ref{G_change_preferred_transp}
-	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_solutions} when time and location of the current appointment are set, the S2B produces a list of travel solutions with associated suggestions
-	\item \label{R_choose_solution} the S2B provide the user the possibility to choose one of the travel solutions or leave the travel plan unspecified
-	\item \label{R_select_preferred} the S2B also provide the possibility to choose a preferred transportation mean
-	\item \label{R_recompute_solutions} when a new preferred transportation mean is selected the S2B has to recompute the list of solutions according to the new preference
-	\end{enumerate}
-	
-	\noindent\ref{G_invite}
-	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_can_invite} when time and location of the current appointment are set, the S2B offers the possibility to invite other users or persons, through their emails.
-	\item \label{R_invite_send_email} when a User or a Person is invited, the S2B will inform him/her sending an email
+		\item \mylabel{R-can-invite}{when time and location of the current appointment are set, the S2B offers the possibility to invite other users or persons, through their emails.}
+		\item \mylabel{R-invite-send-email}{when a User or a Person is invited, the S2B will inform him/her sending an email}
 	\end{enumerate}
 	\begin{itemize}
-		\item[] \ref{D_email_always_received}
+		\item[] \myref{D-email-always-received}
 	\end{itemize}
 	
-	\noindent\ref{G_owns_ticket}
+	\bigskip
+	\noindent\myref{G-owns-ticket}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item when the user selects a travel solution for which a ticket is exepected, the S2B asks the User specify if he/she owns a ticket (either ordinary or a pass, in which case the deadline has to be inserted)
-	\item if the user has selected a travel solution for which a ticket is expected and the User said to not own a ticket, the S2B asks him/her to buy a ticket (options available only for transportation means of \defined{affiliated companies})
+		\item \mylabel{R-owns-ticket}{when the user selects a travel solution for which a ticket is expected, the S2B asks the User specify if he/she owns a ticket (either ordinary or a pass, in which case the deadline has to be inserted)}
+		\item \mylabel{R-buy-ticket}{if the user has selected a travel solution for which a ticket is expected and the User said to not own a ticket, the S2B asks him/her to buy a ticket (options available only for transportation means of \defined{affiliated companies})}
 	\end{enumerate}
 	
-	\noindent\ref{G_visualize_schedule}
+	\bigskip
+	\noindent\myref{G-visualize-schedule}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_schedule_view} existing appointments can be viewed together as a schedule view
-	\item \label{R_daily_weekly} the schedule can be daily or weekly
+		\item \mylabel{R-schedule-view}{existing appointments can be viewed together as a schedule view}
+		\item \mylabel{R-daily-weekly}{the schedule can be daily or weekly}
 	\end{enumerate}
 	
-	\noindent\ref{G_delete}
+	\bigskip
+	\noindent\myref{G-delete}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \label{R_can_select} in the schedule view the User can select one or more appointments
-		\item \label{R_delete_selected} in the schedule view, selected appointments can be deleted
+		\item \mylabel{R-can-select}{in the schedule view the User can select one or more appointments}
+		\item \mylabel{R-delete-selected}{in the schedule view, selected appointments can be deleted}
 	\end{enumerate}
 	
-	\noindent\ref{G_locate}
+	\bigskip
+	\noindent\myref{G-locate}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_provide_loc_service} when an user visualize an incoming appointment for which a vehicle sharing system has to be used, the S2B provides a localization service
+		\item \mylabel{R-provide-loc-service}{when an user visualize an incoming appointment for which a vehicle sharing system has to be used, the S2B provides a localization service}
 	\end{enumerate}
 	\begin{itemize}
-		\item[] \ref{D_working_gps}
-		\item[] \ref{D_provide_loc_API}
+		\item[] \myref{D-working-gps}
+		\item[] \myref{D-provide-loc-API}
 	\end{itemize}
 	
-	\noindent\ref{G_redirection}
+	\bigskip
+	\noindent\myref{G-redirection}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \label{R_rent_vehicle} the S2B offers the possibility to rent a vehicle
-		\item \label{R_redirects} when the user selects a vehicle to rent, the app redirects him/her to the right company's app or site
+		\item \mylabel{R-rent-vehicle}{the S2B offers the possibility to rent a vehicle}
+		\item \mylabel{R-redirects}{when the user selects a vehicle to rent, the app redirects him/her to the right company's app or site}
 	\end{enumerate}
 	
-	\noindent\ref{G_show_suggestions}
+	\bigskip
+	\noindent\myref{G-show-suggestions}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_bad_weather} if weather forecast are bad: foot, bicycle motorbike are discouraged
-	\item \label{R_strikes} if strikes have been announced, public transport is discouraged
-	\item \label{R_baggage_passengers} in case of baggage or passengers a car is recommended
-	\item \label{R_work} in case of a work appointment, bicycle is discouraged
+		\item \mylabel{R-bad-weather}{if weather forecast are bad: foot, bicycle motorbike are discouraged}
+		\item \mylabel{R-strikes}{if strikes have been announced, public transport is discouraged}
+		\item \mylabel{R-baggage-passengers}{in case of baggage or passengers a car is recommended}
+		\item \mylabel{R-work}{in case of a work appointment, bicycle is discouraged}
 	\end{enumerate}
 	\begin{itemize}
-		\item[] \ref{D_traffic}
+		\item[] \myref{D-traffic}
 	\end{itemize}
 	
 	
-	\noindent\ref{G_notify}
+	\bigskip
+	\noindent\myref{G-notify}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-	\item \label{R_incoming_notified} when an appointment becomes incoming, a notification is sent to the user
-	\item \label{R_notChoosen_suggests} if a travel plan has not already been choosen, the notification suggests one
-	\item \label{R_choosen_update} if a travel plan has already been choosen but at the moment better travel plans are available (according to new weather forecast and news on traffic and strikes), the notification suggests a new feasible solution
+		\item \mylabel{R-incoming-notified}{when an appointment becomes incoming, a notification is sent to the user}
+		\item \mylabel{R-notChoosen-suggests}{if a travel plan has not already been choosen, the notification suggests one}
+		\item \mylabel{R-choosen-update}{if a travel plan has already been choosen but at the moment better travel plans are available (according to new weather forecast and news on traffic and strikes), the notification suggests a new feasible solution}
 	\end{enumerate}
 	
 \subsection{Performance Requirements}
