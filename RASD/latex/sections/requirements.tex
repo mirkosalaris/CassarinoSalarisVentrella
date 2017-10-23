@@ -262,12 +262,37 @@ We chose to omit the Sequence Diagram considering that the Activity diagram in t
 		\item \mylabel{R-send-email}{after the insertion of the credentials and their \defined{validation}, the S2B has to send to the provided address an email with an activation link}
 		\item \mylabel{R-unique-email}{the registration fails if the inserted email is already associated to an account}
 		\item \mylabel{R-user-after-activation}{when the Person confirms through the activation link, he/she becomes a User}
-		\item \mylabel{R-restart}{in the case of non \defined{valid credentials}, the system must reject them and restart the registration process}
+		\item \mylabel{R-restart}{in case of non \defined{valid credentials}, the system must reject them and restart the registration process}
 	\end{enumerate}
 	\begin{itemize}
+		\item[] \myref{D-registration-proceed}
 		\item[] \myref{D-email-always-received}
 		\item[] \myref{D-everyone-email}
 	\end{itemize}
+
+	\bigskip
+	\noindent\myref{G-log-in}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-remember-pairs}{for each User, the S2B must remember the pair email-password inserted during the registration process}
+		\item \mylabel{R-grant-access}{the S2B must grant access to the User if and only if the User inserts an existing email and the associated password}
+	\end{enumerate}
+	\begin{itemize}
+		\item[] \myref{D-user-remember}
+	\end{itemize}
+
+	\bigskip
+	\noindent\myref{G-use-credit-card}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-accept-cc}{the S2B must accept credit card data from the User}
+		\item \mylabel{R-check-cc}{the S2B must forward the credit card data to a credit institution to validate them}
+		\item \mylabel{R-valid-cc}{the S2B must let the User use the credit card if and only if the inserted credit card data are valid}
+	\end{enumerate}
+
+	\bigskip
+	\noindent\myref{G-pers-preferences}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-store-preferences}{for each type of preference, the S2B must provide to the User the possibility to change and store the preference value(s)}
+	\end{enumerate}
 
 	\bigskip
 	\noindent\myref{G-new-appointment}
