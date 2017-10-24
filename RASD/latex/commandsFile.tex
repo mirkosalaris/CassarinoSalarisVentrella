@@ -9,6 +9,7 @@
 \usepackage{enumitem}
 \usepackage{float}
 \usepackage{alloy-style}
+\usepackage{enumitem}
 
 \colorlet{mylinkcolor}{Orange}
 \colorlet{mycitecolor}{Orange}
@@ -31,6 +32,11 @@
 
 % to be used to actually exploit \mylabel
 \newcommand{\myref}[1]{\ref{#1}\ref{#1.text}}
+
+\newcommand{\goal}[1]{\bigskip
+	\noindent\textbf{\myref{#1}}}
+
+\setlist[enumerate,1]{leftmargin=1.2cm}
 
 
 %----- Define page layout -----

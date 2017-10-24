@@ -74,11 +74,11 @@
   morecomment=[l]{--},%
   morecomment=[s]{/*}{*/},%
   morestring=[b]",
-  numbers=none,
+  numbers=left,
   firstnumber=1,
-  numberstyle=\tiny,
-  stepnumber=2,
-  basicstyle=\scriptsize\ttfamily,
+  numberstyle=\scriptsize,
+  stepnumber=1,
+  basicstyle=\scriptsize\sffamily,
   commentstyle=\color[HTML]{00A108}\itshape,
   keywordstyle=\color[HTML]{2835C0}\bfseries,
   ndkeywordstyle=\bfseries,
@@ -92,12 +92,12 @@
 \lstnewenvironment{alloy}[1][]{%
   \lstset{language=alloy,
     floatplacement={tbp},captionpos=b,
-    xleftmargin=8pt,xrightmargin=8pt,basicstyle=\ttfamily,#1}}{}
+    xleftmargin=8pt,xrightmargin=8pt,basicstyle=\sffamily,#1}}{}
 
 % paragraph from file
 \newcommand{\alloyfile}[1]{
   \lstinputlisting[language=alloy,%
-    frame=lines,xleftmargin=8pt,xrightmargin=8pt,basicstyle=\ttfamily,columns=fixed]{#1}
+    frame=lines,xleftmargin=8pt,xrightmargin=8pt,basicstyle=\sffamily,columns=fixed]{#1}
 }
 
 \lstset{
