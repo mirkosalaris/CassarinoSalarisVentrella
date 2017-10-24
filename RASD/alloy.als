@@ -111,7 +111,7 @@ abstract sig TransportationMean {
 	belongsToCompany: lone TransportationCompany
 	}
 
-one sig Foot, Bicycle, Car, Taxi, Metro, Tram extends TransportationMean {}
+one sig Foot, MoBike, PersonalCar, EnjoyCar, Metro, Tram extends TransportationMean {}
 
 sig Preferences {
 	ecoFriendly: Bool,
@@ -160,10 +160,6 @@ fact TimeIsUnique {
 	all disjoint t1, t2: Time | t1.value != t2.value
 	}
 
-fact UserIsNotInTwoDifferentLocation {
-	all u1, u2: User | u1.currentlyAtLoc = u2.currentlyAtLoc implies u1 != u2
-	}
-
 fact ATicketBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.ownsTicket & u2.ownsTicket = none
 	}
@@ -204,6 +200,46 @@ fact ConsistentUserTravelPlanAppointment {
 fact AppointmentCreationImpliesPartecipation {
 	all u: User, a: Appointment | 
 	(a in u.createsAppointment) implies (a in u.partecipatesToAppointment)
+	}
+
+// there is not the possibility to have a name, surname, email, address, appointment
+//  type or transportation company without associations with something
+fact NameMustBelongToUsers {
+	all n: Name | some u: User | u.name = n
+	}
+
+fact SurnameMustBelongToUsers {
+	all s: Surname | some u: User | u.surname = s
+	}
+
+fact EmailMustBelongToUsers {
+	all e: Email | some u: User | u.email = e
+	}
+
+fact AddressMustBelongToLocations {
+	all a: Address | some loc: Location | loc.address = a
+	}
+
+fact AppointmentTypeMustBeAssociatedToAppointments {
+	all at: AppointmentType | some a: Appointment | a.hasType = at
+	}
+
+fact TranCompanyMustBeAssociatedWithTicketOrTranMean {
+	all tc: TransportationCompany | some t: Ticket, tm: TransportationMean | 
+	(t.providedByCompany = tc or tm.belongsToCompany = tc)
+	}
+
+// No tickets for personal and shared transportation means
+fact TicketsUsedOnlyIfNecessary {
+	all t: Ticket | (Foot & t.usedFor = none) and
+	(MoBike & t.usedFor = none) and 
+	(PersonalCar & t.usedFor = none) and
+	(EnjoyCar & t.usedFor = none)
+	}
+
+fact NoTranCompanyForPersonalTranMeans  {
+	(Foot.belongsToCompany = none) and
+	(PersonalCar.belongsToCompany= none)
 	}
 	
 pred show {}
