@@ -1,4 +1,5 @@
-// === PRIMITIVE SIGNATURES ===
+// ================================================================================================
+// ======================== PRIMITIVE SIGNATURES
 sig Name {}
 
 sig Surname {}
@@ -14,8 +15,8 @@ enum Bool {
 	False
 	}
 
-
-// === SIGNATURES ===
+// ================================================================================================
+// ======================== SIGNATURES
 sig Time {
 	value: Int
 	} { value >= 0 }
@@ -134,8 +135,8 @@ sig TimeWindowConstraint extends TransportationMeanConstraint{
 	to: Time
 	} { from.value < to.value }
 
-
-// === ADDITIONAL SIGNATURES ===
+// ================================================================================================
+// ======================== ADDITIONAL SIGNATURES
 sig SuggestedSolutions {
 	suggestTo: User,
 	containsSolutions: some Solution
@@ -146,8 +147,23 @@ sig Solution {
 	forAppointment: Appointment,	
 	}
 
+sig Device {
+	belongsTo: User,
+	language: Language
+}
 
-// === FACTS ===
+sig AppInstance{
+	installedOn: Device,
+	displayLanguage: Language
+}{ let d = installedOn | (displayLanguage = d.language) or
+			(displayLanguage = English and d.language not in SupportedLanguages.setOfLanguages) }
+
+one sig SupportedLanguages {
+	setOfLanguages: set Language
+}
+
+// ================================================================================================
+// ======================== FACTS
 fact EmailsAreUnique {
 	all disjoint u1, u2: User | u1.email != u2.email 
 	}
@@ -241,8 +257,20 @@ fact NoTranCompanyForPersonalTranMeans  {
 	(Foot.belongsToCompany = none) and
 	(PersonalCar.belongsToCompany= none)
 	}
+
+// ================================================================================================
+// ======================== ASSERTIONS
+assert CanDisplayInAllSupportedLanguages {
+	no l: AppInstance.installedOn.language |
+		l in SupportedLanguages.setOfLanguages and
+		no ap: AppInstance | ap.displayLanguage = l
+}
+
+check CanDisplayInAllSupportedLanguages
 	
-pred show {}
+pred show {
+	#FixedBreakWindow > 0
+}
 
 run show
 

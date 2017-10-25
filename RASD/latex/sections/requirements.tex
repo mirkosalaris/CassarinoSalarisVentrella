@@ -26,25 +26,29 @@
 	DBMS and can run on every platform that supports the JVM.
 	\subsubsection{Communication Interfaces}
 \subsection{UML modeling}
+	In this section we formalize the \defined{S2B} in terms of UML models.\newline
+	We divided the Use Case Diagrams into parts to slightly improve the readability of the Diagrams. After the Diagrams descriptions of the main Use Cases are provided.\newline
+	After that we provide a Class Diagram of the whole system and then some Activity Diagrams, to better explain the structure of the S2B and its behavior.\newline
+	Other types of diagram have been considered but we eventually realized them to not provide any other notable information about the system at this stage.
 	\subsubsection{Use Case diagram}
 		\smallskip
 		\begin{figure}[H]	
 			\centerline{\includegraphics[scale= 0.7]{Images/UseCaseDiagram0}}
-			\caption{Person Use Case}
+			\caption{Person Use Case Diagram}
 		\end{figure}
 		\begin{figure}[H]	
 			\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram1}}
-			\caption{User Use Case diagram}
+			\caption{User Use Case Diagram}
 		\end{figure}
 
 	\begin{figure}[H]	
 	\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram2}}
-	\caption{ specify details }
+	\caption{ "Specify Details" Use Case }
 \end{figure}
 
 	\begin{figure}[H]	
 	\centerline{\includegraphics[scale= 0.7]{Images/UseCaseDiagram3}}
-	\caption{Manager Use Case diagram}
+	\caption{Manager Use Case Diagram}
 \end{figure}
 
 
@@ -219,40 +223,31 @@
 		% ((I'm referring to '\paperwidth-1')
 		\begin{figure}[H]
 			\centerline{\includegraphics[width=\paperwidth-1]{Images/ClassDiagram}}
-			\caption{General class diagram}
+			\caption{General Class Diagram}
 		\end{figure}
 	\subsubsection{Activity diagrams}
 		\begin{figure}[H]
 			\centerline{\includegraphics[width=\paperwidth-1]{Images/RegistrationDiagramAD}}
-			\caption{Registration activity diagram}
+			\caption{Registration Activity Diagram}
 		\end{figure}
 		\begin{figure}[H]
 			\centerline{\includegraphics[width=\paperwidth-1]{Images/CreationAppointmentAD}}
-			\caption{Creation appointment diagram}
+			\caption{Creation appointment Activity Diagram}
 		\end{figure}
 		\begin{figure}[H]
 			\centerline{\includegraphics[height=0.35\paperheight]{Images/SolutionSelectionAD}}
-			\caption{Solution selection sub-activity}
+			\caption{Solution selection Sub-Activity Diagram}
 		\end{figure}
 		\begin{figure}[H]
 			\centerline{\includegraphics[height=0.35\paperheight]{Images/TicketHandlingAD}}
-			\caption{Ticket handling sub-activity}
+			\caption{Ticket handling Sub-Activity Diagram}
 		\end{figure}
-
-		
-
-%		\begin{figure}[H]
-%			\centerline{\includegraphics[width=\paperwidth-1]{Images/AppointmentCreationDiagram}}
-%			\caption{Appointment creation diagram}
-%		\end{figure}
-
-\subsubsection{Sequence Diagram}
-We chose to omit the Sequence Diagram considering that the Activity diagram in this phase will fit better.
 \subsection{Functional Requirements}
 	\goal{G-dev-language}
 	\begin{enumerate}[label={[R\arabic*]}]
 		\item \mylabel{R-retrieve-language}{the app must retrieve the language settings from the device}
 		\item \mylabel{R-display}{the app should be able to display its content in all the \defined{supported languages}}
+		\item \mylabel{R-display-right-language}{the app communicate to the user with the language set, if the language is one of the \defined{supported languages}, English otherwise}
 	\end{enumerate}
 	\begin{itemize}
 		\item[] \myref{D-retrieve-language}
@@ -274,11 +269,11 @@ We chose to omit the Sequence Diagram considering that the Activity diagram in t
 
 	\goal{G-log-in}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \mylabel{R-remember-pairs}{for each User, the S2B must remember the pair email-password inserted during the registration process}
 		\item \mylabel{R-grant-access}{the S2B must grant access to the User if and only if the User inserts an existing email and the associated password}
 	\end{enumerate}
 	\begin{itemize}
 		\item[] \myref{D-user-remember}
+		\item[] \myref{D-no-user-hacker}
 	\end{itemize}
 
 	\goal{G-use-credit-card}
@@ -297,12 +292,6 @@ We chose to omit the Sequence Diagram considering that the Activity diagram in t
 	\begin{enumerate}[resume, label={[R\arabic*]}]
 		\item \mylabel{R-new-appointment}{the system must provide a way to start the creation of a new appointment}
 		\item \mylabel{R-appointment-details}{during the process the user shall insert the \defined{appointment details}}
-	\end{enumerate}
-
-	\goal{G-visualize-update}
-	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \mylabel{R-visualize}{the system provides a way to visualize created appointments}
-		\item \mylabel{R-edit-details}{after visualizing an appointment, a user can choose to edit its details}
 	\end{enumerate}
 
 	\goal{G-choose-sug}
@@ -332,6 +321,12 @@ We chose to omit the Sequence Diagram considering that the Activity diagram in t
 	\begin{enumerate}[resume, label={[R\arabic*]}]
 		\item \mylabel{R-schedule-view}{existing appointments can be viewed together as a schedule view}
 		\item \mylabel{R-daily-weekly}{the schedule can be daily or weekly}
+	\end{enumerate}
+	
+	\goal{G-visualize-update}
+	\begin{enumerate}[resume, label={[R\arabic*]}]
+		\item \mylabel{R-visualize}{from the schedule view, the system provides a way to visualize a single appointment and its details}
+		\item \mylabel{R-edit-details}{after visualizing an appointment, the User who created it, can choose to edit its details}
 	\end{enumerate}
 	
 	\goal{G-delete}
@@ -379,16 +374,16 @@ more generally to a great number of request throughout the day.
 The S2B, at least for the start, will only be available for the Lombardy region. Based on demographic analysis (number of inhabitants, number of people under the age of 60, number of smartphones sold over the past 2 years), it was decided to design the S2B to support 100,000 users simultaneously, but scalability needs to be guaranteed.
 \subsection{Design Constraints}
 	\subsubsection{Standard compliance}
-	To ensure interoperability the S2B will follow the W3C web standard and will be as adherent as possible to  coding practices in relation to the use of HTML/XHTM, CSS and Java programming language
-	Moreover the use of private libraries will be avoided.
+	To ensure interoperability the S2B will follow the W3C web standard and will be as adherent as possible to  coding practices in relation to the use of HTML/XHTM, CSS and Java programming language. Moreover the use of non-opensource libraries will be avoided.
 	\subsubsection{Hardware limitations}
 		\begin{itemize}
 		\item Mobile App: \newline
 		* 3G connection\newline
 		* GPS\newline
 		* Space for app package
-		\item Web App:\newline
-		* Modern browser with AJAX support
+		% TODO pier what? This are Software "limitations"
+		%\item Web App:\newline
+		%* Modern browser with AJAX support
 		\end{itemize}
 	
 	\subsubsection{Any other constraint}
@@ -406,7 +401,7 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 	The S2B must guarantees a 3-nines availability (99.9 percent) with a downtime not greater than 8 hours per year.
 	\subsubsection{Security}
 User credentials and payment information will be stored. Data confidentiality is a primary concern.
-In addition,when the user wants to buy tickets or rent a shared vehicle, the stored information must be sent to affiliated  transport Company systems or shared vehicle Company  systems . To ensure the security and the confidentiality of this information, the S2B must be able to adopt  access managment protocols and comunication protocols able to prevent not granted access and/or Sniffing/Spoofing activities performed by third.
+In addition, when the user wants to buy tickets or rent a shared vehicle, the stored information must be sent to affiliated  transport Company systems or shared vehicle Company  systems. To ensure the security and the confidentiality of this information, the S2B must be able to adopt  access managment protocols and comunication protocols able to prevent not granted access and/or Sniffing/Spoofing activities performed by third.
 	
 	\subsubsection{Maintainability}
 	The S2B must be designed in the way to easly correct defects or their cause,
@@ -419,5 +414,5 @@ In addition,when the user wants to buy tickets or rent a shared vehicle, the sto
 	cope with a changed environment.
 	
 	\subsubsection{Portability}
-	The S2B must be able to run in all main mobile OS(Android, iOS, Nokia OS, blackBerry OS, windows-phone OS) and being supported by all the main Web Browser(Google Crome, Safari,FireFox, Microsoft Edge, Internet Explorer, ...)\newline
+	The S2B must be able to run in all main mobile OS (Android, iOS, Windows-Phone OS) and being supported by all the main Web Browser (Google Chrome, Safari, Firefox, Microsoft Edge, Internet Explorer, ...)\newline
 	
