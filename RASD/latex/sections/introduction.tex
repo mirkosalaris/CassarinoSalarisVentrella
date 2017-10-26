@@ -12,40 +12,29 @@ The system interfaces with other firms (e.g. transportation companies, territory
 
 \subsubsection{Goals}
 	\begin{enumerate}[label={[G\arabic*]}]
-		\item \mylabel{G-dev-language}{Every User should be comfortable in the use of the app}
-		\item \mylabel{G-become-registered}{allow every Person to have his/her own account, after providing credentials}
-		\item \mylabel{G-log-in}{allow a Person into log in to his/her own account, and only in that}
-		\item \mylabel{G-use-credit-card}{allow User to use his/her own credit card}
-		\item \mylabel{G-pers-preferences}{allow a User to set personal preferences}
+		\item \mylabel{G-become-registered}{a Person should be able to have his/her own Travlendar+ agenda}
+		\item \mylabel{G-pers-preferences}{a User should be able to customize the offered service}
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
 			\item \mylabel{G-eco-friendly}{specify his/her preference for eco-friendly solution}
-			\item \mylabel{G-break-windows}{set break time windows, either flexible or fixed}
-			\item \mylabel{G-time-slot}{set time slot in which the use of specific transportation means should be avoided}
-			\item \mylabel{G-min-distance}{set a minimum distance below which a specific transportation mean should be avoided}
-			\item \mylabel{G-max-distance}{set a maximum distance beyond which a specific transportation mean should be avoided}
-			\item \mylabel{G-transp-disabled}{set a specific transportation mean as permanently disabled}
+			\item \mylabel{G-break-windows}{define break time windows, either flexible or fixed}
+			\item \mylabel{G-time-slot}{define time slot in which the use of specific transportation means should be avoided}
+			\item \mylabel{G-min-distance}{define a minimum distance below which a specific transportation mean should be avoided}
+			\item \mylabel{G-max-distance}{define a maximum distance beyond which a specific transportation mean should be avoided}
+			\item \mylabel{G-transp-disabled}{disable permanently specific transportation means}
 		\end{enumerate}
-		\item \mylabel{G-new-appointment}{allow User to create a new appointment, specifying its details}
-		\item \mylabel{G-choose-sug}{during the specification of details of an appointment, allow User to visualize suggested travel solutions and to choose one of them}
+		\item \mylabel{G-all-appointment}{a User should be able to take note of all his/her appointments and their details}
+		\item \mylabel{G-manage-agenda}{a User should be able to manage his/her appointments}
+		\item \mylabel{G-choose-sug}{for each appointment, the User should be assisted in the choice of the travel solution}
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item \mylabel{G-change-preferred-transp}{during the specification of details of an appointment, before the choice, allow User to set a preferred transportation mean}
+			\item \mylabel{G-show-suggestions}{travel solution suggestions must take into account traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers}			
 		\end{enumerate}
-		\item \mylabel{G-invite}{during the specification of details of an appointment, allow User to invite other persons to the appointment}
-		\item \mylabel{G-owns-ticket}{during the specification of details of an appointment, if for the selected travel solution a ticket is expected, allow User to specify if he/she owns a ticket, either ordinary or a pass (eventually specifying the deadline)}
+		\item \mylabel{G-invite}{a User should be able to invite other persons to his/her appointment}
+		\item \mylabel{G-owns-ticket}{a User is assisted in the purchase of a ticket when it is required}
+		\item \mylabel{G-locate}{a User should be able to locate nearest vehicle of a vehicle sharing system, if that is the transportation mean of choice of an incoming appointment}
+		\item \mylabel{G-redirection}{a User should be able to rent a shared vehicle, if that is the transportation mean of choice of an incoming appointment}
+		\item \mylabel{G-notify}{a User should always be aware of the incoming appointments and how to reach them}
 		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item \mylabel{G-buy-ticket}{if the user does not own a ticket and the transportation company is \defined{affiliated} with Travlendar+, he/she can buy it}
-		\end{enumerate}
-		\item \mylabel{G-visualize-schedule}{allow User to visualize daily/weekly schedule}
-		\item \mylabel{G-visualize-update}{allow User to visualize his/her appointments, eventually updating their details if he/she is the creator}
-		\item \mylabel{G-delete}{allow User to delete an existing appointment}
-		\item \mylabel{G-locate}{allow User to locate nearest vehicle of a vehicle sharing system, if that is the transportation mean of choice of an incoming appointment}
-		\item \mylabel{G-redirection}{allow User to being redirected to the company's app to proceed with the renting of the selected shared vehicle}
-		\item \mylabel{G-show-suggestions}{show suggestions based on: traffic, weather conditions/forecast, strikes, type of appointment, baggage, passengers}
-		\item \mylabel{G-notify}{notify the User about incoming appointments}
-		\begin{enumerate}[label=\theenumi\#{\arabic*}]
-			\item \mylabel{G-confirmation}{asking for confirmation on the transportation means previously planned}
-			\item \mylabel{G-notify-suggestions}{in case no transportation mean was selected, suggesting one}
-			\item \mylabel{G-complications}{communicating eventually complications (bad weather, traffic) and suggesting more feasible solutions}
+			\item \mylabel{G-complications}{the User should be aware of eventual complications (bad weather, traffic, strikes)}
 		\end{enumerate}
 	\end{enumerate}
 
