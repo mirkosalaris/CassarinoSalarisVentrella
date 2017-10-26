@@ -83,10 +83,29 @@ sig RepeatableAppointment {
 sig TravelPlan {
 	passengers: Int,
 	baggage: Int,
-	hasRide: some Ride,
+	startRide: Ride,
+	intermediateRides: set Ride,
+	endRide: Ride,
 	forAppointment: Appointment
-	} { passengers >= 0 
-		   baggage >= 0 }
+	} {
+			passengers >= 0
+			baggage >= 0
+			no is: intermediateRides | startRide = is or endRide = is
+			lone is: intermediateRides | startRide.toLocation = is.fromLocation
+			lone is: intermediateRides | endRide.fromLocation = is.toLocation
+			no is: intermediateRides | startRide.fromLocation = is.toLocation
+			no is: intermediateRides | endRide.toLocation = is.fromLocation
+			all is: intermediateRides | is.toLocation = endRide.fromLocation or 
+				one is1: intermediateRides | is.toLocation = is1.fromLocation
+			all is: intermediateRides | is.fromLocation = startRide.toLocation or
+				one is1: intermediateRides | is.fromLocation = is1.toLocation	
+			#intermediateRides = 0 implies 
+				(startRide = endRide or startRide.toLocation = endRide.fromLocation)		
+		}
+
+fun travelPlanRides [t: TravelPlan] : some Ride {
+	t.startRide + t.intermediateRides + t.endRide
+}
 
 abstract sig BreakWindow {}
 
@@ -100,7 +119,7 @@ sig FlexibleBreakWindow extends BreakWindow {
 	to: Time,
 	atLeast: Time
 	} { from.value < to.value
-		  atLeast.value > 0 }
+		  (atLeast.value > 0 and atLeast.value < minus[to.@value, from.@value]) }
 
 enum Language {
 	Italiano,
@@ -180,6 +199,14 @@ fact ATicketBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.ownsTicket & u2.ownsTicket = none
 	}
 
+fact TicketMustBelongToUsers {
+	all t: Ticket | some u: User | t in u.ownsTicket
+	}
+
+fact TicketMustBeAssociatedToRides {
+	all t: Ticket | some r: Ride | t in r.makeUseTicket
+	}
+
 fact APreferenceBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.hasPreferences & u2.hasPreferences = none
 	}
@@ -194,6 +221,10 @@ fact ABreakWindowIsSetOnlyByOneUser {
 
 fact AnAppointmentIsCreatedOnlyByOneUser {
 	all disjoint u1, u2: User | u1.createsAppointment & u2.createsAppointment = none
+	}
+
+fact AppointmentsMustBeCreatedOnlyByUsers {
+	all a: Appointment | some u: User | a in u.createsAppointment
 	}
 
 fact ATravelPlanBelongsOnlyToOneUser {
@@ -258,6 +289,48 @@ fact NoTranCompanyForPersonalTranMeans  {
 	(PersonalCar.belongsToCompany= none)
 	}
 
+fact TranMeanConstraintsMustBelongToUsers {
+	all tmc: TransportationMeanConstraint | some u: User | tmc in u.hasConstraints 
+	}
+
+fact BreakWindowMustBeSetByUsers {
+	all bw: BreakWindow | some u: User | bw in u.setBreakWindows
+	}
+
+fact RideMustBelongToTravelPlans {
+	all r: Ride | some tp: TravelPlan | r in travelPlanRides[tp]
+	}
+
+fact RideBelongsToOnlyOneTravelPlan {
+	all disjoint tp1, tp2: TravelPlan | travelPlanRides[tp1] & travelPlanRides[tp2] = none
+}
+
+fact TravelPlanMustBelongToUsers {
+	all tp: TravelPlan | some u: User | tp in u.hasTravelPlan
+	}
+
+fact SolutionMustBeSuggested {
+	all s: Solution | some ss: SuggestedSolutions | s in ss.containsSolutions
+	}
+
+fact LocationAssociatedToRideAppointmentOrUser {
+	all l: Location | some r: Ride, a: Appointment, u: User |
+	l in (r.fromLocation + r.toLocation + a.atLocation + u.currentlyAtLoc)
+	}
+
+fact RepeatableAppointmentIsAnAppointment {
+	all ra: RepeatableAppointment | some a: Appointment | ra in a.isRepeatable
+	}
+
+fact RepeatableAppointmentsAtTheSameTime {
+	all a1, a2: Appointment | (a1.isRepeatable = a2.isRepeatable) implies  
+	(a1.start = a2.start and a1.end = a2.end)
+	}
+
+fact NoStartRideFromAppointmentLocation {
+	all tp: TravelPlan | tp.startRide.fromLocation != tp.forAppointment.atLocation
+	}
+
 // ================================================================================================
 // ======================== ASSERTIONS
 assert CanDisplayInAllSupportedLanguages {
@@ -268,14 +341,7 @@ assert CanDisplayInAllSupportedLanguages {
 
 check CanDisplayInAllSupportedLanguages
 	
-pred show {
-	#FixedBreakWindow > 0
-}
+pred show {}
 
-run show
-
-
-
-
-
+run show 
 
