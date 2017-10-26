@@ -161,24 +161,23 @@
 		
 		\vbox{ % to avoid page breaking
 			\noindent
-			\textbf{User visualizes the appointment}
+			\textbf{User specifies the appointment}
 			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-				\hline\textbf{Use case:} & User visualizes the appointment.
+				\hline\textbf{Use case:} & User specifies appointment's details.
 				\\
 				\hline\textbf{Actors:} & User
 				\\
 				\hline\textbf{Entry condition:} & user must be logged;\newline
-				the user must have selected the appointment from the schedule;
+				the appointment must exist;
 				
 				\\
-				\hline\textbf{Description:} & user visualize an appointment and eventually:
+				\hline\textbf{Description:} & user specifies or modifies basic details (time, date, location, type of appointment, number of passengers and the precence of baggage) and eventually:
 				\begin{itemize}
-					\item If not specified yet, set a travel mean;
-					\item Modify the previous travel mean or other detail such as location, baggage or passengers;
-					\item Buy a ticket for the travel mean;
-					\item Rent a shared vehicle if is the proper time to do that and locate the nearest one;
-					\item Delete the appointment. 
+					\item If not specified yet, sets a travel mean;
+					\item Modifies the previous travel mean;
+					\item Buys a ticket for the travel mean;
+					\item Invites a person. 
 				\end{itemize}\\
 				\hline
 			\end{tabu}\\
