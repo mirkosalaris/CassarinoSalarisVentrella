@@ -19,7 +19,7 @@ The system interfaces with other firms (e.g. transportation companies, territory
 			\item \mylabel{G-break-windows}{define break time windows, either flexible or fixed}
 			\item \mylabel{G-time-slot}{define time slot in which the use of specific transportation means should be avoided}
 			\item \mylabel{G-min-distance}{define a minimum distance below which a specific transportation mean should be avoided}
-			\item \mylabel{G-max-distance}{define a maximum distance beyond which a specific transportation mean should be avoided}
+			\item \mylabel{G-max-distance}{define a maximum distance beyond which a specific transportation mean should be \newline avoided}
 			\item \mylabel{G-transp-disabled}{disable permanently specific transportation means}
 		\end{enumerate}
 		\item \mylabel{G-all-appointment}{a User should be able to take note of all his/her appointments and their details}
@@ -48,7 +48,7 @@ The system interfaces with other firms (e.g. transportation companies, territory
 			- specify the interest or not for eco-friendly solutions;\newline
 			- specify constraints, such as avoiding  bike, on the travel means solutions).
 			\item[- \textit{supported languages}:] the set of languages that the S2B will be able to use to comunicate with the user. English and Italian are included.
-			\item[- \textit{valid credentials}: Name, surname and personal email address]
+			\item[- \textit{valid credentials}:] Name, surname and personal email address.
 			\item[- \textit{appointment details}:] time, date, type of appointment, location, number of passengers and precence of baggage.
 			\item[- \textit{incoming appointment}:] the next scheduled appointment for which the S2B send a remind to the user. The remind is sent  a certain amount of time before the appointment starts, to allow the user to get on time in the location.
 			\item[- \textit{affiliated company}:] a company (transport company or vehicle sharing company) that has deals with the S2B.
@@ -66,3 +66,8 @@ The system interfaces with other firms (e.g. transportation companies, territory
 		\end{description}
 \subsection{Revision history}
 \subsection{Document Structure}
+After purpose and scope , used to briefly introduce the topic, we decided to state the goals that the StB should achieve coupled with a list of usefull  definitions and acronyms.
+subsequently the text proceeds with an analisy of the functions that the app should provide. The analisy starts with a general exposition of the scenarios and become gradually more detailed passing trough the analisy of the actors that will interact with the S2B and the statement of domain assumptions.
+After that, the specific requirements are exposed focusing firstly on the external interfaces and then providing the models used to highlight the relations betwen  actors and StB and describe the internal structure of the latter.
+After that, Functional and non Functional requirements are sequentially discussed.
+Before ending with the effort spent and the references we provide a formal analisy performed with alloy.

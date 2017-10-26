@@ -21,10 +21,11 @@
 	and internal storage access.
 	
 	\subsubsection{Software Interfaces}
-	The mobile application must support Android,iOS and the remaining main OSs (further details are discussed in paragraph 3.6.5 Portability). The web application
+	The mobile application must support Android, iOS and the remaining main OSs (further details are discussed in paragraph 3.6.5 Portability). The web application
 	works on any web server that supports Java. The back-end stores its data in a
 	DBMS and can run on every platform that supports the JVM.
 	\subsubsection{Communication Interfaces}
+	The communication betwen client and server should be http requests/responses.
 \subsection{UML modeling}
 	In this section we formalize the \defined{S2B} in terms of UML models.\newline
 	We divided the Use Case Diagrams into parts to slightly improve the readability of the Diagrams. After the Diagrams descriptions of the main Use Cases are provided.\newline
@@ -66,8 +67,10 @@
 				\\
 				\hline\textbf{Entry condition:} & The user must be logged
 				\\
-				\hline\textbf{Flow of events:} & The user creates an event (a meeting, appointment or generic event) giving it a name;\newline
-				User specifies the location of the event;\newline
+				\hline\textbf{Flow of events:} & The user creates an appointment giving it a name;\newline
+				User specifies the time and date of the appointment;\newline
+				User specifies the location of the appointment;\newline
+				User specifies the type of the appointment;\newline
 				User specifies details such as passengers or baggage;\newline
 				User selects a travel mean taking to account app’s suggestion;\newline
 				The app takes note of the settings and send a confirmation;\newline
@@ -79,15 +82,15 @@
 				\\
 				\hline\textbf{Exceptions:} & Warnings messages are created in the following cases:
 				\begin{itemize}
-					\item User creates an event that overlaps another event;
-					\item User creates an event with a location that is unreachable in the allocated time;
-					\item User creates an event that violates the set constraints about the break windows.
+					\item User creates an appointment that overlaps with another appointment;
+					\item User creates an appointment with a location that is unreachable in the allocated time;
+					\item User creates an appointment that violates the set constraints about the break windows.
 				\end{itemize}
 				\\
 				\hline\textbf{Post conditions:} & The user is successfully redirected to the main page.
 				\\
 				\hline
-			\end{tabu}
+   			\end{tabu}
 			\bigskip %leave a bit of space after the table
 		}
 		
@@ -100,7 +103,7 @@
 				\\
 				\hline\textbf{Actors:} & Person
 				\\
-				\hline\textbf{Entry condition:} &user must be not already logged;
+				\hline\textbf{Entry condition:} &none;
 				\\
 				\hline\textbf{Flow of events:} & the person inserts full name and email contact;\newline
 				the app send an email with the confirmation link;\newline
@@ -197,19 +200,19 @@
 				user must have added a payment card .
 				
 				\\
-				\hline\textbf{Flow of events:} &User select an event;\newline
+				\hline\textbf{Flow of events:} &User selects an appointment;\newline
 				User,  through the app, searches for tickets for the specified travel mean; \newline
-				User select the ticket’s option and picks one;\newline
+				User selects the ticket’s option and picks one;\newline
 				User proceeds with the payment;\newline
 				The payment operation ends successfully;\newline
-				The app send a confirmation and redirects the user to the main page;
+				The app sends a confirmation and redirects the user to the main page;
 				
 				\\
 				\hline\textbf{Secondary flows:} & none
 				\\
 				\hline\textbf{Exceptions:} & The payment is rejected (not enough credit, expired card, ..);\newline
 				The app notifies the user; \newline
-				The app redirect the user to the home page;
+				The app redirects the user to the home page;
 				
 				\\
 				\hline\textbf{Post conditions:} & User successfully books the tickets and is redirected to the main page.
@@ -285,7 +288,7 @@
 	\begin{enumerate}[resume, label={[R\arabic*]}]
 		\item \mylabel{R-solutions}{when time and location of the current appointment are set, the S2B produces a list of travel solutions with associated suggestions}
 		\item \mylabel{R-choose-solution}{the S2B provide the user the possibility to choose one of the suggested travel solutions or leave the travel plan unspecified}
-		\item \mylabel{R-select-preferred}{the S2B also provide the possibility to choose a preferred transportation mean}
+		\item \mylabel{R-select-preferred}{the S2B also provides the possibility to choose a preferred transportation mean}
 		\item \mylabel{R-recompute-solutions}{when a new preferred transportation mean is selected the S2B has to recompute the list of solutions according to the new preference}
 		\item \mylabel{R-bad-weather}{if weather forecast are bad: foot, bicycle motorbike are discouraged}
 		\item \mylabel{R-strikes}{if strikes have been announced, public transport is discouraged}
@@ -316,7 +319,7 @@
 	
 	\goal{G-locate}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \mylabel{R-provide-loc-service}{when a user visualize an incoming appointment for which a shared vehicle of an affiliated company has to be used, the S2B provides a localization service}
+		\item \mylabel{R-provide-loc-service}{when a user visualizes an incoming appointment for which a shared vehicle of an affiliated company has to be used, the S2B provides a localization service}
 	\end{enumerate}
 	\begin{itemize}
 		\item[] \myref{D-working-gps}
@@ -349,13 +352,12 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 		* 3G connection\newline
 		* GPS\newline
 		* Space for app package
-		% TODO pier what? This are Software "limitations"
-		%\item Web App:\newline
-		%* Modern browser with AJAX support
+	\item Web App: \newline
+	* Modern browser able to retrieve user's location
 		\end{itemize}
 	
 	\subsubsection{Any other constraint}
-	Regulatory policies
+\textbf{Regulatory policies}\newline
 	The system will ask for users' payment informations and obviously, in addition to store them
 	safely, will use them only for fees and rides payments.
 	Moreover, the system will have to ask for users' permission in order to retrieve and use their
