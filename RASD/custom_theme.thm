@@ -10,6 +10,7 @@
 <node>
    <type name="AppInstance"/>
    <type name="Device"/>
+   <type name="DistanceConstraint"/>
    <type name="English"/>
    <type name="EnjoyCar"/>
    <type name="False"/>
@@ -18,23 +19,22 @@
    <type name="Foot"/>
    <type name="Francais"/>
    <type name="Int"/>
+   <type name="Invitation"/>
    <type name="Italiano"/>
    <type name="Metro"/>
    <type name="MoBike"/>
+   <type name="Notification"/>
+   <type name="Person"/>
    <type name="Personal"/>
    <type name="PersonalCar"/>
    <type name="String"/>
    <type name="SupportedLanguages"/>
+   <type name="TimeWindowConstraint"/>
    <type name="Tram"/>
    <type name="True"/>
    <type name="univ"/>
    <type name="Work"/>
    <type name="seq/Int"/>
-</node>
-
-<node color="Black">
-   <type name="Ride"/>
-   <type name="User"/>
 </node>
 
 <node color="Blue">
@@ -54,7 +54,6 @@
 
 <node color="Red">
    <type name="Time"/>
-   <type name="TransportationMeanConstraint"/>
 </node>
 
 <node color="White">
@@ -71,20 +70,20 @@
    <type name="Date"/>
 </node>
 
+<node shape="Ellipse" color="Black">
+   <type name="TransportationMeanConstraint"/>
+</node>
+
+<node shape="Ellipse" color="Yellow">
+   <type name="Ride"/>
+</node>
+
 <node shape="Hexagon" color="White">
    <type name="Email"/>
 </node>
 
-<node shape="Inv House">
-   <type name="TimeWindowConstraint"/>
-</node>
-
-<node shape="Inv Triangle">
-   <type name="DistanceConstraint"/>
-</node>
-
-<node shape="Lined Diamond" color="Gray">
-   <type name="Double"/>
+<node shape="Lined Diamond" color="Red">
+   <type name="User"/>
 </node>
 
 <node shape="Parallelogram" color="Green">
@@ -99,16 +98,20 @@
    <type name="ordering/Ord"/>
 </node>
 
+<node visible="no" color="Black">
+   <type name="TransportationMean"/>
+</node>
+
 <node visible="no" shape="Ellipse" color="Yellow">
    <type name="Address"/>
 </node>
 
-<node visible="yes">
-   <type name="Ticket"/>
+<node visible="no" shape="Lined Diamond" color="Gray">
+   <type name="Double"/>
 </node>
 
-<node visible="yes" color="Black">
-   <type name="TransportationMean"/>
+<node visible="yes">
+   <type name="Ticket"/>
 </node>
 
 <node visible="yes" color="Red">
@@ -123,11 +126,6 @@
    <relation name="Next"> <type name="open$3/Ord"/> <type name="AppointmentType"/> <type name="AppointmentType"/> </relation>
    <relation name="Next"> <type name="open$4/Ord"/> <type name="Language"/> <type name="Language"/> </relation>
    <relation name="Next"> <type name="ordering/Ord"/> <type name="Bool"/> <type name="Bool"/> </relation>
-</edge>
-
-<edge color="Gray" visible="no" attribute="no" constraint="no">
-   <relation name="$show_t"> <type name="TransportationCompany"/> <type name="Ticket"/> </relation>
-   <relation name="$show_tm"> <type name="TransportationCompany"/> <type name="TransportationMean"/> </relation>
 </edge>
 
 <edge color="Gray" visible="no" attribute="yes" constraint="no">
@@ -147,23 +145,24 @@
 </edge>
 
 <edge visible="no">
-   <relation name="$show_a"> <type name="AppointmentType"/> <type name="Appointment"/> </relation>
-   <relation name="$show_a&apos;"> <type name="Location"/> <type name="Appointment"/> </relation>
-   <relation name="$show_a&apos;&apos;"> <type name="RepeatableAppointment"/> <type name="Appointment"/> </relation>
+   <relation name="$show_a"> <type name="Location"/> <type name="Appointment"/> </relation>
+   <relation name="$show_a&apos;"> <type name="RepeatableAppointment"/> <type name="Appointment"/> </relation>
+   <relation name="$show_a&apos;&apos;"> <type name="User"/> <type name="AppInstance"/> </relation>
+   <relation name="$show_apNew"> <type name="Appointment"/> <type name="Appointment"/> </relation>
    <relation name="$show_loc"> <type name="Address"/> <type name="Location"/> </relation>
-   <relation name="$show_r"> <type name="Ticket"/> <type name="Ride"/> </relation>
+   <relation name="$show_p"> <type name="Email"/> <type name="Person"/> </relation>
+   <relation name="$show_p1"> <type name="User"/> <type name="Person"/> </relation>
+   <relation name="$show_p2"> <type name="User"/> <type name="Person"/> </relation>
    <relation name="$show_r&apos;"> <type name="Location"/> <type name="Ride"/> </relation>
-   <relation name="$show_ss"> <type name="Solution"/> <type name="SuggestedSolutions"/> </relation>
+   <relation name="$show_tm"> <type name="TransportationCompany"/> <type name="TransportationMean"/> </relation>
    <relation name="$show_tp"> <type name="Ride"/> <type name="TravelPlan"/> </relation>
-   <relation name="$show_u"> <type name="Ticket"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;"> <type name="Appointment"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;"> <type name="Name"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;"> <type name="Surname"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;"> <type name="Email"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;"> <type name="TransportationMeanConstraint"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="BreakWindow"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="TravelPlan"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="Location"/> <type name="User"/> </relation>
+   <relation name="$show_u"> <type name="Appointment"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;"> <type name="Name"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;"> <type name="Surname"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;"> <type name="TransportationMeanConstraint"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;"> <type name="BreakWindow"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="TravelPlan"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="Location"/> <type name="User"/> </relation>
 </edge>
 
 <edge visible="no" attribute="no">

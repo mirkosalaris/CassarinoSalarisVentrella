@@ -49,17 +49,20 @@ sig User {
 	speaksLanguage: Language,
 	setBreakWindows: set BreakWindow,
 	createsAppointment: set Appointment,
-	partecipatesToAppointment: set Appointment,
+	participatesToAppointment: set Appointment,
 	hasTravelPlan: set TravelPlan,
 	currentlyAtLoc: Location
 	}
 
 sig Appointment {
+	id: Int,
 	start: Time,
 	end: Time, 
 	atLocation: Location,
 	hasType: AppointmentType,
-	isRepeatable: lone RepeatableAppointment
+	isRepeatable: lone RepeatableAppointment,
+	isModified: Bool,
+	isIncoming: Bool
 	}
 
 sig Location {
@@ -106,7 +109,7 @@ sig TravelPlan {
 		}
 
 // retrieves the whole set of Rides of a travel plan
-fun travelPlanRides [t: TravelPlan] : some Ride {
+fun travelPlanRides[t: TravelPlan] : some Ride {
 	t.startRide + t.intermediateRides + t.endRide
 }
 
@@ -184,6 +187,27 @@ one sig SupportedLanguages {
 	setOfLanguages: set Language
 }
 
+sig Person {
+	name: Name,
+	surname: Surname,
+	email: Email,
+	isUser: lone User
+}
+
+sig Invitation {
+	fromUser: User,
+	toEmail: Email,
+	forAppointment: Appointment
+}{
+	forAppointment in fromUser.createsAppointment
+	fromUser.email != toEmail
+}
+
+sig Notification {
+	toUser: User,
+	incomingAppointment: Appointment
+}
+
 // ================================================
 // ======================== FACTS
 fact EmailsAreUnique {
@@ -238,15 +262,15 @@ fact DisabledTranMeansAreNotSuggested {
 	u.hasPreferences.disabledTranMean & (s.containsSolutions).suggestTranMean = none
 	}
 
-// if an appointment is associated to a travel plan of a User, the User must partecipate to the appointment
+// if an appointment is associated to a travel plan of a User, the User must participate to the appointment
 fact ConsistentUserTravelPlanAppointment { 
 	all u: User, a: Appointment, tp: TravelPlan | 
-	(tp.forAppointment = a and tp in u.hasTravelPlan) implies (a in u.partecipatesToAppointment)
+	(tp.forAppointment = a and tp in u.hasTravelPlan) implies (a in u.participatesToAppointment)
 	}
 
-fact AppointmentCreationImpliesPartecipation {
+fact AppointmentCreationImpliesParticipation {
 	all u: User, a: Appointment | 
-	(a in u.createsAppointment) implies (a in u.partecipatesToAppointment)
+	(a in u.createsAppointment) implies (a in u.participatesToAppointment)
 	}
 
 // there is not the possibility to have a name, surname, email, address, appointment
@@ -259,8 +283,8 @@ fact AllSurnameMustBelongToUsers {
 	all s: Surname | some u: User | u.surname = s
 	}
 
-fact AllEmailMustBelongToUsers {
-	all e: Email | some u: User | u.email = e
+fact AllEmailMustBelongToPersonos {
+	all e: Email | some p: Person | p.email = e
 	}
 
 fact AllAddressesMustBelongToLocations {
@@ -332,7 +356,81 @@ fact RepeatableAppointmentsAtTheSameTime {
 
 fact NoStartRideFromAppointmentLocation {
 	all tp: TravelPlan | tp.startRide.fromLocation != tp.forAppointment.atLocation
-	}
+}
+
+fact SameEmailImpliesSamePerson {
+	all p1, p2: Person | p1.email = p2.email implies (samePerson[p1, p2])
+}
+
+fact SamePersonImpliesOldAndNew {
+	 all disjoint p1, p2: Person | samePerson[p1, p2] implies
+		((p1.isUser = none and p2.isUser != none) or (p1.isUser != none and p2.isUser = none))
+}
+
+fact UserAndPersonSameData {
+	all p: Person | p.isUser != none implies
+		let u = p.isUser |
+		p.email = u.email and
+		p.name = u.name and
+		p.surname = u.surname
+}
+
+fact EveryUserHasA2Person {
+	all u: User | some disjoint p1, p2: Person | p1.isUser = u and samePerson[p1, p2]
+}
+
+fact IsModifiedImpliesAnotherAppointment {
+	all apOld: Appointment | some apNew: Appointment |
+		apOld.isModified = True implies
+		apOld.id = apNew.id and apOld != apNew and apNew.isModified = False
+}
+
+fact SameAppointmentIdSameUser {
+	all disjoint ap1, ap2: Appointment | all u: User |
+		ap1.id = ap2.id and
+		(ap1 in u.participatesToAppointment implies (ap2 in u.participatesToAppointment))
+		and
+		(ap1 in u.createsAppointment implies (ap2 in u.createsAppointment))
+}
+
+fact AllUsersMustBeCreatorOrInvited {
+	all a: Appointment, u: User | a in u.participatesToAppointment implies 
+	(a in u.createsAppointment or invitedToAppointment[u, a])
+}
+
+fact NotificationOnlyIfAppointmentIsIncoming {
+	all n: Notification | n.incomingAppointment.isIncoming = True
+}
+
+fact NotificationForAllIncomingAppointment {
+	all a: Appointment, u: User |
+	(a.isIncoming = True and a in u.participatesToAppointment)
+	implies
+	(one n1: Notification | n1.incomingAppointment = a and n1.toUser = u)
+}
+
+fact UserReceivesNotificationOfOwnedAppointments {
+	all n: Notification, u: User |
+		n.toUser = u implies n.incomingAppointment in u.participatesToAppointment
+}
+
+fact EachDeviceHasMaxOneAppInstance {
+	all d: Device | lone a: AppInstance | a.installedOn = d
+}
+
+fact EveryUserHasAtLeastOneAppInstance {
+	all u: User | some a: AppInstance | a.installedOn.belongsTo = u
+}
+
+// ================================================
+//  ======================== UTILITY PREDICATES
+pred samePerson[p1, p2: Person] {
+	p1.email = p2.email and p1.name=p2.name and p1.surname = p2.surname
+}
+
+pred invitedToAppointment[u: User, a: Appointment] {
+	some i: Invitation | i.forAppointment = a and i.toEmail = u.email
+}
 
 // ================================================
 // ======================== ASSERTIONS
@@ -341,10 +439,45 @@ assert CanDisplayInAllSupportedLanguages {
 		l in SupportedLanguages.setOfLanguages and
 		no ap: AppInstance | ap.displayLanguage = l
 }
-
 check CanDisplayInAllSupportedLanguages
-	
-pred show {}
 
-run show 
+assert EveryPersonShouldBeAbleToHaveAnAccount {
+	#User > 0
+	implies
+	some p1, p2: Person, u: User | 
+		p1.email = p2.email and p1.isUser = none and p2.isUser = u
+}
+check EveryPersonShouldBeAbleToHaveAnAccount
 
+assert UserAlwaysNotified {
+	all a: Appointment, u: User |
+		(a.isIncoming = True and a in u.participatesToAppointment)
+		implies
+		(one n: Notification | n.toUser = u and n.incomingAppointment = a)
+}
+check UserAlwaysNotified for 2
+
+// ================================================
+// ======================== RUNNABLE PREDICATES
+
+pred showSomeAppointmentModified {
+	some ap: Appointment | ap.isModified = True
+}
+run showSomeAppointmentModified
+
+pred showSomeMeeting {
+	some a: Appointment, disjoint u1, u2: User |
+		 a in u1.participatesToAppointment and a in u2.participatesToAppointment
+}
+run showSomeMeeting for 4
+
+pred show {
+	#Appointment = 2 and
+	#User = 1 and
+	#Notification > 0 and
+	#TravelPlan > 1 and
+	#Solution > 1 and
+	#SupportedLanguages.setOfLanguages > 1
+}
+
+run show for 5 but 4 Notification, 8 Int
