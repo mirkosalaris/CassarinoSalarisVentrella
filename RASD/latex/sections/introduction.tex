@@ -1,6 +1,6 @@
 \subsection{Purpose}
 This document is the Requirement Analysis and Specification Document for the Travlendar+ application. Its aim is
-to inform about what the application offers, about requirements and goals that the system must present. This document offers also an analysis of the world and of the shared phenomena regarding Travlendar+. RASD contains class diagram to show domain model and other diagrams which illustrate, with more details, transactions of the functionality of the application.
+to inform about what the application offers, about requirements and goals that the system must present. This document offers also an analysis of the world and of the shared phenomena regarding Travlendar+. RASD contains class diagram to show domain model and other diagrams which illustrate, with more details, transactions of the functionalities of the application.
 \subsection{Scope}
 Travlendar+ is an application that allows people to organize and to track their appointments and meeting by 
 registering them into the application. A person becomes a User of Travlendar+ by registering himself to the app. After this phase, users can start to use basic functionalities of the app (e.g. register appointments and organize meetings).\newline 
@@ -40,18 +40,27 @@ The system interfaces with other firms (e.g. transportation companies, territory
 
 \subsection{Definitions, Acronyms, Abbreviations}
 	\subsubsection{Definitions}
+		\label{definitions}
+		Here we provide a list of definitions of words and expression used in the documents. Every time such words or expressions will be used they will be preceded by the symbol "($\uparrow$)" that will be a link to this section.
 		\begin{description}
 			% TODO Sort alphabetically
 			\item[- \textit{welcome page}:] the page where the user is redirected after completing the sign up process and logging in for the first time. In this page the app sequentially  asks to the user to insert credit-card data and set his preferences. The user can skip any of this phases and complete them in a second time. After this process, the initial settings configuration is completed.
 			\item[- \textit{personal preferences}:] with this term we mean that here the user can:\newline
 			- specify break time windows; \newline
 			- specify the interest or not for eco-friendly solutions;\newline
-			- specify constraints, such as avoiding  bike, on the travel means solutions).
-			\item[- \textit{supported languages}:] the set of languages that the S2B will be able to use to comunicate with the user. English and Italian are included.
-			\item[- \textit{valid credentials}:] Name, surname and personal email address.
+			- specify constraints, such as avoiding  bike, on the travel means solutions.
+			\item[- \textit{supported languages}:] the set of languages that the S2B will be able to use to communicate with its users. English and Italian are included.
+			\item[- \textit{valid credentials}:] Name, surname, personal email address and password.
+				\begin{itemize}
+					\item[Name:] it should be non empty and it should contains only alphabetical characters
+					\item[Surname:] it should be non empty and it should contains only alphabetical characters
+					\item[Email:] It should be a valid email address, with an alphanumerical string followed by a '@', followed by an alphanumerical string, a dot, and a domain name
+					\item[Password:] It should be a string with at least 8 characters
+				\end{itemize}
 			\item[- \textit{appointment details}:] time, date, type of appointment, location, number of passengers and precence of baggage.
 			\item[- \textit{incoming appointment}:] the next scheduled appointment for which the S2B send a remind to the user. The remind is sent  a certain amount of time before the appointment starts, to allow the user to get on time in the location.
 			\item[- \textit{affiliated company}:] a company (transport company or vehicle sharing company) that has deals with the S2B.
+			\item[- \textit{break window}:] it is a time slot in which the User specify he/she want to be absolutely free. In this time slot he does not want to have any appointment nor to be travelling. This is a fixed break window. A flexible break window is a time slot in which he/she specify he want to have some free time, but not the full window free.
 		\end{description}
 	\subsubsection{Acronyms}
 		\begin{description}

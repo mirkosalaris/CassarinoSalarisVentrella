@@ -25,12 +25,12 @@
 	works on any web server that supports Java. The back-end stores its data in a
 	DBMS and can run on every platform that supports the JVM.
 	\subsubsection{Communication Interfaces}
-	The communication betwen client and server should be http requests/responses.
+	The communication between clients and server should be HTTP requests/responses based.
 \subsection{UML modeling}
-	In this section we formalize the \defined{S2B} in terms of UML models.\newline
-	We divided the Use Case Diagrams into parts to slightly improve the readability of the Diagrams. After the Diagrams descriptions of the main Use Cases are provided.\newline
+	In this section we formalize the S2B in terms of UML models.\newline
+	We divided the Use Case Diagrams into parts to slightly improve the readability of the Diagrams. After the Diagrams, descriptions of the main Use Cases are provided.\newline
 	After that we provide a Class Diagram of the whole system and then some Activity Diagrams, to better explain the structure of the S2B and its behavior.\newline
-	Other types of diagram have been considered but we eventually realized them to not provide any other notable information about the system at this stage.
+	Other types of diagrams have been considered, but we eventually realized them to not provide any other notable information about the system at this stage.
 	\subsubsection{Use Case diagram}
 		\smallskip
 		\begin{figure}[H]	
@@ -105,15 +105,15 @@
 				\\
 				\hline\textbf{Entry condition:} &none;
 				\\
-				\hline\textbf{Flow of events:} & the person inserts full name and email contact;\newline
-				the app send an email with the confirmation link;\newline
-				the person give the confirmation trough the link on the mail;\newline
-				the app give the welcome to the new user.
+				\hline\textbf{Flow of events:} & the person inserts \defined{valid credentials};\newline
+				the app sends an email with the confirmation link;\newline
+				the person gives the confirmation through the link on the mail;\newline
+				the app shows the \defined{welcome page} to the new user.
 				
 				\\
 				\hline\textbf{Secondary flows:} & none.
 				\\
-				\hline\textbf{Exceptions:} &the person inserts a wrong email contact;\newline
+				\hline\textbf{Exceptions:} &the person inserts non \defined{valid credentials};\newline
 				the sign up cannot proceed.
 				
 				\\
@@ -264,8 +264,8 @@
 
 	\goal{G-pers-preferences}
 	\begin{enumerate}[resume, label={[R\arabic*]}]
-		\item \mylabel{R-change-preferences}{for each type of preference, the S2B must provide the User the possibility to set or change the value(s)}
-		\item \mylabel{R-store-preferences}{for each type of preference, the S2B must store the preference value(s)}
+		\item \mylabel{R-change-preferences}{for each type of \defined{preference}, the S2B must provide the User the possibility to set or change the value(s)}
+		\item \mylabel{R-store-preferences}{for each type of \defined{preference}, the S2B must store the preference value(s)}
 	\end{enumerate}
 
 	\goal{G-all-appointment}
@@ -349,11 +349,11 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 	\subsubsection{Hardware limitations}
 		\begin{itemize}
 		\item Mobile App: \newline
-		* 3G connection\newline
-		* GPS\newline
-		* Space for app package
-	\item Web App: \newline
-	* Modern browser able to retrieve user's location
+			* 3G connection\newline
+			* GPS\newline
+			* Space for app package
+		\item Web App: \newline
+			* Modern browser able to retrieve user's location
 		\end{itemize}
 	
 	\subsubsection{Any other constraint}
@@ -374,7 +374,7 @@ User credentials and payment information will be stored. Data confidentiality is
 In addition, when the user wants to buy tickets or rent a shared vehicle, the stored information must be sent to affiliated  transport Company systems or shared vehicle Company  systems. To ensure the security and the confidentiality of this information, the S2B must be able to adopt  access managment protocols and comunication protocols able to prevent not granted access and/or Sniffing/Spoofing activities performed by third.
 	
 	\subsubsection{Maintainability}
-	The S2B must be designed in the way to easly correct defects or their cause,
+	The S2B must be designed in a way to easily correct defects or their cause,
 	repair or replace faulty or worn-out components without having to replace still working parts,
 	prevent unexpected working condition,
 	maximize its useful life,
@@ -384,5 +384,5 @@ In addition, when the user wants to buy tickets or rent a shared vehicle, the st
 	cope with a changed environment.
 	
 	\subsubsection{Portability}
-	The S2B must be able to run in all main mobile OS (Android, iOS, Windows-Phone OS) and being supported by all the main Web Browser (Google Chrome, Safari, Firefox, Microsoft Edge, Internet Explorer, ...)\newline
+	The S2B must be able to run in all main mobile OS \textit{Android, iOS, Windows-Phone OS)} and being supported by all the main Web Browser \textit{(Google Chrome, Safari, Firefox, Microsoft Edge)}.
 	
