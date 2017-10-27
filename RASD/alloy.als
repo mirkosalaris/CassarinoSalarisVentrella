@@ -1,4 +1,4 @@
-// ================================================================================================
+// ================================================
 // ======================== PRIMITIVE SIGNATURES
 sig Name {}
 
@@ -15,7 +15,7 @@ enum Bool {
 	False
 	}
 
-// ================================================================================================
+// ================================================
 // ======================== SIGNATURES
 sig Time {
 	value: Int
@@ -88,21 +88,24 @@ sig TravelPlan {
 	endRide: Ride,
 	forAppointment: Appointment
 	} {
-			passengers >= 0
-			baggage >= 0
-			no is: intermediateRides | startRide = is or endRide = is
-			lone is: intermediateRides | startRide.toLocation = is.fromLocation
-			lone is: intermediateRides | endRide.fromLocation = is.toLocation
-			no is: intermediateRides | startRide.fromLocation = is.toLocation
-			no is: intermediateRides | endRide.toLocation = is.fromLocation
-			all is: intermediateRides | is.toLocation = endRide.fromLocation or 
-				one is1: intermediateRides | is.toLocation = is1.fromLocation
-			all is: intermediateRides | is.fromLocation = startRide.toLocation or
-				one is1: intermediateRides | is.fromLocation = is1.toLocation	
-			#intermediateRides = 0 implies 
-				(startRide = endRide or startRide.toLocation = endRide.fromLocation)		
+		passengers >= 0
+		baggage >= 0
+
+		// structural constraints on start, intermediate and end Rides
+		no ir: intermediateRides | startRide = ir or endRide = ir
+		lone ir: intermediateRides | startRide.toLocation = ir.fromLocation
+		lone ir: intermediateRides | endRide.fromLocation = ir.toLocation
+		no ir: intermediateRides | startRide.fromLocation = ir.toLocation
+		no ir: intermediateRides | endRide.toLocation = ir.fromLocation
+		all ir: intermediateRides | ir.toLocation = endRide.fromLocation or
+			one ir1: intermediateRides | ir.toLocation = ir1.fromLocation
+		all ir: intermediateRides | ir.fromLocation = startRide.toLocation or
+			one ir1: intermediateRides | ir.fromLocation = ir1.toLocation
+		#intermediateRides = 0 implies
+			(startRide = endRide or startRide.toLocation = endRide.fromLocation)
 		}
 
+// retrieves the whole set of Rides of a travel plan
 fun travelPlanRides [t: TravelPlan] : some Ride {
 	t.startRide + t.intermediateRides + t.endRide
 }
@@ -154,7 +157,7 @@ sig TimeWindowConstraint extends TransportationMeanConstraint{
 	to: Time
 	} { from.value < to.value }
 
-// ================================================================================================
+// ================================================
 // ======================== ADDITIONAL SIGNATURES
 sig SuggestedSolutions {
 	suggestTo: User,
@@ -181,7 +184,7 @@ one sig SupportedLanguages {
 	setOfLanguages: set Language
 }
 
-// ================================================================================================
+// ================================================
 // ======================== FACTS
 fact EmailsAreUnique {
 	all disjoint u1, u2: User | u1.email != u2.email 
@@ -197,10 +200,6 @@ fact TimeIsUnique {
 
 fact ATicketBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.ownsTicket & u2.ownsTicket = none
-	}
-
-fact TicketMustBelongToUsers {
-	all t: Ticket | some u: User | t in u.ownsTicket
 	}
 
 fact TicketMustBeAssociatedToRides {
@@ -231,6 +230,7 @@ fact ATravelPlanBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.hasTravelPlan & u2.hasTravelPlan = none
 	}
 
+// if a User has disabled a transportation mean, it should never be suggested to him/her
 fact DisabledTranMeansAreNotSuggested {
 	all p: Preferences, s: SuggestedSolutions, u: User |
 	p in u.hasPreferences and
@@ -238,7 +238,7 @@ fact DisabledTranMeansAreNotSuggested {
 	u.hasPreferences.disabledTranMean & (s.containsSolutions).suggestTranMean = none
 	}
 
-// if an appointment is associated to a user travel plan, the user must partecipate to the appointment
+// if an appointment is associated to a travel plan of a User, the User must partecipate to the appointment
 fact ConsistentUserTravelPlanAppointment { 
 	all u: User, a: Appointment, tp: TravelPlan | 
 	(tp.forAppointment = a and tp in u.hasTravelPlan) implies (a in u.partecipatesToAppointment)
@@ -251,29 +251,32 @@ fact AppointmentCreationImpliesPartecipation {
 
 // there is not the possibility to have a name, surname, email, address, appointment
 //  type or transportation company without associations with something
-fact NameMustBelongToUsers {
+fact AllNameMustBelongToUsers {
 	all n: Name | some u: User | u.name = n
 	}
 
-fact SurnameMustBelongToUsers {
+fact AllSurnameMustBelongToUsers {
 	all s: Surname | some u: User | u.surname = s
 	}
 
-fact EmailMustBelongToUsers {
+fact AllEmailMustBelongToUsers {
 	all e: Email | some u: User | u.email = e
 	}
 
-fact AddressMustBelongToLocations {
+fact AllAddressesMustBelongToLocations {
 	all a: Address | some loc: Location | loc.address = a
 	}
 
-fact AppointmentTypeMustBeAssociatedToAppointments {
-	all at: AppointmentType | some a: Appointment | a.hasType = at
+fact TicketMustBelongToUsers {
+	all t: Ticket | some u: User | t in u.ownsTicket
 	}
 
-fact TranCompanyMustBeAssociatedWithTicketOrTranMean {
-	all tc: TransportationCompany | some t: Ticket, tm: TransportationMean | 
-	(t.providedByCompany = tc or tm.belongsToCompany = tc)
+fact AllTicketsMustBeProvidedByTranCompany {
+	all t: Ticket | some tc: TransportationCompany | t.providedByCompany = tc
+}
+
+fact TranCompanyMustBeAssociatedWithTranMean {
+	all tc: TransportationCompany | some tm: TransportationMean | tm.belongsToCompany = tc
 	}
 
 // No tickets for personal and shared transportation means
@@ -331,7 +334,7 @@ fact NoStartRideFromAppointmentLocation {
 	all tp: TravelPlan | tp.startRide.fromLocation != tp.forAppointment.atLocation
 	}
 
-// ================================================================================================
+// ================================================
 // ======================== ASSERTIONS
 assert CanDisplayInAllSupportedLanguages {
 	no l: AppInstance.installedOn.language |
