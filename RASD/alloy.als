@@ -63,7 +63,7 @@ sig Appointment {
 	isRepeatable: lone RepeatableAppointment,
 	isModified: Bool,
 	isIncoming: Bool
-	}
+	} { start.value < end.value }
 
 sig Location {
 	address: Address,
@@ -162,14 +162,9 @@ sig TimeWindowConstraint extends TransportationMeanConstraint{
 
 // ================================================
 // ======================== ADDITIONAL SIGNATURES
-sig SuggestedSolutions {
-	suggestTo: User,
-	containsSolutions: some Solution
-	}
-
-sig Solution {
-	suggestTranMean: some TransportationMean,
-	forAppointment: Appointment,	
+sig SuggestedSolution {
+	suggestsTo: User,
+	containsTravelPlan: TravelPlan
 	}
 
 sig Device {
@@ -257,14 +252,6 @@ fact ATravelPlanBelongsOnlyToOneUser {
 	all disjoint u1, u2: User | u1.hasTravelPlan & u2.hasTravelPlan = none
 	}
 
-// if a User has disabled a transportation mean, it should never be suggested to him/her
-fact DisabledTranMeansAreNotSuggested {
-	all p: Preferences, s: SuggestedSolutions, u: User |
-	p in u.hasPreferences and
-	s.suggestTo = u and
-	u.hasPreferences.disabledTranMean & (s.containsSolutions).suggestTranMean = none
-	}
-
 // if an appointment is associated to a travel plan of a User, the User must participate to the appointment
 fact ConsistentUserTravelPlanAppointment { 
 	all u: User, a: Appointment, tp: TravelPlan | 
@@ -276,8 +263,6 @@ fact AppointmentCreationImpliesParticipation {
 	(a in u.createsAppointment) implies (a in u.participatesToAppointment)
 	}
 
-// there is not the possibility to have a name, surname, email, address, appointment
-//  type or transportation company without associations with something
 fact AllNameMustBelongToUsers {
 	all n: Name | some u: User | u.name = n
 	}
@@ -286,7 +271,7 @@ fact AllSurnameMustBelongToUsers {
 	all s: Surname | some u: User | u.surname = s
 	}
 
-fact AllEmailMustBelongToPersonos {
+fact AllEmailMustBelongToPersons {
 	all e: Email | some p: Person | p.email = e
 	}
 
@@ -306,7 +291,7 @@ fact TranCompanyMustBeAssociatedWithTranMean {
 	all tc: TransportationCompany | some tm: TransportationMean | tm.belongsToCompany = tc
 	}
 
-// No tickets for personal and shared transportation means
+// no tickets for personal and shared transportation means
 fact TicketsUsedOnlyIfNecessary {
 	all t: Ticket | (Foot & t.usedFor = none) and
 	(MoBike & t.usedFor = none) and 
@@ -339,10 +324,6 @@ fact TravelPlanMustBelongToUsers {
 	all tp: TravelPlan | some u: User | tp in u.hasTravelPlan
 	}
 
-fact SolutionMustBeSuggested {
-	all s: Solution | some ss: SuggestedSolutions | s in ss.containsSolutions
-	}
-
 fact LocationAssociatedToRideAppointmentOrUser {
 	all l: Location | some r: Ride, a: Appointment, u: User |
 	l in (r.fromLocation + r.toLocation + a.atLocation + u.currentlyAtLoc)
@@ -361,10 +342,17 @@ fact NoStartRideFromAppointmentLocation {
 	all tp: TravelPlan | tp.startRide.fromLocation != tp.forAppointment.atLocation
 }
 
+// before registraion we have a person, after registration we have another person who is a User;
+//person associated with User and person before registration have the same data (email, name, surname)
+fact EveryUserHasA2Person {
+	all u: User | some disjoint p1, p2: Person | p1.isUser = u and samePerson[p1, p2]
+}
+
 fact SameEmailImpliesSamePerson {
 	all p1, p2: Person | p1.email = p2.email implies (samePerson[p1, p2])
 }
 
+// if two persons are the same, they represent the person before and after registration
 fact SamePersonImpliesOldAndNew {
 	 all disjoint p1, p2: Person | samePerson[p1, p2] implies
 		((p1.isUser = none and p2.isUser != none) or (p1.isUser != none and p2.isUser = none))
@@ -376,10 +364,6 @@ fact UserAndPersonSameData {
 		p.email = u.email and
 		p.name = u.name and
 		p.surname = u.surname
-}
-
-fact EveryUserHasA2Person {
-	all u: User | some disjoint p1, p2: Person | p1.isUser = u and samePerson[p1, p2]
 }
 
 fact IsModifiedImpliesAnotherAppointment {
@@ -429,7 +413,7 @@ fact TravelPlanAppointmentLocationConsistency {
 	all tp: TravelPlan, ap:Appointment  | ap=tp.forAppointment implies (ap.atLocation=tp.endRide.toLocation)
  }
 
-fact OneConstraintperTravelMean {
+fact OneConstraintPerTravelMean {
 	all u:User, tc1, tc2:TransportationMeanConstraint | ( tc1  in u.hasConstraints and tc2 in u.hasConstraints
 	and  tc1.associatedToTranMean = tc2.associatedToTranMean ) implies (tc1 = tc2)
 } 
@@ -447,7 +431,23 @@ fact TicketConsistency{
 	and tp in u.hasTravelPlan and r.makeUseTicket = t ) implies t in u.ownsTicket
 }
 
+// if a User has disabled a transportation mean, it should never be suggested to him/her
+fact DisabledTranMeansAreNotSuggested {
+	all u: User, s: SuggestedSolution, tp: TravelPlan | 
+		(u = s.suggestsTo and (tp in u.hasTravelPlan) and tp = s.containsTravelPlan) implies (
+		(u.hasPreferences.disabledTranMean & s.containsTravelPlan.startRide.byTranMean = none) and
+		(u.hasPreferences.disabledTranMean & s.containsTravelPlan.intermediateRides.byTranMean = none) and
+		(u.hasPreferences.disabledTranMean & s.containsTravelPlan.endRide.byTranMean = none)
+		)
+	}
 
+fact UserTravelPlanSolutionConsistency {
+	all s: SuggestedSolution | s.containsTravelPlan in s.suggestsTo.hasTravelPlan
+	}
+
+fact TravelPlanMustBeSuggested {
+	all tp: TravelPlan | some s: SuggestedSolution | s.containsTravelPlan = tp
+	}
 
 // ================================================
 //  ======================== UTILITY PREDICATES
@@ -503,7 +503,6 @@ pred show {
 	#User = 1 and
 	#Notification > 0 and
 	#TravelPlan > 1 and
-	#Solution > 1 and
 	#SupportedLanguages.setOfLanguages > 1
 }
 
