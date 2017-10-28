@@ -1,0 +1,709 @@
+<alloy builddate="2015-02-22 18:21 EST">
+
+<instance bitwidth="8" maxseq="3" command="Run show for 3 but 8 int, 4 Notification" filename="/media/mirko/Data/Workspace/Travlendar/RASD/alloy.als">
+
+<sig label="seq/Int" ID="0" parentID="1" builtin="yes">
+</sig>
+
+<sig label="Int" ID="1" parentID="2" builtin="yes">
+</sig>
+
+<sig label="String" ID="3" parentID="2" builtin="yes">
+</sig>
+
+<sig label="this/Name" ID="4" parentID="2">
+   <atom label="Name$0"/>
+</sig>
+
+<sig label="this/Surname" ID="5" parentID="2">
+   <atom label="Surname$0"/>
+</sig>
+
+<sig label="this/Email" ID="6" parentID="2">
+   <atom label="Email$0"/>
+</sig>
+
+<sig label="this/Address" ID="7" parentID="2">
+   <atom label="Address$0"/>
+   <atom label="Address$1"/>
+</sig>
+
+<sig label="this/Double" ID="8" parentID="2">
+   <atom label="Double$0"/>
+   <atom label="Double$1"/>
+</sig>
+
+<sig label="this/True" ID="9" parentID="10" one="yes">
+   <atom label="True$0"/>
+</sig>
+
+<sig label="this/False" ID="11" parentID="10" one="yes">
+   <atom label="False$0"/>
+</sig>
+
+<sig label="this/Bool" ID="10" parentID="2" abstract="yes" enum="yes">
+</sig>
+
+<sig label="this/Time" ID="12" parentID="2">
+   <atom label="Time$0"/>
+   <atom label="Time$1"/>
+</sig>
+
+<field label="value" ID="13" parentID="12">
+   <tuple> <atom label="Time$0"/> <atom label="22"/> </tuple>
+   <tuple> <atom label="Time$1"/> <atom label="24"/> </tuple>
+   <types> <type ID="12"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/Date" ID="14" parentID="2">
+   <atom label="Date$0"/>
+   <atom label="Date$1"/>
+   <atom label="Date$2"/>
+</sig>
+
+<field label="value" ID="15" parentID="14">
+   <tuple> <atom label="Date$0"/> <atom label="1"/> </tuple>
+   <tuple> <atom label="Date$1"/> <atom label="0"/> </tuple>
+   <tuple> <atom label="Date$2"/> <atom label="0"/> </tuple>
+   <types> <type ID="14"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/Ride" ID="16" parentID="2">
+   <atom label="Ride$0"/>
+   <atom label="Ride$1"/>
+</sig>
+
+<field label="makeUseTicket" ID="17" parentID="16">
+   <types> <type ID="16"/> <type ID="18"/> </types>
+</field>
+
+<field label="byTranMean" ID="19" parentID="16">
+   <tuple> <atom label="Ride$0"/> <atom label="Foot$0"/> </tuple>
+   <tuple> <atom label="Ride$1"/> <atom label="Foot$0"/> </tuple>
+   <types> <type ID="16"/> <type ID="20"/> </types>
+</field>
+
+<field label="fromLocation" ID="21" parentID="16">
+   <tuple> <atom label="Ride$0"/> <atom label="Location$0"/> </tuple>
+   <tuple> <atom label="Ride$1"/> <atom label="Location$0"/> </tuple>
+   <types> <type ID="16"/> <type ID="22"/> </types>
+</field>
+
+<field label="toLocation" ID="23" parentID="16">
+   <tuple> <atom label="Ride$0"/> <atom label="Location$1"/> </tuple>
+   <tuple> <atom label="Ride$1"/> <atom label="Location$1"/> </tuple>
+   <types> <type ID="16"/> <type ID="22"/> </types>
+</field>
+
+<sig label="this/TransportationCompany" ID="24" parentID="2">
+</sig>
+
+<sig label="this/Ticket" ID="18" parentID="2" abstract="yes">
+</sig>
+
+<field label="usedFor" ID="25" parentID="18">
+   <types> <type ID="18"/> <type ID="20"/> </types>
+</field>
+
+<field label="providedByCompany" ID="26" parentID="18">
+   <types> <type ID="18"/> <type ID="24"/> </types>
+</field>
+
+<sig label="this/User" ID="27" parentID="2">
+   <atom label="User$0"/>
+</sig>
+
+<field label="name" ID="28" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Name$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="4"/> </types>
+</field>
+
+<field label="surname" ID="29" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Surname$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="5"/> </types>
+</field>
+
+<field label="email" ID="30" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Email$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="6"/> </types>
+</field>
+
+<field label="ownsTicket" ID="31" parentID="27">
+   <types> <type ID="27"/> <type ID="18"/> </types>
+</field>
+
+<field label="hasPreferences" ID="32" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Preferences$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="33"/> </types>
+</field>
+
+<field label="hasConstraints" ID="34" parentID="27">
+   <types> <type ID="27"/> <type ID="35"/> </types>
+</field>
+
+<field label="speaksLanguage" ID="36" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Francais$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="37"/> </types>
+</field>
+
+<field label="setBreakWindows" ID="38" parentID="27">
+   <types> <type ID="27"/> <type ID="39"/> </types>
+</field>
+
+<field label="createsAppointment" ID="40" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Appointment$0"/> </tuple>
+   <tuple> <atom label="User$0"/> <atom label="Appointment$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="41"/> </types>
+</field>
+
+<field label="participatesToAppointment" ID="42" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Appointment$0"/> </tuple>
+   <tuple> <atom label="User$0"/> <atom label="Appointment$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="41"/> </types>
+</field>
+
+<field label="hasTravelPlan" ID="43" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="TravelPlan$0"/> </tuple>
+   <tuple> <atom label="User$0"/> <atom label="TravelPlan$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="44"/> </types>
+</field>
+
+<field label="currentlyAtLoc" ID="45" parentID="27">
+   <tuple> <atom label="User$0"/> <atom label="Location$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="22"/> </types>
+</field>
+
+<sig label="this/Appointment" ID="41" parentID="2">
+   <atom label="Appointment$0"/>
+   <atom label="Appointment$1"/>
+</sig>
+
+<field label="id" ID="46" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="127"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="127"/> </tuple>
+   <types> <type ID="41"/> <type ID="1"/> </types>
+</field>
+
+<field label="start" ID="47" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="Time$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="Time$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="12"/> </types>
+</field>
+
+<field label="end" ID="48" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="Time$1"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="Time$1"/> </tuple>
+   <types> <type ID="41"/> <type ID="12"/> </types>
+</field>
+
+<field label="atLocation" ID="49" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="Location$1"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="Location$1"/> </tuple>
+   <types> <type ID="41"/> <type ID="22"/> </types>
+</field>
+
+<field label="hasType" ID="50" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="Personal$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="Personal$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="51"/> </types>
+</field>
+
+<field label="isRepeatable" ID="52" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="RepeatableAppointment$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="RepeatableAppointment$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="53"/> </types>
+</field>
+
+<field label="isModified" ID="54" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="False$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="False$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="10"/> </types>
+</field>
+
+<field label="isIncoming" ID="55" parentID="41">
+   <tuple> <atom label="Appointment$0"/> <atom label="True$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="False$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="10"/> </types>
+</field>
+
+<sig label="this/Location" ID="22" parentID="2">
+   <atom label="Location$0"/>
+   <atom label="Location$1"/>
+</sig>
+
+<field label="address" ID="56" parentID="22">
+   <tuple> <atom label="Location$0"/> <atom label="Address$1"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="Address$0"/> </tuple>
+   <types> <type ID="22"/> <type ID="7"/> </types>
+</field>
+
+<field label="latitude" ID="57" parentID="22">
+   <tuple> <atom label="Location$0"/> <atom label="Double$1"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="Double$0"/> </tuple>
+   <types> <type ID="22"/> <type ID="8"/> </types>
+</field>
+
+<field label="longitude" ID="58" parentID="22">
+   <tuple> <atom label="Location$0"/> <atom label="Double$1"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="Double$1"/> </tuple>
+   <types> <type ID="22"/> <type ID="8"/> </types>
+</field>
+
+<sig label="this/Personal" ID="59" parentID="51" one="yes">
+   <atom label="Personal$0"/>
+</sig>
+
+<sig label="this/Work" ID="60" parentID="51" one="yes">
+   <atom label="Work$0"/>
+</sig>
+
+<sig label="this/AppointmentType" ID="51" parentID="2" abstract="yes" enum="yes">
+</sig>
+
+<sig label="this/RepeatableAppointment" ID="53" parentID="2">
+   <atom label="RepeatableAppointment$0"/>
+</sig>
+
+<field label="every" ID="61" parentID="53">
+   <tuple> <atom label="RepeatableAppointment$0"/> <atom label="96"/> </tuple>
+   <types> <type ID="53"/> <type ID="1"/> </types>
+</field>
+
+<field label="start" ID="62" parentID="53">
+   <tuple> <atom label="RepeatableAppointment$0"/> <atom label="Date$1"/> </tuple>
+   <types> <type ID="53"/> <type ID="14"/> </types>
+</field>
+
+<field label="end" ID="63" parentID="53">
+   <tuple> <atom label="RepeatableAppointment$0"/> <atom label="Date$0"/> </tuple>
+   <types> <type ID="53"/> <type ID="14"/> </types>
+</field>
+
+<sig label="this/TravelPlan" ID="44" parentID="2">
+   <atom label="TravelPlan$0"/>
+   <atom label="TravelPlan$1"/>
+</sig>
+
+<field label="passengers" ID="64" parentID="44">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="0"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="0"/> </tuple>
+   <types> <type ID="44"/> <type ID="1"/> </types>
+</field>
+
+<field label="baggage" ID="65" parentID="44">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="0"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="42"/> </tuple>
+   <types> <type ID="44"/> <type ID="1"/> </types>
+</field>
+
+<field label="startRide" ID="66" parentID="44">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="Ride$1"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="Ride$0"/> </tuple>
+   <types> <type ID="44"/> <type ID="16"/> </types>
+</field>
+
+<field label="intermediateRides" ID="67" parentID="44">
+   <types> <type ID="44"/> <type ID="16"/> </types>
+</field>
+
+<field label="endRide" ID="68" parentID="44">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="Ride$1"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="Ride$0"/> </tuple>
+   <types> <type ID="44"/> <type ID="16"/> </types>
+</field>
+
+<field label="forAppointment" ID="69" parentID="44">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="Appointment$0"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="Appointment$0"/> </tuple>
+   <types> <type ID="44"/> <type ID="41"/> </types>
+</field>
+
+<sig label="this/FixedBreakWindow" ID="70" parentID="39">
+</sig>
+
+<field label="from" ID="71" parentID="70">
+   <types> <type ID="70"/> <type ID="12"/> </types>
+</field>
+
+<field label="to" ID="72" parentID="70">
+   <types> <type ID="70"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/FlexibleBreakWindow" ID="73" parentID="39">
+</sig>
+
+<field label="from" ID="74" parentID="73">
+   <types> <type ID="73"/> <type ID="12"/> </types>
+</field>
+
+<field label="to" ID="75" parentID="73">
+   <types> <type ID="73"/> <type ID="12"/> </types>
+</field>
+
+<field label="atLeast" ID="76" parentID="73">
+   <types> <type ID="73"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/BreakWindow" ID="39" parentID="2" abstract="yes">
+</sig>
+
+<sig label="this/Italiano" ID="77" parentID="37" one="yes">
+   <atom label="Italiano$0"/>
+</sig>
+
+<sig label="this/English" ID="78" parentID="37" one="yes">
+   <atom label="English$0"/>
+</sig>
+
+<sig label="this/Francais" ID="79" parentID="37" one="yes">
+   <atom label="Francais$0"/>
+</sig>
+
+<sig label="this/Language" ID="37" parentID="2" abstract="yes" enum="yes">
+</sig>
+
+<sig label="this/Foot" ID="80" parentID="20" one="yes">
+   <atom label="Foot$0"/>
+</sig>
+
+<sig label="this/MoBike" ID="81" parentID="20" one="yes">
+   <atom label="MoBike$0"/>
+</sig>
+
+<sig label="this/PersonalCar" ID="82" parentID="20" one="yes">
+   <atom label="PersonalCar$0"/>
+</sig>
+
+<sig label="this/EnjoyCar" ID="83" parentID="20" one="yes">
+   <atom label="EnjoyCar$0"/>
+</sig>
+
+<sig label="this/Metro" ID="84" parentID="20" one="yes">
+   <atom label="Metro$0"/>
+</sig>
+
+<sig label="this/Tram" ID="85" parentID="20" one="yes">
+   <atom label="Tram$0"/>
+</sig>
+
+<sig label="this/TransportationMean" ID="20" parentID="2" abstract="yes">
+</sig>
+
+<field label="belongsToCompany" ID="86" parentID="20">
+   <types> <type ID="20"/> <type ID="24"/> </types>
+</field>
+
+<sig label="this/Preferences" ID="33" parentID="2">
+   <atom label="Preferences$0"/>
+</sig>
+
+<field label="ecoFriendly" ID="87" parentID="33">
+   <tuple> <atom label="Preferences$0"/> <atom label="False$0"/> </tuple>
+   <types> <type ID="33"/> <type ID="10"/> </types>
+</field>
+
+<field label="disabledTranMean" ID="88" parentID="33">
+   <types> <type ID="33"/> <type ID="20"/> </types>
+</field>
+
+<sig label="this/DistanceConstraint" ID="89" parentID="35">
+</sig>
+
+<field label="fromValue" ID="90" parentID="89">
+   <types> <type ID="89"/> <type ID="1"/> </types>
+</field>
+
+<field label="toValue" ID="91" parentID="89">
+   <types> <type ID="89"/> <type ID="1"/> </types>
+</field>
+
+<sig label="this/TimeWindowConstraint" ID="92" parentID="35">
+</sig>
+
+<field label="from" ID="93" parentID="92">
+   <types> <type ID="92"/> <type ID="12"/> </types>
+</field>
+
+<field label="to" ID="94" parentID="92">
+   <types> <type ID="92"/> <type ID="12"/> </types>
+</field>
+
+<sig label="this/TransportationMeanConstraint" ID="35" parentID="2" abstract="yes">
+</sig>
+
+<field label="associatedToTranMean" ID="95" parentID="35">
+   <types> <type ID="35"/> <type ID="20"/> </types>
+</field>
+
+<sig label="this/SuggestedSolution" ID="96" parentID="2">
+   <atom label="SuggestedSolution$0"/>
+   <atom label="SuggestedSolution$1"/>
+</sig>
+
+<field label="suggestsTo" ID="97" parentID="96">
+   <tuple> <atom label="SuggestedSolution$0"/> <atom label="User$0"/> </tuple>
+   <tuple> <atom label="SuggestedSolution$1"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="96"/> <type ID="27"/> </types>
+</field>
+
+<field label="containsTravelPlan" ID="98" parentID="96">
+   <tuple> <atom label="SuggestedSolution$0"/> <atom label="TravelPlan$1"/> </tuple>
+   <tuple> <atom label="SuggestedSolution$1"/> <atom label="TravelPlan$0"/> </tuple>
+   <types> <type ID="96"/> <type ID="44"/> </types>
+</field>
+
+<sig label="this/Device" ID="99" parentID="2">
+   <atom label="Device$0"/>
+   <atom label="Device$1"/>
+</sig>
+
+<field label="belongsTo" ID="100" parentID="99">
+   <tuple> <atom label="Device$0"/> <atom label="User$0"/> </tuple>
+   <tuple> <atom label="Device$1"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="99"/> <type ID="27"/> </types>
+</field>
+
+<field label="language" ID="101" parentID="99">
+   <tuple> <atom label="Device$0"/> <atom label="English$0"/> </tuple>
+   <tuple> <atom label="Device$1"/> <atom label="Italiano$0"/> </tuple>
+   <types> <type ID="99"/> <type ID="37"/> </types>
+</field>
+
+<sig label="this/AppInstance" ID="102" parentID="2">
+   <atom label="AppInstance$0"/>
+   <atom label="AppInstance$1"/>
+</sig>
+
+<field label="installedOn" ID="103" parentID="102">
+   <tuple> <atom label="AppInstance$0"/> <atom label="Device$1"/> </tuple>
+   <tuple> <atom label="AppInstance$1"/> <atom label="Device$0"/> </tuple>
+   <types> <type ID="102"/> <type ID="99"/> </types>
+</field>
+
+<field label="displayLanguage" ID="104" parentID="102">
+   <tuple> <atom label="AppInstance$0"/> <atom label="English$0"/> </tuple>
+   <tuple> <atom label="AppInstance$1"/> <atom label="English$0"/> </tuple>
+   <types> <type ID="102"/> <type ID="37"/> </types>
+</field>
+
+<sig label="this/SupportedLanguages" ID="105" parentID="2" one="yes">
+   <atom label="SupportedLanguages$0"/>
+</sig>
+
+<field label="setOfLanguages" ID="106" parentID="105">
+   <tuple> <atom label="SupportedLanguages$0"/> <atom label="English$0"/> </tuple>
+   <tuple> <atom label="SupportedLanguages$0"/> <atom label="Francais$0"/> </tuple>
+   <types> <type ID="105"/> <type ID="37"/> </types>
+</field>
+
+<sig label="this/Person" ID="107" parentID="2">
+   <atom label="Person$0"/>
+   <atom label="Person$1"/>
+</sig>
+
+<field label="name" ID="108" parentID="107">
+   <tuple> <atom label="Person$0"/> <atom label="Name$0"/> </tuple>
+   <tuple> <atom label="Person$1"/> <atom label="Name$0"/> </tuple>
+   <types> <type ID="107"/> <type ID="4"/> </types>
+</field>
+
+<field label="surname" ID="109" parentID="107">
+   <tuple> <atom label="Person$0"/> <atom label="Surname$0"/> </tuple>
+   <tuple> <atom label="Person$1"/> <atom label="Surname$0"/> </tuple>
+   <types> <type ID="107"/> <type ID="5"/> </types>
+</field>
+
+<field label="email" ID="110" parentID="107">
+   <tuple> <atom label="Person$0"/> <atom label="Email$0"/> </tuple>
+   <tuple> <atom label="Person$1"/> <atom label="Email$0"/> </tuple>
+   <types> <type ID="107"/> <type ID="6"/> </types>
+</field>
+
+<field label="isUser" ID="111" parentID="107">
+   <tuple> <atom label="Person$0"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="107"/> <type ID="27"/> </types>
+</field>
+
+<sig label="this/Invitation" ID="112" parentID="2">
+</sig>
+
+<field label="fromUser" ID="113" parentID="112">
+   <types> <type ID="112"/> <type ID="27"/> </types>
+</field>
+
+<field label="toEmail" ID="114" parentID="112">
+   <types> <type ID="112"/> <type ID="6"/> </types>
+</field>
+
+<field label="forAppointment" ID="115" parentID="112">
+   <types> <type ID="112"/> <type ID="41"/> </types>
+</field>
+
+<sig label="this/Notification" ID="116" parentID="2">
+   <atom label="Notification$0"/>
+</sig>
+
+<field label="toUser" ID="117" parentID="116">
+   <tuple> <atom label="Notification$0"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="116"/> <type ID="27"/> </types>
+</field>
+
+<field label="incomingAppointment" ID="118" parentID="116">
+   <tuple> <atom label="Notification$0"/> <atom label="Appointment$0"/> </tuple>
+   <types> <type ID="116"/> <type ID="41"/> </types>
+</field>
+
+<sig label="ordering/Ord" ID="119" parentID="2" one="yes" private="yes">
+   <atom label="ordering/Ord$0"/>
+</sig>
+
+<field label="First" ID="120" parentID="119" private="yes">
+   <tuple> <atom label="ordering/Ord$0"/> <atom label="True$0"/> </tuple>
+   <types> <type ID="119"/> <type ID="10"/> </types>
+</field>
+
+<field label="Next" ID="121" parentID="119" private="yes">
+   <tuple> <atom label="ordering/Ord$0"/> <atom label="True$0"/> <atom label="False$0"/> </tuple>
+   <types> <type ID="119"/> <type ID="10"/> <type ID="10"/> </types>
+</field>
+
+<sig label="open$3/Ord" ID="122" parentID="2" one="yes" private="yes">
+   <atom label="open$3/Ord$0"/>
+</sig>
+
+<field label="First" ID="123" parentID="122" private="yes">
+   <tuple> <atom label="open$3/Ord$0"/> <atom label="Personal$0"/> </tuple>
+   <types> <type ID="122"/> <type ID="51"/> </types>
+</field>
+
+<field label="Next" ID="124" parentID="122" private="yes">
+   <tuple> <atom label="open$3/Ord$0"/> <atom label="Personal$0"/> <atom label="Work$0"/> </tuple>
+   <types> <type ID="122"/> <type ID="51"/> <type ID="51"/> </types>
+</field>
+
+<sig label="open$4/Ord" ID="125" parentID="2" one="yes" private="yes">
+   <atom label="open$4/Ord$0"/>
+</sig>
+
+<field label="First" ID="126" parentID="125" private="yes">
+   <tuple> <atom label="open$4/Ord$0"/> <atom label="Italiano$0"/> </tuple>
+   <types> <type ID="125"/> <type ID="37"/> </types>
+</field>
+
+<field label="Next" ID="127" parentID="125" private="yes">
+   <tuple> <atom label="open$4/Ord$0"/> <atom label="Italiano$0"/> <atom label="English$0"/> </tuple>
+   <tuple> <atom label="open$4/Ord$0"/> <atom label="English$0"/> <atom label="Francais$0"/> </tuple>
+   <types> <type ID="125"/> <type ID="37"/> <type ID="37"/> </types>
+</field>
+
+<sig label="univ" ID="2" builtin="yes">
+</sig>
+
+<skolem label="$show_u" ID="129">
+   <tuple> <atom label="Appointment$0"/> <atom label="User$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_u&apos;" ID="130">
+   <tuple> <atom label="Name$0"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="4"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_u&apos;&apos;" ID="131">
+   <tuple> <atom label="Surname$0"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="5"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_p" ID="132">
+   <tuple> <atom label="Email$0"/> <atom label="Person$1"/> </tuple>
+   <types> <type ID="6"/> <type ID="107"/> </types>
+</skolem>
+
+<skolem label="$show_loc" ID="133">
+   <tuple> <atom label="Address$0"/> <atom label="Location$1"/> </tuple>
+   <tuple> <atom label="Address$1"/> <atom label="Location$0"/> </tuple>
+   <types> <type ID="7"/> <type ID="22"/> </types>
+</skolem>
+
+<skolem label="$show_u&apos;&apos;&apos;&apos;" ID="137">
+   <tuple> <atom label="Preferences$0"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="33"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_tp" ID="140">
+   <tuple> <atom label="Ride$0"/> <atom label="TravelPlan$1"/> </tuple>
+   <tuple> <atom label="Ride$1"/> <atom label="TravelPlan$0"/> </tuple>
+   <types> <type ID="16"/> <type ID="44"/> </types>
+</skolem>
+
+<skolem label="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;" ID="141">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="User$0"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="44"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_r&apos;" ID="142">
+   <tuple> <atom label="Location$0"/> <atom label="Ride$1"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="Ride$0"/> </tuple>
+   <types> <type ID="22"/> <type ID="16"/> </types>
+</skolem>
+
+<skolem label="$show_a" ID="143">
+   <tuple> <atom label="Location$0"/> <atom label="Appointment$1"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="Appointment$0"/> </tuple>
+   <types> <type ID="22"/> <type ID="41"/> </types>
+</skolem>
+
+<skolem label="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;" ID="144">
+   <tuple> <atom label="Location$0"/> <atom label="User$0"/> </tuple>
+   <tuple> <atom label="Location$1"/> <atom label="User$0"/> </tuple>
+   <types> <type ID="22"/> <type ID="27"/> </types>
+</skolem>
+
+<skolem label="$show_a&apos;" ID="145">
+   <tuple> <atom label="RepeatableAppointment$0"/> <atom label="Appointment$1"/> </tuple>
+   <types> <type ID="53"/> <type ID="41"/> </types>
+</skolem>
+
+<skolem label="$show_p1" ID="146">
+   <tuple> <atom label="User$0"/> <atom label="Person$0"/> </tuple>
+   <types> <type ID="27"/> <type ID="107"/> </types>
+</skolem>
+
+<skolem label="$show_p2" ID="147">
+   <tuple> <atom label="User$0"/> <atom label="Person$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="107"/> </types>
+</skolem>
+
+<skolem label="$show_apNew" ID="148">
+   <tuple> <atom label="Appointment$0"/> <atom label="Appointment$0"/> </tuple>
+   <tuple> <atom label="Appointment$1"/> <atom label="Appointment$0"/> </tuple>
+   <types> <type ID="41"/> <type ID="41"/> </types>
+</skolem>
+
+<skolem label="$show_a&apos;&apos;" ID="149">
+   <tuple> <atom label="User$0"/> <atom label="AppInstance$1"/> </tuple>
+   <types> <type ID="27"/> <type ID="102"/> </types>
+</skolem>
+
+<skolem label="$show_s" ID="151">
+   <tuple> <atom label="TravelPlan$0"/> <atom label="SuggestedSolution$1"/> </tuple>
+   <tuple> <atom label="TravelPlan$1"/> <atom label="SuggestedSolution$0"/> </tuple>
+   <types> <type ID="44"/> <type ID="96"/> </types>
+</skolem>
+
+<skolem label="$show_d" ID="152">
+   <tuple> <atom label="Device$1"/> </tuple>
+   <types> <type ID="99"/> </types>
+</skolem>
+
+</instance>
+
+<source filename="/media/mirko/Data/Workspace/Travlendar/RASD/alloy.als" content="// ================================================&#x000a;// ======================== PRIMITIVE SIGNATURES&#x000a;sig Name {}&#x000a;&#x000a;sig Surname {}&#x000a;&#x000a;sig Email {}&#x000a;&#x000a;sig Address {}&#x000a;&#x000a;sig Double {}&#x000a;&#x000a;enum Bool {&#x000a;&#x0009;True,&#x000a;&#x0009;False&#x000a;&#x0009;}&#x000a;&#x000a;// ================================================&#x000a;// ======================== SIGNATURES&#x000a;sig Time {&#x000a;&#x0009;value: Int&#x000a;&#x0009;} { value &gt;= 0 }&#x000a;&#x000a;sig Date {&#x000a;&#x0009;value: Int&#x000a;&#x0009;} { value &gt;= 0 }&#x000a;&#x000a;sig Ride {&#x000a;&#x0009;makeUseTicket: lone Ticket,&#x000a;&#x0009;byTranMean: TransportationMean,&#x000a;&#x0009;fromLocation: Location,&#x000a;&#x0009;toLocation: Location&#x000a;&#x0009;}&#x0009;{ fromLocation != toLocation }&#x000a;&#x000a;sig TransportationCompany {}&#x000a;&#x000a;abstract sig Ticket {&#x000a;&#x0009;usedFor: some TransportationMean,&#x000a;&#x0009;providedByCompany: TransportationCompany&#x000a;&#x0009;}&#x000a;&#x000a;sig User {&#x000a;&#x0009;name: Name,&#x000a;&#x0009;surname: Surname,&#x000a;&#x0009;email: Email,&#x000a;&#x0009;ownsTicket: set Ticket,&#x000a;&#x0009;hasPreferences: Preferences,&#x000a;&#x0009;hasConstraints: set TransportationMeanConstraint,&#x000a;&#x0009;speaksLanguage: Language,&#x000a;&#x0009;setBreakWindows: set BreakWindow,&#x000a;&#x0009;createsAppointment: set Appointment,&#x000a;&#x0009;participatesToAppointment: set Appointment,&#x000a;&#x0009;hasTravelPlan: set TravelPlan,&#x000a;&#x0009;currentlyAtLoc: Location&#x000a;&#x0009;}&#x000a;&#x000a;sig Appointment {&#x000a;&#x0009;id: Int,&#x000a;&#x0009;start: Time,&#x000a;&#x0009;end: Time, &#x000a;&#x0009;atLocation: Location,&#x000a;&#x0009;hasType: AppointmentType,&#x000a;&#x0009;isRepeatable: lone RepeatableAppointment,&#x000a;&#x0009;isModified: Bool,&#x000a;&#x0009;isIncoming: Bool&#x000a;&#x0009;} { start.value &lt; end.value }&#x000a;&#x000a;sig Location {&#x000a;&#x0009;address: Address,&#x000a;&#x0009;latitude: Double,&#x000a;&#x0009;longitude: Double&#x000a;&#x0009;}&#x000a;&#x000a;enum AppointmentType {&#x000a;&#x0009;Personal,&#x000a;&#x0009;Work&#x000a;&#x0009;}&#x000a;&#x000a;sig RepeatableAppointment {&#x000a;&#x0009;every: Int,&#x000a;&#x0009;start: Date, &#x000a;&#x0009;end: Date&#x000a;&#x0009;} { every &gt; 0 &#x000a;&#x0009;&#x0009;   start.value &lt; end.value }&#x000a;&#x000a;sig TravelPlan {&#x000a;&#x0009;passengers: Int,&#x000a;&#x0009;baggage: Int,&#x000a;&#x0009;startRide: Ride,&#x000a;&#x0009;intermediateRides: set Ride,&#x000a;&#x0009;endRide: Ride,&#x000a;&#x0009;forAppointment: Appointment&#x000a;&#x0009;} {&#x000a;&#x0009;&#x0009;passengers &gt;= 0&#x000a;&#x0009;&#x0009;baggage &gt;= 0&#x000a;&#x000a;&#x0009;&#x0009;// structural constraints on start, intermediate and end Rides&#x000a;&#x0009;&#x0009;no ir: intermediateRides | startRide = ir or endRide = ir&#x000a;&#x0009;&#x0009;lone ir: intermediateRides | startRide.toLocation = ir.fromLocation&#x000a;&#x0009;&#x0009;lone ir: intermediateRides | endRide.fromLocation = ir.toLocation&#x000a;&#x0009;&#x0009;no ir: intermediateRides | startRide.fromLocation = ir.toLocation&#x000a;&#x0009;&#x0009;no ir: intermediateRides | endRide.toLocation = ir.fromLocation&#x000a;&#x0009;&#x0009;all ir: intermediateRides | ir.toLocation = endRide.fromLocation or&#x000a;&#x0009;&#x0009;&#x0009;one ir1: intermediateRides | ir.toLocation = ir1.fromLocation&#x000a;&#x0009;&#x0009;all ir: intermediateRides | ir.fromLocation = startRide.toLocation or&#x000a;&#x0009;&#x0009;&#x0009;one ir1: intermediateRides | ir.fromLocation = ir1.toLocation&#x000a;&#x0009;&#x0009;#intermediateRides = 0 implies&#x000a;&#x0009;&#x0009;&#x0009;(startRide = endRide or startRide.toLocation = endRide.fromLocation)&#x000a;&#x0009;&#x0009;}&#x000a;&#x000a;// retrieves the whole set of Rides of a travel plan&#x000a;fun travelPlanRides[t: TravelPlan] : some Ride {&#x000a;&#x0009;t.startRide + t.intermediateRides + t.endRide&#x000a;}&#x000a;&#x000a;abstract sig BreakWindow {}&#x000a;&#x000a;sig FixedBreakWindow extends BreakWindow {&#x000a;&#x0009;from: Time,&#x000a;&#x0009;to: Time&#x000a;&#x0009;} { from.value &lt; to.value }&#x000a;&#x000a;sig FlexibleBreakWindow extends BreakWindow {&#x000a;&#x0009;from: Time,&#x000a;&#x0009;to: Time,&#x000a;&#x0009;atLeast: Time&#x000a;&#x0009;} { from.value &lt; to.value&#x000a;&#x0009;&#x0009;  (atLeast.value &gt; 0 and atLeast.value &lt; minus[to.@value, from.@value]) }&#x000a;&#x000a;enum Language {&#x000a;&#x0009;Italiano,&#x000a;&#x0009;English,&#x000a;&#x0009;Francais&#x000a;&#x0009;}&#x000a;&#x000a;abstract sig TransportationMean {&#x000a;&#x0009;belongsToCompany: lone TransportationCompany&#x000a;&#x0009;}&#x000a;&#x000a;one sig Foot, MoBike, PersonalCar, EnjoyCar, Metro, Tram extends TransportationMean {}&#x000a;&#x000a;sig Preferences {&#x000a;&#x0009;ecoFriendly: Bool,&#x000a;&#x0009;disabledTranMean: set TransportationMean&#x000a;&#x0009;} &#x000a;&#x000a;abstract sig TransportationMeanConstraint {&#x000a;&#x0009;associatedToTranMean: TransportationMean&#x000a;&#x0009;}&#x000a;&#x000a;sig DistanceConstraint extends TransportationMeanConstraint { &#x000a;&#x0009;fromValue: Int,&#x000a;&#x0009;toValue: Int&#x000a;&#x0009;} { fromValue &gt;= 0&#x000a;&#x0009;&#x0009;  toValue &gt;= 0&#x000a;&#x0009;&#x0009;  fromValue &lt; toValue }&#x000a;&#x000a;sig TimeWindowConstraint extends TransportationMeanConstraint{&#x000a;&#x0009;from: Time,&#x000a;&#x0009;to: Time&#x000a;&#x0009;} { from.value &lt; to.value }&#x000a;&#x000a;// ================================================&#x000a;// ======================== ADDITIONAL SIGNATURES&#x000a;sig SuggestedSolution {&#x000a;&#x0009;suggestsTo: User,&#x000a;&#x0009;containsTravelPlan: TravelPlan&#x000a;&#x0009;}&#x000a;&#x000a;sig Device {&#x000a;&#x0009;belongsTo: User,&#x000a;&#x0009;language: Language&#x000a;}&#x000a;&#x000a;sig AppInstance{&#x000a;&#x0009;installedOn: Device,&#x000a;&#x0009;displayLanguage: Language&#x000a;}{ let d = installedOn |&#x000a;&#x0009;&#x0009;&#x0009;( d.language not in SupportedLanguages.setOfLanguages implies ( displayLanguage = English )&#x000a;&#x0009;&#x0009;&#x0009;else (displayLanguage = d.language) ) &#x000a;&#x0009;&#x0009;&#x0009;}&#x000a;&#x000a;&#x000a;one sig SupportedLanguages {&#x000a;&#x0009;setOfLanguages: set Language&#x000a;}&#x000a;&#x000a;sig Person {&#x000a;&#x0009;name: Name,&#x000a;&#x0009;surname: Surname,&#x000a;&#x0009;email: Email,&#x000a;&#x0009;isUser: lone User&#x000a;}&#x000a;&#x000a;sig Invitation {&#x000a;&#x0009;fromUser: User,&#x000a;&#x0009;toEmail: Email,&#x000a;&#x0009;forAppointment: Appointment&#x000a;}{&#x000a;&#x0009;forAppointment in fromUser.createsAppointment&#x000a;&#x0009;fromUser.email != toEmail&#x000a;}&#x000a;&#x000a;sig Notification {&#x000a;&#x0009;toUser: User,&#x000a;&#x0009;incomingAppointment: Appointment&#x000a;}&#x000a;&#x000a;// ================================================&#x000a;// ======================== FACTS&#x000a;fact EmailsAreUnique {&#x000a;&#x0009;all disjoint u1, u2: User | u1.email != u2.email &#x000a;&#x0009;}&#x000a;&#x000a;fact NoOverlappingLocations {&#x000a;&#x0009;all disjoint l1, l2: Location | (l1.latitude != l2.latitude) || (l1.longitude != l2.longitude)&#x000a;&#x0009;}&#x000a;&#x000a;fact TimeIsUnique {&#x000a;&#x0009;all disjoint t1, t2: Time | t1.value != t2.value&#x000a;&#x0009;}&#x000a;&#x000a;fact ATicketBelongsOnlyToOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.ownsTicket &amp; u2.ownsTicket = none&#x000a;&#x0009;}&#x000a;&#x000a;fact TicketMustBeAssociatedToRides {&#x000a;&#x0009;all t: Ticket | some r: Ride | t in r.makeUseTicket&#x000a;&#x0009;}&#x000a;&#x000a;fact APreferenceBelongsOnlyToOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.hasPreferences &amp; u2.hasPreferences = none&#x000a;&#x0009;}&#x000a;&#x000a;fact TranMeanConstraintsRefersOnlyToOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.hasConstraints &amp; u2.hasConstraints = none&#x000a;&#x0009;}&#x000a;&#x000a;fact ABreakWindowIsSetOnlyByOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.setBreakWindows &amp; u2.setBreakWindows = none&#x000a;&#x0009;}&#x000a;&#x000a;fact AnAppointmentIsCreatedOnlyByOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.createsAppointment &amp; u2.createsAppointment = none&#x000a;&#x0009;}&#x000a;&#x000a;fact AppointmentsMustBeCreatedOnlyByUsers {&#x000a;&#x0009;all a: Appointment | some u: User | a in u.createsAppointment&#x000a;&#x0009;}&#x000a;&#x000a;fact ATravelPlanBelongsOnlyToOneUser {&#x000a;&#x0009;all disjoint u1, u2: User | u1.hasTravelPlan &amp; u2.hasTravelPlan = none&#x000a;&#x0009;}&#x000a;&#x000a;// if an appointment is associated to a travel plan of a User, the User must participate to the appointment&#x000a;fact ConsistentUserTravelPlanAppointment { &#x000a;&#x0009;all u: User, a: Appointment, tp: TravelPlan | &#x000a;&#x0009;(tp.forAppointment = a and tp in u.hasTravelPlan) implies (a in u.participatesToAppointment)&#x000a;&#x0009;}&#x000a;&#x000a;fact AppointmentCreationImpliesParticipation {&#x000a;&#x0009;all u: User, a: Appointment | &#x000a;&#x0009;(a in u.createsAppointment) implies (a in u.participatesToAppointment)&#x000a;&#x0009;}&#x000a;&#x000a;fact AllNameMustBelongToUsers {&#x000a;&#x0009;all n: Name | some u: User | u.name = n&#x000a;&#x0009;}&#x000a;&#x000a;fact AllSurnameMustBelongToUsers {&#x000a;&#x0009;all s: Surname | some u: User | u.surname = s&#x000a;&#x0009;}&#x000a;&#x000a;fact AllEmailMustBelongToPersons {&#x000a;&#x0009;all e: Email | some p: Person | p.email = e&#x000a;&#x0009;}&#x000a;&#x000a;fact AllAddressesMustBelongToLocations {&#x000a;&#x0009;all a: Address | some loc: Location | loc.address = a&#x000a;&#x0009;}&#x000a;&#x000a;fact TicketMustBelongToUsers {&#x000a;&#x0009;all t: Ticket | some u: User | t in u.ownsTicket&#x000a;&#x0009;}&#x000a;&#x000a;fact AllTicketsMustBeProvidedByTranCompany {&#x000a;&#x0009;all t: Ticket | some tc: TransportationCompany | t.providedByCompany = tc&#x000a;}&#x000a;&#x000a;fact TranCompanyMustBeAssociatedWithTranMean {&#x000a;&#x0009;all tc: TransportationCompany | some tm: TransportationMean | tm.belongsToCompany = tc&#x000a;&#x0009;}&#x000a;&#x000a;// no tickets for personal and shared transportation means&#x000a;fact TicketsUsedOnlyIfNecessary {&#x000a;&#x0009;all t: Ticket | (Foot &amp; t.usedFor = none) and&#x000a;&#x0009;(MoBike &amp; t.usedFor = none) and &#x000a;&#x0009;(PersonalCar &amp; t.usedFor = none) and&#x000a;&#x0009;(EnjoyCar &amp; t.usedFor = none)&#x000a;&#x0009;}&#x000a;&#x000a;fact NoTranCompanyForPersonalTranMeans  {&#x000a;&#x0009;(Foot.belongsToCompany = none) and&#x000a;&#x0009;(PersonalCar.belongsToCompany= none)&#x000a;&#x0009;}&#x000a;&#x000a;fact PreferenceMustBelongToUser {&#x000a;&#x0009;all p: Preferences | some u: User | u.hasPreferences = p&#x000a;}&#x000a;&#x000a;fact TranMeanConstraintsMustBelongToUsers {&#x000a;&#x0009;all tmc: TransportationMeanConstraint | some u: User | tmc in u.hasConstraints &#x000a;&#x0009;}&#x000a;&#x000a;fact BreakWindowMustBeSetByUsers {&#x000a;&#x0009;all bw: BreakWindow | some u: User | bw in u.setBreakWindows&#x000a;&#x0009;}&#x000a;&#x000a;fact RideMustBelongToTravelPlans {&#x000a;&#x0009;all r: Ride | some tp: TravelPlan | r in travelPlanRides[tp]&#x000a;&#x0009;}&#x000a;&#x000a;fact RideBelongsToOnlyOneTravelPlan {&#x000a;&#x0009;all disjoint tp1, tp2: TravelPlan | travelPlanRides[tp1] &amp; travelPlanRides[tp2] = none&#x000a;}&#x000a;&#x000a;fact TravelPlanMustBelongToUsers {&#x000a;&#x0009;all tp: TravelPlan | some u: User | tp in u.hasTravelPlan&#x000a;&#x0009;}&#x000a;&#x000a;fact LocationAssociatedToRideAppointmentOrUser {&#x000a;&#x0009;all l: Location | some r: Ride, a: Appointment, u: User |&#x000a;&#x0009;l in (r.fromLocation + r.toLocation + a.atLocation + u.currentlyAtLoc)&#x000a;&#x0009;}&#x000a;&#x000a;fact RepeatableAppointmentIsAnAppointment {&#x000a;&#x0009;all ra: RepeatableAppointment | some a: Appointment | ra in a.isRepeatable&#x000a;&#x0009;}&#x000a;&#x000a;fact RepeatableAppointmentsAtTheSameTime {&#x000a;&#x0009;all a1, a2: Appointment | (a1.isRepeatable = a2.isRepeatable) implies  &#x000a;&#x0009;(a1.start = a2.start and a1.end = a2.end)&#x000a;&#x0009;}&#x000a;&#x000a;fact NoStartRideFromAppointmentLocation {&#x000a;&#x0009;all tp: TravelPlan | tp.startRide.fromLocation != tp.forAppointment.atLocation&#x000a;}&#x000a;&#x000a;// before registraion we have a person, after registration we have another person who is a User;&#x000a;//person associated with User and person before registration have the same data (email, name, surname)&#x000a;fact EveryUserHasA2Person {&#x000a;&#x0009;all u: User | some disjoint p1, p2: Person | p1.isUser = u and samePerson[p1, p2]&#x000a;}&#x000a;&#x000a;fact SameEmailImpliesSamePerson {&#x000a;&#x0009;all p1, p2: Person | p1.email = p2.email implies (samePerson[p1, p2])&#x000a;}&#x000a;&#x000a;// if two persons are the same, they represent the person before and after registration&#x000a;fact SamePersonImpliesOldAndNew {&#x000a;&#x0009; all disjoint p1, p2: Person | samePerson[p1, p2] implies&#x000a;&#x0009;&#x0009;((p1.isUser = none and p2.isUser != none) or (p1.isUser != none and p2.isUser = none))&#x000a;}&#x000a;&#x000a;fact UserAndPersonSameData {&#x000a;&#x0009;all p: Person | p.isUser != none implies&#x000a;&#x0009;&#x0009;let u = p.isUser |&#x000a;&#x0009;&#x0009;p.email = u.email and&#x000a;&#x0009;&#x0009;p.name = u.name and&#x000a;&#x0009;&#x0009;p.surname = u.surname&#x000a;}&#x000a;&#x000a;fact IsModifiedImpliesAnotherAppointment {&#x000a;&#x0009;all apOld: Appointment | some apNew: Appointment |&#x000a;&#x0009;&#x0009;apOld.isModified = True implies&#x000a;&#x0009;&#x0009;apOld.id = apNew.id and apOld != apNew and apNew.isModified = False&#x000a;}&#x000a;&#x000a;fact SameAppointmentIdSameUser {&#x000a;&#x0009;all disjoint ap1, ap2: Appointment | all u: User |&#x000a;&#x0009;&#x0009;ap1.id = ap2.id and&#x000a;&#x0009;&#x0009;(ap1 in u.participatesToAppointment implies (ap2 in u.participatesToAppointment))&#x000a;&#x0009;&#x0009;and&#x000a;&#x0009;&#x0009;(ap1 in u.createsAppointment implies (ap2 in u.createsAppointment))&#x000a;}&#x000a;&#x000a;fact AllUsersMustBeCreatorOrInvited {&#x000a;&#x0009;all a: Appointment, u: User | a in u.participatesToAppointment implies &#x000a;&#x0009;(a in u.createsAppointment or invitedToAppointment[u, a])&#x000a;}&#x000a;&#x000a;fact NotificationOnlyIfAppointmentIsIncoming {&#x000a;&#x0009;all n: Notification | n.incomingAppointment.isIncoming = True&#x000a;}&#x000a;&#x000a;fact NotificationForAllIncomingAppointment {&#x000a;&#x0009;all a: Appointment, u: User |&#x000a;&#x0009;(a.isIncoming = True and a in u.participatesToAppointment)&#x000a;&#x0009;implies&#x000a;&#x0009;(one n1: Notification | n1.incomingAppointment = a and n1.toUser = u)&#x000a;}&#x000a;&#x000a;fact UserReceivesNotificationOfOwnedAppointments {&#x000a;&#x0009;all n: Notification, u: User |&#x000a;&#x0009;&#x0009;n.toUser = u implies n.incomingAppointment in u.participatesToAppointment&#x000a;}&#x000a;&#x000a;fact EachDeviceHasMaxOneAppInstance {&#x000a;&#x0009;all d: Device | lone a: AppInstance | a.installedOn = d&#x000a;}&#x000a;&#x000a;fact EveryUserHasAtLeastOneAppInstance {&#x000a;&#x0009;all u: User | some a: AppInstance | a.installedOn.belongsTo = u&#x000a;}&#x000a;&#x000a;fact TravelPlanAppointmentLocationConsistency {&#x000a;&#x0009;all tp: TravelPlan, ap:Appointment  | ap=tp.forAppointment implies (ap.atLocation=tp.endRide.toLocation)&#x000a; }&#x000a;&#x000a;fact OneConstraintPerTravelMean {&#x000a;&#x0009;all u:User, tc1, tc2:TransportationMeanConstraint | ( tc1  in u.hasConstraints and tc2 in u.hasConstraints&#x000a;&#x0009;and  tc1.associatedToTranMean = tc2.associatedToTranMean ) implies (tc1 = tc2)&#x000a;} &#x000a;&#x000a;fact TicketWithOneUser{&#x000a;&#x0009;all t:Ticket | one u:User | t in u.ownsTicket&#x000a;}&#x000a;&#x000a;fact TicketWithAtLeastOneRide{&#x000a;&#x0009;all t:Ticket | some r:Ride | r.makeUseTicket = t&#x000a;}&#x000a;&#x000a;fact TicketConsistency{&#x000a;&#x0009;all t:Ticket, r:Ride, u:User, tp:TravelPlan | ( r in (tp.startRide + tp.intermediateRides + tp.endRide) &#x000a;&#x0009;and tp in u.hasTravelPlan and r.makeUseTicket = t ) implies t in u.ownsTicket&#x000a;}&#x000a;&#x000a;// if a User has disabled a transportation mean, it should never be suggested to him/her&#x000a;fact DisabledTranMeansAreNotSuggested {&#x000a;&#x0009;all u: User, s: SuggestedSolution, tp: TravelPlan | &#x000a;&#x0009;&#x0009;(u = s.suggestsTo and (tp in u.hasTravelPlan) and tp = s.containsTravelPlan) implies (&#x000a;&#x0009;&#x0009;(u.hasPreferences.disabledTranMean &amp; s.containsTravelPlan.startRide.byTranMean = none) and&#x000a;&#x0009;&#x0009;(u.hasPreferences.disabledTranMean &amp; s.containsTravelPlan.intermediateRides.byTranMean = none) and&#x000a;&#x0009;&#x0009;(u.hasPreferences.disabledTranMean &amp; s.containsTravelPlan.endRide.byTranMean = none)&#x000a;&#x0009;&#x0009;)&#x000a;&#x0009;}&#x000a;&#x000a;fact UserTravelPlanSolutionConsistency {&#x000a;&#x0009;all s: SuggestedSolution | s.containsTravelPlan in s.suggestsTo.hasTravelPlan&#x000a;&#x0009;}&#x000a;&#x000a;fact TravelPlanMustBeSuggested {&#x000a;&#x0009;all tp: TravelPlan | some s: SuggestedSolution | s.containsTravelPlan = tp&#x000a;&#x0009;}&#x000a;&#x000a;fact AppointmentWithSameIdAreEqualsIfNotModified {&#x000a;&#x0009;all ap1, ap2: Appointment |&#x000a;&#x0009;(ap1.id = ap2.id and ap1.isModified = False and ap2.isModified = False)&#x000a;&#x0009;implies&#x0009;appointmentsAreEquals[ap1, ap2]&#x000a;}&#x000a;&#x000a;fact EnglishAlwaysSupported {&#x000a;&#x0009;English in SupportedLanguages.setOfLanguages&#x000a;}&#x000a;&#x000a;// ================================================&#x000a;//  ======================== UTILITY PREDICATES&#x000a;pred samePerson[p1, p2: Person] {&#x000a;&#x0009;p1.email = p2.email and p1.name=p2.name and p1.surname = p2.surname&#x000a;}&#x000a;&#x000a;pred invitedToAppointment[u: User, a: Appointment] {&#x000a;&#x0009;some i: Invitation | i.forAppointment = a and i.toEmail = u.email&#x000a;}&#x000a;&#x000a;pred appointmentsAreEquals[ap1, ap2: Appointment] {&#x000a;&#x0009;ap1.id = ap2.id and&#x000a;&#x0009;ap1.start = ap2.start and&#x000a;&#x0009;ap1.end = ap2.end and &#x000a;&#x0009;ap1.atLocation = ap2.atLocation and&#x000a;&#x0009;ap1.hasType = ap2.hasType and&#x000a;&#x0009;ap1.isRepeatable = ap2.isRepeatable&#x000a;&#x0009;// no reason to check isModified&#x000a;&#x0009;// isIncoming can be different!&#x000a;}&#x000a;&#x000a;// ================================================&#x000a;// ======================== ASSERTIONS&#x000a;assert CanDisplayInAllSupportedLanguages {&#x000a;&#x0009;no l: AppInstance.installedOn.language |&#x000a;&#x0009;&#x0009;l in SupportedLanguages.setOfLanguages and&#x000a;&#x0009;&#x0009;no ap: AppInstance | ap.displayLanguage = l&#x000a;}&#x000a;check CanDisplayInAllSupportedLanguages&#x000a;&#x000a;assert EveryPersonShouldBeAbleToHaveAnAccount {&#x000a;&#x0009;#User &gt; 0&#x000a;&#x0009;implies&#x000a;&#x0009;some p1, p2: Person, u: User | &#x000a;&#x0009;&#x0009;p1.email = p2.email and p1.isUser = none and p2.isUser = u&#x000a;}&#x000a;check EveryPersonShouldBeAbleToHaveAnAccount&#x000a;&#x000a;assert UserAlwaysNotified {&#x000a;&#x0009;all a: Appointment, u: User |&#x000a;&#x0009;&#x0009;(a.isIncoming = True and a in u.participatesToAppointment)&#x000a;&#x0009;&#x0009;implies&#x000a;&#x0009;&#x0009;(one n: Notification | n.toUser = u and n.incomingAppointment = a)&#x000a;}&#x000a;check UserAlwaysNotified for 2&#x000a;&#x000a;// ================================================&#x000a;// ======================== RUNNABLE PREDICATES&#x000a;&#x000a;pred showSomeAppointmentModified {&#x000a;&#x0009;some ap: Appointment | ap.isModified = True&#x000a;}&#x000a;run showSomeAppointmentModified&#x000a;&#x000a;pred showSomeMeeting {&#x000a;&#x0009;some a: Appointment, disjoint u1, u2: User |&#x000a;&#x0009;&#x0009; a in u1.participatesToAppointment and a in u2.participatesToAppointment&#x000a;}&#x000a;run showSomeMeeting for 4&#x000a;&#x000a;pred show {&#x000a;&#x0009;#Appointment = 2 and&#x000a;&#x0009;#User = 1 and&#x000a;&#x0009;#Notification &gt; 0 and&#x000a;&#x0009;#TravelPlan = 2 and&#x000a;&#x0009;#SupportedLanguages.setOfLanguages &gt; 1 and&#x000a;&#x0009;#Person = 2 and&#x000a;&#x0009;#Device = 2 and&#x000a;&#x0009;some d: Device | d.language not in SupportedLanguages.setOfLanguages&#x000a;}&#x000a;&#x000a;run show for 3 but 4 Notification, 8 Int&#x000a;"/>
+
+<source filename="/$alloy4$/models/util/integer.als" content="module util/integer&#x000a;&#x000a;/*&#x000a; * A collection of utility functions for using Integers in Alloy.&#x000a; * Note that integer overflows are silently truncated to the current bitwidth&#x000a; * using the 2&apos;s complement arithmetic, unless the &quot;forbid overfows&quot; option is&#x000a; * turned on, in which case only models that don&apos;t have any overflows are &#x000a; * analyzed. &#x000a; */&#x000a;&#x000a;fun add  [n1, n2: Int] : Int { this/plus[n1, n2] }&#x000a;fun plus [n1, n2: Int] : Int { n1 fun/add n2 }&#x000a;&#x000a;fun sub   [n1, n2: Int] : Int { this/minus[n1, n2] }&#x000a;fun minus [n1, n2: Int] : Int { n1 fun/sub n2 }&#x000a;&#x000a;fun mul [n1, n2: Int] : Int { n1 fun/mul n2 }&#x000a;&#x000a;/**&#x000a; * Performs the division with &quot;round to zero&quot; semantics, except the following 3 cases&#x000a; * 1) if a is 0, then it returns 0&#x000a; * 2) else if b is 0, then it returns 1 if a is negative and -1 if a is positive&#x000a; * 3) else if a is the smallest negative integer, and b is -1, then it returns a&#x000a; */&#x000a;fun div [n1, n2: Int] : Int { n1 fun/div n2 }&#x000a;&#x000a;/** answer is defined to be the unique integer that satisfies &quot;a = ((a/b)*b) + remainder&quot; */&#x000a;fun rem [n1, n2: Int] : Int { n1 fun/rem n2 }&#x000a;&#x000a;/** negate */&#x000a;fun negate [n: Int] : Int { 0 fun/sub n }&#x000a;&#x000a;/** equal to */&#x000a;pred eq [n1, n2: Int] { int[n1] = int[n2] }&#x000a;&#x000a;/** greater than */&#x000a;pred gt [n1, n2: Int] { n1 &gt; n2 }&#x000a;&#x000a;/** less then */&#x000a;pred lt [n1, n2: Int] { n1 &lt; n2 }&#x000a;&#x000a;/** greater than or equal */&#x000a;pred gte [n1, n2: Int] { n1 &gt;= n2 }&#x000a;&#x000a;/** less than or equal */&#x000a;pred lte [n1, n2: Int] { n1 &lt;= n2 }&#x000a;&#x000a;/** integer is zero */&#x000a;pred zero [n: Int] { n = 0 }&#x000a;&#x000a;/** positive */&#x000a;pred pos  [n: Int] { n &gt; 0 }&#x000a;&#x000a;/** negative */&#x000a;pred neg  [n: Int] { n &lt; 0 }&#x000a;&#x000a;/** non-positive */&#x000a;pred nonpos [n: Int] { n &lt;= 0 }&#x000a;&#x000a;/** non-negative */&#x000a;pred nonneg [n: Int] { n &gt;= 0 }&#x000a;&#x000a;/** signum (aka sign or sgn) */&#x000a;fun signum [n: Int] : Int { n&lt;0 =&gt; (0 fun/sub 1) else (n&gt;0 =&gt; 1 else 0) }&#x000a;&#x000a;/**&#x000a; * returns the ith element (zero-based) from the set s&#x000a; * in the ordering of &apos;next&apos;, which is a linear ordering&#x000a; * relation like that provided by util/ordering&#x000a; */&#x000a;fun int2elem[i: Int, next: univ-&gt;univ, s: set univ] : lone s {&#x000a;  {e: s | #^next.e = int i }&#x000a;}&#x000a;&#x000a;/**&#x000a; * returns the index of the element (zero-based) in the&#x000a; * ordering of next, which is a linear ordering relation&#x000a; * like that provided by util/ordering&#x000a; */&#x000a;fun elem2int[e: univ, next: univ-&gt;univ] : lone Int {&#x000a;  Int[#^next.e]&#x000a;}&#x000a;&#x000a;/** returns the largest integer in the current bitwidth */&#x000a;fun max:one Int { fun/max }&#x000a;&#x000a;/** returns the smallest integer in the current bitwidth */&#x000a;fun min:one Int { fun/min }&#x000a;&#x000a;/** maps each integer (except max) to the integer after it */&#x000a;fun next:Int-&gt;Int { fun/next }&#x000a;&#x000a;/** maps each integer (except min) to the integer before it */&#x000a;fun prev:Int-&gt;Int { ~next }&#x000a;&#x000a;/** given a set of integers, return the largest element */&#x000a;fun max [es: set Int]: lone Int { es - es.^prev }&#x000a;&#x000a;/** given a set of integers, return the smallest element */&#x000a;fun min [es: set Int]: lone Int { es - es.^next }&#x000a;&#x000a;/** given an integer, return all integers prior to it */&#x000a;fun prevs [e: Int]: set Int { e.^prev }&#x000a;&#x000a;/** given an integer, return all integers following it */&#x000a;fun nexts [e: Int]: set Int { e.^next }&#x000a;&#x000a;/** returns the larger of the two integers */&#x000a;fun larger [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; b else a) }&#x000a;&#x000a;/** returns the smaller of the two integers */&#x000a;fun smaller [e1, e2: Int]: Int { let a=int[e1], b=int[e2] | (a&lt;b =&gt; a else b) }&#x000a;"/>
+
+<source filename="/$alloy4$/models/util/ordering.als" content="module util/ordering[exactly elem]&#x000a;&#x000a;/*&#x000a; * Creates a single linear ordering over the atoms in elem. It also constrains all&#x000a; * the atoms to exist that are permitted by the scope on elem. That is, if the scope&#x000a; * on a signature S is 5, opening util/ordering[S] will force S to have 5 elements&#x000a; * and create a linear ordering over those five elements. The predicates and&#x000a; * functions below provide access to properties of the linear ordering, such as&#x000a; * which element is first in the ordering, or whether a given element precedes&#x000a; * another. You cannotcreate multiple linear orderings over the same signature with&#x000a; * this model. If you that functionality, try using the util/sequence module instead.&#x000a; *&#x000a; * Technical comment:&#x000a; * An important constraint: elem must contain all atoms permitted by the scope.&#x000a; * This is to let the analyzer optimize the analysis by setting all fields of each&#x000a; * instantiation of Ord to predefined values: e.g. by setting &apos;last&apos; to the highest&#x000a; * atom of elem and by setting &apos;next&apos; to {&lt;T0,T1&gt;,&lt;T1,T2&gt;,...&lt;Tn-1,Tn&gt;}, where n is&#x000a; * the scope of elem. Without this constraint, it might not be true that Ord.last is&#x000a; * a subset of elem, and that the domain and range of Ord.next lie inside elem.&#x000a; *&#x000a; * author: Ilya Shlyakhter&#x000a; * revisions: Daniel jackson&#x000a; */&#x000a;&#x000a;private one sig Ord {&#x000a;   First: set elem,&#x000a;   Next: elem -&gt; elem&#x000a;} {&#x000a;   pred/totalOrder[elem,First,Next]&#x000a;}&#x000a;&#x000a;/** first */&#x000a;fun first: one elem { Ord.First }&#x000a;&#x000a;/** last */&#x000a;fun last: one elem { elem - (next.elem) }&#x000a;&#x000a;/** return a mapping from each element to its predecessor */&#x000a;fun prev : elem-&gt;elem { ~(Ord.Next) }&#x000a;&#x000a;/** return a mapping from each element to its successor */&#x000a;fun next : elem-&gt;elem { Ord.Next }&#x000a;&#x000a;/** return elements prior to e in the ordering */&#x000a;fun prevs [e: elem]: set elem { e.^(~(Ord.Next)) }&#x000a;&#x000a;/** return elements following e in the ordering */&#x000a;fun nexts [e: elem]: set elem { e.^(Ord.Next) }&#x000a;&#x000a;/** e1 is less than e2 in the ordering */&#x000a;pred lt [e1, e2: elem] { e1 in prevs[e2] }&#x000a;&#x000a;/** e1 is greater than e2 in the ordering */&#x000a;pred gt [e1, e2: elem] { e1 in nexts[e2] }&#x000a;&#x000a;/** e1 is less than or equal to e2 in the ordering */&#x000a;pred lte [e1, e2: elem] { e1=e2 || lt [e1,e2] }&#x000a;&#x000a;/** e1 is greater than or equal to e2 in the ordering */&#x000a;pred gte [e1, e2: elem] { e1=e2 || gt [e1,e2] }&#x000a;&#x000a;/** returns the larger of the two elements in the ordering */&#x000a;fun larger [e1, e2: elem]: elem { lt[e1,e2] =&gt; e2 else e1 }&#x000a;&#x000a;/** returns the smaller of the two elements in the ordering */&#x000a;fun smaller [e1, e2: elem]: elem { lt[e1,e2] =&gt; e1 else e2 }&#x000a;&#x000a;/**&#x000a; * returns the largest element in es&#x000a; * or the empty set if es is empty&#x000a; */&#x000a;fun max [es: set elem]: lone elem { es - es.^(~(Ord.Next)) }&#x000a;&#x000a;/**&#x000a; * returns the smallest element in es&#x000a; * or the empty set if es is empty&#x000a; */&#x000a;fun min [es: set elem]: lone elem { es - es.^(Ord.Next) }&#x000a;&#x000a;assert correct {&#x000a;  let mynext = Ord.Next |&#x000a;  let myprev = ~mynext | {&#x000a;     ( all b:elem | (lone b.next) &amp;&amp; (lone b.prev) &amp;&amp; (b !in b.^mynext) )&#x000a;     ( (no first.prev) &amp;&amp; (no last.next) )&#x000a;     ( all b:elem | (b!=first &amp;&amp; b!=last) =&gt; (one b.prev &amp;&amp; one b.next) )&#x000a;     ( !one elem =&gt; (one first &amp;&amp; one last &amp;&amp; first!=last &amp;&amp; one first.next &amp;&amp; one last.prev) )&#x000a;     ( one elem =&gt; (first=elem &amp;&amp; last=elem &amp;&amp; no myprev &amp;&amp; no mynext) )&#x000a;     ( myprev=~mynext )&#x000a;     ( elem = first.*mynext )&#x000a;     (all disj a,b:elem | a in b.^mynext or a in b.^myprev)&#x000a;     (no disj a,b:elem | a in b.^mynext and a in b.^myprev)&#x000a;     (all disj a,b,c:elem | (b in a.^mynext and c in b.^mynext) =&gt;(c in a.^mynext))&#x000a;     (all disj a,b,c:elem | (b in a.^myprev and c in b.^myprev) =&gt;(c in a.^myprev))&#x000a;  }&#x000a;}&#x000a;run {} for exactly 0 elem expect 0&#x000a;run {} for exactly 1 elem expect 1&#x000a;run {} for exactly 2 elem expect 1&#x000a;run {} for exactly 3 elem expect 1&#x000a;run {} for exactly 4 elem expect 1&#x000a;check correct for exactly 0 elem&#x000a;check correct for exactly 1 elem&#x000a;check correct for exactly 2 elem&#x000a;check correct for exactly 3 elem&#x000a;check correct for exactly 4 elem&#x000a;check correct for exactly 5 elem&#x000a;"/>
+
+</alloy>

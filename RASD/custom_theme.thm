@@ -3,7 +3,7 @@
 
 <view nodetheme="Martha">
 
-<defaultnode/>
+<defaultnode showlabel="no" showinattr="yes"/>
 
 <defaultedge/>
 
@@ -21,6 +21,7 @@
    <type name="Int"/>
    <type name="Invitation"/>
    <type name="Italiano"/>
+   <type name="Language"/>
    <type name="Metro"/>
    <type name="MoBike"/>
    <type name="Notification"/>
@@ -28,6 +29,7 @@
    <type name="Personal"/>
    <type name="PersonalCar"/>
    <type name="String"/>
+   <type name="SuggestedSolution"/>
    <type name="SupportedLanguages"/>
    <type name="TimeWindowConstraint"/>
    <type name="Tram"/>
@@ -35,6 +37,7 @@
    <type name="univ"/>
    <type name="Work"/>
    <type name="seq/Int"/>
+   <set name="$show_d" type="Device"/>
 </node>
 
 <node color="Blue">
@@ -49,7 +52,6 @@
 
 <node color="Green">
    <type name="Location"/>
-   <type name="SuggestedSolutions"/>
 </node>
 
 <node color="Red">
@@ -63,11 +65,6 @@
 
 <node color="Yellow">
    <type name="BreakWindow"/>
-   <type name="Solution"/>
-</node>
-
-<node shape="Box" color="Blue">
-   <type name="Date"/>
 </node>
 
 <node shape="Ellipse" color="Black">
@@ -92,7 +89,6 @@
 
 <node visible="no">
    <type name="Bool"/>
-   <type name="Language"/>
    <type name="open$3/Ord"/>
    <type name="open$4/Ord"/>
    <type name="ordering/Ord"/>
@@ -100,6 +96,14 @@
 
 <node visible="no" color="Black">
    <type name="TransportationMean"/>
+</node>
+
+<node visible="no" color="Red">
+   <type name="AppointmentType"/>
+</node>
+
+<node visible="no" shape="Box" color="Blue">
+   <type name="Date"/>
 </node>
 
 <node visible="no" shape="Ellipse" color="Yellow">
@@ -114,12 +118,13 @@
    <type name="Ticket"/>
 </node>
 
-<node visible="yes" color="Red">
-   <type name="AppointmentType"/>
-</node>
-
 <edge attribute="no">
    <relation name="atLeast"> <type name="FlexibleBreakWindow"/> <type name="Time"/> </relation>
+</edge>
+
+<edge color="Blue">
+   <relation name="email"> <type name="Person"/> <type name="Email"/> </relation>
+   <relation name="email"> <type name="User"/> <type name="Email"/> </relation>
 </edge>
 
 <edge color="Gray" constraint="no">
@@ -140,8 +145,17 @@
    <relation name="makeUseTicket"> <type name="Ride"/> <type name="Ticket"/> </relation>
    <relation name="ownsTicket"> <type name="User"/> <type name="Ticket"/> </relation>
    <relation name="speaksLanguage"> <type name="User"/> <type name="Language"/> </relation>
-   <relation name="suggestTranMean"> <type name="Solution"/> <type name="TransportationMean"/> </relation>
    <relation name="usedFor"> <type name="Ticket"/> <type name="TransportationMean"/> </relation>
+</edge>
+
+<edge color="Green">
+   <relation name="name"> <type name="Person"/> <type name="Name"/> </relation>
+   <relation name="name"> <type name="User"/> <type name="Name"/> </relation>
+</edge>
+
+<edge color="Red">
+   <relation name="surname"> <type name="Person"/> <type name="Surname"/> </relation>
+   <relation name="surname"> <type name="User"/> <type name="Surname"/> </relation>
 </edge>
 
 <edge visible="no">
@@ -154,15 +168,15 @@
    <relation name="$show_p1"> <type name="User"/> <type name="Person"/> </relation>
    <relation name="$show_p2"> <type name="User"/> <type name="Person"/> </relation>
    <relation name="$show_r&apos;"> <type name="Location"/> <type name="Ride"/> </relation>
-   <relation name="$show_tm"> <type name="TransportationCompany"/> <type name="TransportationMean"/> </relation>
+   <relation name="$show_s"> <type name="TravelPlan"/> <type name="SuggestedSolution"/> </relation>
    <relation name="$show_tp"> <type name="Ride"/> <type name="TravelPlan"/> </relation>
    <relation name="$show_u"> <type name="Appointment"/> <type name="User"/> </relation>
    <relation name="$show_u&apos;"> <type name="Name"/> <type name="User"/> </relation>
    <relation name="$show_u&apos;&apos;"> <type name="Surname"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;"> <type name="TransportationMeanConstraint"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;"> <type name="BreakWindow"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="TravelPlan"/> <type name="User"/> </relation>
-   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="Location"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;"> <type name="Preferences"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="TravelPlan"/> <type name="User"/> </relation>
+   <relation name="$show_u&apos;&apos;&apos;&apos;&apos;&apos;&apos;&apos;"> <type name="Location"/> <type name="User"/> </relation>
+   <relation name="id"> <type name="Appointment"/> <type name="Int"/> </relation>
 </edge>
 
 <edge visible="no" attribute="no">
@@ -172,8 +186,12 @@
 
 <edge visible="no" attribute="yes">
    <relation name="baggage"> <type name="TravelPlan"/> <type name="Int"/> </relation>
+   <relation name="displayLanguage"> <type name="AppInstance"/> <type name="Language"/> </relation>
    <relation name="every"> <type name="RepeatableAppointment"/> <type name="Int"/> </relation>
    <relation name="fromValue"> <type name="DistanceConstraint"/> <type name="Int"/> </relation>
+   <relation name="isIncoming"> <type name="Appointment"/> <type name="Bool"/> </relation>
+   <relation name="isModified"> <type name="Appointment"/> <type name="Bool"/> </relation>
+   <relation name="language"> <type name="Device"/> <type name="Language"/> </relation>
    <relation name="passengers"> <type name="TravelPlan"/> <type name="Int"/> </relation>
    <relation name="toValue"> <type name="DistanceConstraint"/> <type name="Int"/> </relation>
    <relation name="value"> <type name="Date"/> <type name="Int"/> </relation>

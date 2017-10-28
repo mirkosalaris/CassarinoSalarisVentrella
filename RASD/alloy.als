@@ -304,6 +304,10 @@ fact NoTranCompanyForPersonalTranMeans  {
 	(PersonalCar.belongsToCompany= none)
 	}
 
+fact PreferenceMustBelongToUser {
+	all p: Preferences | some u: User | u.hasPreferences = p
+}
+
 fact TranMeanConstraintsMustBelongToUsers {
 	all tmc: TransportationMeanConstraint | some u: User | tmc in u.hasConstraints 
 	}
@@ -449,6 +453,16 @@ fact TravelPlanMustBeSuggested {
 	all tp: TravelPlan | some s: SuggestedSolution | s.containsTravelPlan = tp
 	}
 
+fact AppointmentWithSameIdAreEqualsIfNotModified {
+	all ap1, ap2: Appointment |
+	(ap1.id = ap2.id and ap1.isModified = False and ap2.isModified = False)
+	implies	appointmentsAreEquals[ap1, ap2]
+}
+
+fact EnglishAlwaysSupported {
+	English in SupportedLanguages.setOfLanguages
+}
+
 // ================================================
 //  ======================== UTILITY PREDICATES
 pred samePerson[p1, p2: Person] {
@@ -457,6 +471,17 @@ pred samePerson[p1, p2: Person] {
 
 pred invitedToAppointment[u: User, a: Appointment] {
 	some i: Invitation | i.forAppointment = a and i.toEmail = u.email
+}
+
+pred appointmentsAreEquals[ap1, ap2: Appointment] {
+	ap1.id = ap2.id and
+	ap1.start = ap2.start and
+	ap1.end = ap2.end and 
+	ap1.atLocation = ap2.atLocation and
+	ap1.hasType = ap2.hasType and
+	ap1.isRepeatable = ap2.isRepeatable
+	// no reason to check isModified
+	// isIncoming can be different!
 }
 
 // ================================================
@@ -502,8 +527,11 @@ pred show {
 	#Appointment = 2 and
 	#User = 1 and
 	#Notification > 0 and
-	#TravelPlan > 1 and
-	#SupportedLanguages.setOfLanguages > 1
+	#TravelPlan = 2 and
+	#SupportedLanguages.setOfLanguages > 1 and
+	#Person = 2 and
+	#Device = 2 and
+	some d: Device | d.language not in SupportedLanguages.setOfLanguages
 }
 
-run show for 5 but 4 Notification, 8 Int
+run show for 3 but 4 Notification, 8 Int
