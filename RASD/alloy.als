@@ -180,8 +180,11 @@ sig Device {
 sig AppInstance{
 	installedOn: Device,
 	displayLanguage: Language
-}{ let d = installedOn | (displayLanguage = d.language) or
-			(displayLanguage = English and d.language not in SupportedLanguages.setOfLanguages) }
+}{ let d = installedOn |
+			( d.language not in SupportedLanguages.setOfLanguages implies ( displayLanguage = English )
+			else (displayLanguage = d.language) ) 
+			}
+
 
 one sig SupportedLanguages {
 	setOfLanguages: set Language
@@ -421,6 +424,30 @@ fact EachDeviceHasMaxOneAppInstance {
 fact EveryUserHasAtLeastOneAppInstance {
 	all u: User | some a: AppInstance | a.installedOn.belongsTo = u
 }
+
+fact TravelPlanAppointmentLocationConsistency {
+	all tp: TravelPlan, ap:Appointment  | ap=tp.forAppointment implies (ap.atLocation=tp.endRide.toLocation)
+ }
+
+fact OneConstraintperTravelMean {
+	all u:User, tc1, tc2:TransportationMeanConstraint | ( tc1  in u.hasConstraints and tc2 in u.hasConstraints
+	and  tc1.associatedToTranMean = tc2.associatedToTranMean ) implies (tc1 = tc2)
+} 
+
+fact TicketWithOneUser{
+	all t:Ticket | one u:User | t in u.ownsTicket
+}
+
+fact TicketWithAtLeastOneRide{
+	all t:Ticket | some r:Ride | r.makeUseTicket = t
+}
+
+fact TicketConsistency{
+	all t:Ticket, r:Ride, u:User, tp:TravelPlan | ( r in (tp.startRide + tp.intermediateRides + tp.endRide) 
+	and tp in u.hasTravelPlan and r.makeUseTicket = t ) implies t in u.ownsTicket
+}
+
+
 
 // ================================================
 //  ======================== UTILITY PREDICATES
