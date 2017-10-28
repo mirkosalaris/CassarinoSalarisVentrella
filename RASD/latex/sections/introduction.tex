@@ -8,7 +8,7 @@ The app allows users to create appointments, eventually inviting other users of 
 The goal of Travlendar+ is to organize in the best way all daily commitments of its users considering all the possible problems that can influence travels and trips (e.g. weather conditions, strikes, etc.).\newline
 When a User creates an event, he can add, for the travel, eventual passengers or baggage, so that the app can suggest better trip choices. Travlendar+ allows users to visualize their planned schedule too.\newline 
 The dynamicity of the software allows users to set some personal preferences, for example, to set a flexible break window time for having free time or lunch, to choose eco-friendly solutions for his trips, to deactivate some transportation means.\newline 
-The system interfaces with other firms (e.g. transportation companies, territory maps companies, sharing transportation companies) to offer a more comprehensive user experience. In this way, a User has the possibility to buy tickets and passes for transportation means. Moreover, the system offers a location service for vehicles of affiliated shared transport companies but to proceed with the renting the User is redirected to the company's app.
+The system interfaces with other firms (e.g. transportation companies, territory maps companies, sharing transportation companies) to offer a more comprehensive user experience. In this way, a User has the possibility to buy tickets and passes for transportation means. Moreover, the system offers a localization service for vehicles of affiliated shared transport companies but to proceed with the renting the User is redirected to the company's app.
 
 \subsubsection{Goals}
 	\begin{enumerate}[label={[G\arabic*]}]
@@ -43,24 +43,23 @@ The system interfaces with other firms (e.g. transportation companies, territory
 		\label{definitions}
 		Here we provide a list of definitions of words and expression used in the documents. Every time such words or expressions will be used they will be preceded by the symbol "($\uparrow$)" that will be a link to this section.
 		\begin{description}
-			% TODO Sort alphabetically
-			\item[- \textit{welcome page}:] the page where the user is redirected after completing the sign up process and logging in for the first time. In this page the app sequentially  asks to the user to insert credit-card data and set his preferences. The user can skip any of this phases and complete them in a second time. After this process, the initial settings configuration is completed.
+			\item[- \textit{affiliated company}:] a company (transport company or vehicle sharing company) that has deals with the S2B.
+			\item[- \textit{appointment details}:] time, date, type of appointment, location, number of passengers and precence of baggage.
+			\item[- \textit{break window}:] it is a time slot in which the User specify he/she want to be absolutely free. In this time slot he does not want to have any appointment nor to be travelling. This is a fixed break window. A flexible break window is a time slot in which he/she specify he want to have some free time, but not the full window free.
+			\item[- \textit{incoming appointment}:] the next scheduled appointment for which the S2B send a remind to the user. The remind is sent  a certain amount of time before the appointment starts, to allow the user to get on time in the location.
 			\item[- \textit{personal preferences}:] with this term we mean that here the user can:\newline
 			- specify break time windows; \newline
 			- specify the interest or not for eco-friendly solutions;\newline
 			- specify constraints, such as avoiding  bike, on the travel means solutions.
 			\item[- \textit{supported languages}:] the set of languages that the S2B will be able to use to communicate with its users. English and Italian are included.
 			\item[- \textit{valid credentials}:] Name, surname, personal email address and password.
-				\begin{itemize}
-					\item[Name:] it should be non empty and it should contains only alphabetical characters
-					\item[Surname:] it should be non empty and it should contains only alphabetical characters
-					\item[Email:] It should be a valid email address, with an alphanumerical string followed by a '@', followed by an alphanumerical string, a dot, and a domain name
-					\item[Password:] It should be a string with at least 8 characters
-				\end{itemize}
-			\item[- \textit{appointment details}:] time, date, type of appointment, location, number of passengers and precence of baggage.
-			\item[- \textit{incoming appointment}:] the next scheduled appointment for which the S2B send a remind to the user. The remind is sent  a certain amount of time before the appointment starts, to allow the user to get on time in the location.
-			\item[- \textit{affiliated company}:] a company (transport company or vehicle sharing company) that has deals with the S2B.
-			\item[- \textit{break window}:] it is a time slot in which the User specify he/she want to be absolutely free. In this time slot he does not want to have any appointment nor to be travelling. This is a fixed break window. A flexible break window is a time slot in which he/she specify he want to have some free time, but not the full window free.
+			\begin{itemize}
+				\item[Name:] it should be non empty and it should contains only alphabetical characters
+				\item[Surname:] it should be non empty and it should contains only alphabetical characters
+				\item[Email:] It should be a valid email address, with an alphanumerical string followed by a '@', followed by an alphanumerical string, a dot, and a domain name
+				\item[Password:] It should be a string with at least 8 characters
+			\end{itemize}
+			\item[- \textit{welcome page}:] the page where the user is redirected after completing the sign-up process and logging in for the first time. In this page, the app sequentially asks the user to insert credit-card data and set his preferences. The user can skip any of this phases and complete them at a later time. After this process, the initial settings configuration is completed.
 		\end{description}
 	\subsubsection{Acronyms}
 		\begin{description}
@@ -75,8 +74,8 @@ The system interfaces with other firms (e.g. transportation companies, territory
 		\end{description}
 \subsection{Revision history}
 \subsection{Document Structure}
-After purpose and scope , used to briefly introduce the topic, we decided to state the goals that the StB should achieve coupled with a list of usefull  definitions and acronyms.
-subsequently the text proceeds with an analisy of the functions that the app should provide. The analisy starts with a general exposition of the scenarios and become gradually more detailed passing trough the analisy of the actors that will interact with the S2B and the statement of domain assumptions.
-After that, the specific requirements are exposed focusing firstly on the external interfaces and then providing the models used to highlight the relations betwen  actors and StB and describe the internal structure of the latter.
-After that, Functional and non Functional requirements are sequentially discussed.
-Before ending with the effort spent and the references we provide a formal analisy performed with alloy.
+After purpose and scope, used to briefly introduce the topic, we delineated the goals that the S2B should achieve coupled with a list of useful definitions and acronyms.
+Subsequently, the text proceeds with an analysis of the functions that the app should provide. The analysis starts with a general exposition of the scenarios and becomes gradually more detailed passing through the analysis of the actors that will interact with the S2B and the statement of the domain assumptions.
+After that, the specific requirements are exposed focusing firstly on the external interfaces and then providing the models used to highlight the relations between actors and S2B and describe the internal structure of the latter.
+After that, Functional and non-Functional requirements are sequentially discussed.
+Before ending with the effort spent and the references we provide a formal analysis performed with alloy.

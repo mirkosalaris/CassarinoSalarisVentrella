@@ -27,10 +27,10 @@
 	\subsubsection{Communication Interfaces}
 	The communication between clients and server should be HTTP requests/responses based.
 \subsection{UML modeling}
-	In this section we formalize the S2B in terms of UML models.\newline
+	In this section, we formalize the S2B in terms of UML models.\newline
 	We divided the Use Case Diagrams into parts to slightly improve the readability of the Diagrams. After the Diagrams, descriptions of the main Use Cases are provided.\newline
 	After that we provide a Class Diagram of the whole system and then some Activity Diagrams, to better explain the structure of the S2B and its behavior.\newline
-	Other types of diagrams have been considered, but we eventually realized them to not provide any other notable information about the system at this stage.
+	Other types of diagrams have been considered, but we eventually realized them to not provide, at this stage, any other notable information about the system.
 	\subsubsection{Use Case diagram}
 		\smallskip
 		\begin{figure}[H]	
@@ -46,10 +46,6 @@
 	\centerline{\includegraphics[width=\paperwidth-1]{Images/UseCaseDiagram2}}
 	\caption{ "Specify Details" Use Case }
 \end{figure}
-
-
-
-
 		\renewcommand{\arraystretch}{1.6} % increase line height
 		
 		\medskip %leave a bit of space before the next 'section'
@@ -69,9 +65,9 @@
 				User specifies the location of the appointment;\newline
 				User specifies the type of the appointment;\newline
 				User specifies details such as passengers or baggage;\newline
-				User selects a travel mean taking to account app’s suggestion;\newline
+				User selects a travel mean taking into account app's suggestions;\newline
 				The app takes note of the settings and send a confirmation;\newline
-				The app redirects the user to the main page.
+				The app redirects the User to the main page.
 				\\
 				\hline\textbf{Secondary flows:} & User does not specify a travel mean and let it blank;\newline
 				The app takes anyway note of the setting and alert the user of the missing information; \newline
@@ -102,19 +98,19 @@
 				\\
 				\hline\textbf{Entry condition:} &none;
 				\\
-				\hline\textbf{Flow of events:} & the person inserts \defined{valid credentials};\newline
+				\hline\textbf{Flow of events:} & the Person inserts \defined{valid credentials};\newline
 				the app sends an email with the confirmation link;\newline
-				the person gives the confirmation through the link on the mail;\newline
-				the app shows the \defined{welcome page} to the new user.
+				the Person gives the confirmation through the link on the mail;\newline
+				the app shows the \defined{welcome page} to the new User.
 				
 				\\
 				\hline\textbf{Secondary flows:} & none.
 				\\
 				\hline\textbf{Exceptions:} &the person inserts non \defined{valid credentials};\newline
-				the sign up cannot proceed.
+				the sign-up cannot proceed.
 				
 				\\
-				\hline\textbf{Post conditions:} & the person is successfully signed up and become an actual logged user.
+				\hline\textbf{Post conditions:} & the person is successfully signed up and become an actual User.
 				\\
 				\hline
 			\end{tabu}
@@ -130,29 +126,29 @@
 				\\
 				\hline\textbf{Actors:} & User
 				\\
-				\hline\textbf{Entry condition:} & the User just has just completed the sign up process;\newline
-				user must be logged.
+				\hline\textbf{Entry condition:} & the User has just completed the sign up process;\newline
+				User must be logged.
 				
 				\\
-				\hline\textbf{Flow of events:} & User insert sequentially the following  information:
+				\hline\textbf{Flow of events:} & User inserts sequentially the following  information:
 				\begin{itemize}
 				\item 	Credit card;
 				\item 	Break time windows;
 				\item	Interest for Eco-friendly solutions on the travel means.
 				\item	Constraints on travel means.
 				\end{itemize}
-				The app, for each step,  check the info and send a confirmation;
-				The app redirects the user to the main page.
+				The app, for each step,  checks the info and sends a confirmation;
+				The app redirects the User to the main page.
 				
 				\\
-				\hline\textbf{Secondary flows:} & User skips to specify one or more information that could be specified later in the settings.\newline
+				\hline\textbf{Secondary flows:} & User skips specifying one or more information that could be specified later in the settings.\newline
 				The app notifies the user about the missing information and redirects anyway the user to the main page.
 				
 				\\
-				\hline\textbf{Exceptions:} & user inserts inconsistent information (incorrect credid-card information, break time shorter than 30 minutes);\newline
-				The app allerts the user and asks him to insert again the info.
+				\hline\textbf{Exceptions:} & user inserts inconsistent information (incorrect credit-card information, break time shorter than 30 minutes);\newline
+				The app alerts the user and asks him to insert again the info.
 				\\
-				\hline\textbf{Post conditions:} & the set configurations are successfully saved and the user is redirected to the main page.
+				\hline\textbf{Post conditions:} & the set \defined{preferences} are successfully saved and the user is redirected to the main page.
 				\\
 				\hline
 			\end{tabu}
@@ -168,15 +164,15 @@
 				\\
 				\hline\textbf{Actors:} & User
 				\\
-				\hline\textbf{Entry condition:} & user must be logged;\newline
+				\hline\textbf{Entry condition:} & User must be logged;\newline
 				the appointment must exist;
 				
 				\\
-				\hline\textbf{Description:} & user specifies or modifies basic details (time, date, location, type of appointment, number of passengers and the precence of baggage) and eventually:
+				\hline\textbf{Description:} & User specifies or modifies basic details (time, date, location, type of appointment, number of passengers and the presence of baggage) and eventually:
 				\begin{itemize}
-					\item If not specified yet, sets a travel mean;
-					\item Modifies the previous travel mean;
-					\item Buys a ticket for the travel mean;
+					\item If not specified yet, sets a transportation mean;
+					\item Modifies the previous transportation mean;
+					\item Buys a ticket for the transportation mean;
 					\item Invites a person. 
 				\end{itemize}\\
 				\hline
@@ -189,27 +185,27 @@
 			\textbf{User buy travel ticket}
 			\medskip\\
 			\begin{tabu} to \textwidth {| X[\fcWidth,r,p] | X[1-\fcWidth,l,p] |}
-				\hline\textbf{Use case:} & User buy travel ticket
+				\hline\textbf{Use case:} & User buys travel ticket
 				\\
 				\hline\textbf{Actors:} & User
 				\\
-				\hline\textbf{Entry condition:} & user must be logged; \newline
-				user must have added a payment card .
+				\hline\textbf{Entry condition:} & User must be logged; \newline
+				User must have added a payment card.
 				
 				\\
-				\hline\textbf{Flow of events:} &User selects an appointment;\newline
-				User,  through the app, searches for tickets for the specified travel mean; \newline
+				\hline\textbf{Flow of events:} & User selects an appointment;\newline
+				User,  through the app, searches for tickets for the specified transportation mean; \newline
 				User selects the ticket’s option and picks one;\newline
 				User proceeds with the payment;\newline
 				The payment operation ends successfully;\newline
-				The app sends a confirmation and redirects the user to the main page;
+				The app sends a confirmation and redirects the User to the main page;
 				
 				\\
 				\hline\textbf{Secondary flows:} & none
 				\\
 				\hline\textbf{Exceptions:} & The payment is rejected (not enough credit, expired card, ..);\newline
-				The app notifies the user; \newline
-				The app redirects the user to the home page;
+				The app notifies the User; \newline
+				The app redirects the User to the main page;
 				
 				\\
 				\hline\textbf{Post conditions:} & User successfully books the tickets and is redirected to the main page.
@@ -342,7 +338,7 @@ more generally to a great number of request throughout the day.
 The S2B, at least for the start, will only be available for the Lombardy region. Based on demographic analysis (number of inhabitants, number of people under the age of 60, number of smartphones sold over the past 2 years), it was decided to design the S2B to support 100,000 users simultaneously, but scalability needs to be guaranteed.
 \subsection{Design Constraints}
 	\subsubsection{Standard compliance}
-	To ensure interoperability the S2B will follow the W3C web standard and will be as adherent as possible to  coding practices in relation to the use of HTML/XHTM, CSS and Java programming language. Moreover the use of non-opensource libraries will be avoided.
+	To ensure interoperability the S2B will follow the W3C web standard and will be as adherent as possible to code practices in relation to the use of HTML/XHTML, CSS and Java programming language. Moreover, the use of non-opensource libraries will be avoided.
 	\subsubsection{Hardware limitations}
 		\begin{itemize}
 		\item Mobile App: \newline
@@ -350,7 +346,7 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 			* GPS\newline
 			* Space for app package
 		\item Web App: \newline
-			* Modern browser able to retrieve user's location
+			* Modern browser able to retrieve User's location
 		\end{itemize}
 	
 	\subsubsection{Any other constraint}
@@ -359,7 +355,7 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 	safely, will use them only for fees and rides payments.
 	Moreover, the system will have to ask for users' permission in order to retrieve and use their
 	positions.
-	Email addresses won't be used for commercial uses.
+	Email addresses will not be used for commercial uses.
 \subsection{Software System Attributes} 
 	\subsubsection{Reliability}
 	The system must guarantee a 24/7 service. Very small deviations from this requirement will be
@@ -368,7 +364,7 @@ The S2B, at least for the start, will only be available for the Lombardy region.
 	The S2B must guarantees a 3-nines availability (99.9 percent) with a downtime not greater than 8 hours per year.
 	\subsubsection{Security}
 User credentials and payment information will be stored. Data confidentiality is a primary concern.
-In addition, when the user wants to buy tickets or rent a shared vehicle, the stored information must be sent to affiliated  transport Company systems or shared vehicle Company  systems. To ensure the security and the confidentiality of this information, the S2B must be able to adopt  access managment protocols and comunication protocols able to prevent not granted access and/or Sniffing/Spoofing activities performed by third.
+In addition, when the user wants to buy tickets or rent a shared vehicle, the stored information must be sent to affiliated  transport Company systems or shared vehicle Company  systems. To ensure the security and the confidentiality of this information, the S2B must be able to adopt  access management protocols and communication protocols able to prevent not granted access and/or Sniffing/Spoofing activities performed by thirds.
 	
 	\subsubsection{Maintainability}
 	The S2B must be designed in a way to easily correct defects or their cause,
@@ -381,5 +377,5 @@ In addition, when the user wants to buy tickets or rent a shared vehicle, the st
 	cope with a changed environment.
 	
 	\subsubsection{Portability}
-	The S2B must be able to run in all main mobile OS \textit{Android, iOS, Windows-Phone OS)} and being supported by all the main Web Browser \textit{(Google Chrome, Safari, Firefox, Microsoft Edge)}.
+	The S2B must be able to run in all main mobile OS \textit{Android, iOS, Windows-Phone OS)} and to be supported by all the main Web Browser \textit{(Google Chrome, Safari, Firefox, Microsoft Edge)}.
 	
