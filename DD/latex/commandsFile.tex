@@ -1,0 +1,52 @@
+\documentclass[a4paper]{article}
+\usepackage{graphicx} % to include graphicx elements
+\usepackage{tabu} % to use tables
+\usepackage{geometry} % to define page layout
+\usepackage[pdftex, colorlinks]{hyperref} % to use href
+\usepackage[T1]{fontenc} % to correctly show symbols like "|", ">", "<"
+\usepackage{lmodern} % needed when using T1 fontencoding
+\usepackage[dvipsnames]{xcolor}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{pdflscape}
+
+\colorlet{mylinkcolor}{Orange}
+\colorlet{mycitecolor}{Orange}
+\colorlet{myurlcolor}{Aquamarine}
+\hypersetup{
+	linkcolor  = mylinkcolor!80!black,
+	citecolor  = mycitecolor!80!black,
+	urlcolor   = myurlcolor!80!black,
+	colorlinks = true,
+}
+
+% used to identify words defined in definitions section
+\newcommand{\defined}[1]{{\hyperref[definitions]{($\uparrow$)}\textit{#1}}}
+
+% this is to create labels like \mylabel{arg1}{arg2}. The first one is the part that you call with \ref{arg1} (or with \myref), the second part will be just copy-pasted after the ref link
+\makeatletter
+\newcommand{\mylabel}[2]{{#2} \label{#1}%
+	{\protected@write \@auxout {}{\string \newlabel {#1.text}{{~#2}{\thepage}{}{}{}} } \hypertarget{#1}{}}}
+\makeatother
+
+% to be used to actually exploit \mylabel
+\newcommand{\myref}[1]{\ref{#1}\ref{#1.text}}
+
+\newcommand{\goal}[1]{\bigskip
+	\noindent\textbf{\myref{#1}}}
+
+% set margin of enumerate sections
+\setlist[enumerate,1]{leftmargin=1.2cm}
+
+%----- Define page layout -----
+ \geometry{
+ left=25mm,
+ right=25mm,
+ top=30mm,
+ bottom=25mm,
+ headsep=7mm}
+
+%----- Constant definitions -----
+\def \fcWidth {0.2} % first column width

@@ -1,0 +1,85 @@
+\input{commandsFile}
+
+% -----------------------------
+\begin{document}
+	
+	%TITLE PAGE
+	\input{titlePage}
+	
+	%Define deliverable specific info
+	\begin{table}[h!]
+		\begin{tabu} to \textwidth { X[0.3,r,p] X[0.7,l,p] }
+			\hline
+			\smallskip & \smallskip\\
+			\textbf{Deliverable:} & DD\\
+			\textbf{Title:} & Design Document \\
+			\textbf{Authors:} & Mirko Salaris, Piervincenzo Ventrella, Pietro Cassarino \\
+			\textbf{Version:} & 1.0 \\ 
+			\textbf{Date:} & 26-November-2017 \\
+			\textbf{Download page:} & https://github.com/mirkosalaris/CassarinoSalarisVentrella/\\
+			\textbf{Copyright:} & Copyright \textcopyright 2017, M. Salaris, P. Ventrella, P. Cassarino\\
+			\hfill & All rights reserved \\
+			\smallskip & \smallskip\\
+			\hline
+		\end{tabu}
+	\end{table}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\newpage
+	\renewcommand{\contentsname}{Table of Contents} % rename from "Contents" to "Table of Contents"
+	% avoid coloring references in table of content, list of figures and tables
+	{\hypersetup{hidelinks}
+		\tableofcontents
+		\listoffigures
+	}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Introduction}
+	\label{sect:introduction}
+	\input{sections/introduction}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Architectural Design}
+	\label{sect:architecturalDesign}
+	\input{sections/architecturalDesign}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Algorithm Design}
+	\label{sect:algorithmDesign}
+	\input{sections/algorithmDesign}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{User Interface Design}
+	\label{sect:userInterfaceDesign}
+	\input{sections/userInterfaceDesign}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Requirements Traceability}
+	\label{sect:traceability}
+	\input{sections/traceability}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Implementation, Integration and Test Plan}
+	\label{sect:i&tPlan}
+	\input{sections/i&tPlan}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{Effort Spent and Team Work}
+	\label{sect:effort&team}
+	\input{sections/effort&team}
+	
+	%------------------------------------------------------------------------------------------------------------------------------------------------
+	\clearpage
+	\section{References}
+	\label{sect:references}
+	\input{sections/references}
+	
+	
+\end{document}
