@@ -1,6 +1,11 @@
-\subsection{Overview}
-	% TODO
-	
+\subsection{Overview} 
+Here we provide a high level representation of client-server interaction.
+The client sends a request to the orchestrator who dispatches the request to the appropriate component. Both, components and orchestrator, are stateless. We thought to use the elastic component architectural pattern for the components. Moreover the orchestrator can eventually be duplicated using a fixed dimension  pool whoseconfigurable by the system administrator.
+
+	\begin{figure}[H]	
+	\centerline{\includegraphics[width=0.9\paperwidth]{Images/HighLevelArchitecture}}
+	\caption{High level Architecture Diagram - Client-Server interaction}
+	\end{figure}	
 \subsection{Component view}
 	In the following diagrams we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app (through the web server), without adding complexity to the diagrams.
 	\subsubsection{Appointment Manager and Notification Manager}
@@ -44,7 +49,10 @@
 	
 \subsection{Runtime view}
 	\label{sect:RuntimeView}
-	% TODO
+		\begin{figure}[H]	
+		\centerline{\includegraphics[width=0.9\paperwidth]{Images/LocateNearest}}
+		\caption{Sequence Diagram - Locate Nearest Vehicle}
+	\end{figure}
 	
 \subsection{Component interfaces}
 	% TODO
