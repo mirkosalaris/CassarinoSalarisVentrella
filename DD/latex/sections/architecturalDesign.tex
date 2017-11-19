@@ -8,6 +8,8 @@
 		\centerline{\includegraphics[width=0.9\paperwidth]{Images/HighLevelArchitecture}}
 		\caption{High level Architecture Diagram - Client-Server interaction}
 	\end{figure}
+
+\filbreak
 \subsection{Component view}
 	In the following diagrams we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app (through the web server), without adding complexity to the diagrams.
 	\subsubsection{Appointment Manager and Notification Manager}
@@ -47,6 +49,31 @@
 			\caption{Component Diagram - Invitation Manager}
 		\end{figure}
 	
+	\filbreak
+	\subsubsection{Weather and Traffic Modules}
+		\label{sect:WeatherTrafficModules}
+		In the diagram we provide the representation of the Weather Module. The traffic module has exactly the same architecture and interactions. You can just derive the traffic diagram substituting \textit{"Weather"} with \textit{"Traffic"}. Both module are needed to notify the User of changes in traffic/weather that can influences his daily travels and they are needed from the component Solution Calculator to avoid bad solutions like, for instance, taking the bike when it rains. With the same convention as before, we represent here Solution Calculator but it will be detailed in another diagram.\newline
+		The Weather \textit{(traffic)} module has a quite articulated architecture and it will be explained here and in section \ref{sect:RuntimeView} with an object diagram.\newline
+		It is composed by:
+		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
+			\item[Address Solver] this component has a really basic functionality and it is exploited from Weather Manager to "understand" \textit{(see below)} addresses. Provided an address as input it decompose it in its components and return a hierarchy.\newline
+			Example: "Italy, Milan, via Pacini 32" -> transformed to:\newline "State:Italy"$\rightarrow$"City:Milan"$\rightarrow$"CityZone:NorthEast"$\rightarrow$"Street:Giovanni Pacini"$\rightarrow$"Number:32"
+			\item[Weather Manager] this serves as a registry to support the publish-subscribe architecture between Weather Querier and Weather Notifier. Moreover this component provide an external interface to let other components have information about weather. When it receives a request of weather information for a specific address, it asks Address Solver to interpret the address and then it asks to the appropriate Weather Querier the information.
+			\item[Weather Querier] it is the module responsible for retrieving the weather information and send them to the Weather Notifier.
+			\item[Weather Notifier] this is the component that decide if and when an User has to be notified. It subscribes to a specific Weather Querier and receives the information from it. 
+		\end{description}
+		\medskip
+		Both the Querier and the Notifier are instantiated by zone. The zone of the Querier are meant to be larger, like Italy, Spain, France and the zone of the Notifier are meant to be more specific, for instance: West Milan, East Milan, Venice, Turin.\newline
+		The Notifier has to execute an algorithm for each appointment to decide if and when to notify the User, so its load will depend on the number of appointments in that specific zone and (especially in the Traffic Module) on the day of the week and the time of the day. For this reason, a load balancing mechanism is required. When a 'node' is under load it can be splitted into two or more parts: "Milan"$\rightarrow$"WestMilan" and "EastMilan".\newline
+		The Querier has a more stable load and for this reason \textbf{no} load balancing mechanism has to be implemented. By the way, the zones of the Querier can be configured by the System Administrator, even dynamically.\newline
+		The load balancing mechanism of the Notifier and the \defined{dynamically configurable} Querier has to be supported by the Manager: it is not a simple registry but it registers all the active Queriers and Notifiers and it manages the subscriptions when they are modified.\newline
+		The process is described in more details in section \ref{sect:algorithmDesign}.
+
+		\begin{figure}[H]
+			\centerline{\includegraphics[width=0.9\paperwidth]{Images/CD_WeatherModule}}
+			\caption{Component Diagram - Weather Module}
+		\end{figure}
+
 \subsection{Deployment view}
 	% TODO
 	
