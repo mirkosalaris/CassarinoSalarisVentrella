@@ -11,7 +11,16 @@
 
 \filbreak
 \subsection{Component view}
-	In the following diagrams we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app (through the web server), without adding complexity to the diagrams.
+	This section starts with the presentation of the Entity Relationship diagram. In the other diagram following ER model, we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app (through the web server), without adding complexity to the diagrams.
+	\subsubsection{ER diagram}
+	The following ER diagram represents the conceptual schema of the system database. In Ticket entity we don't specify all the attributes because they depend from ticket Typology and from Transportation Company they belong. Ticket entity can be split into two categories of tickets, ordinary and pass tickets. Below these two, we have another hierarchy in which we include some examples.
+	
+    \begin{figure}[H]	
+		\centerline{\includegraphics[width=0.9\paperwidth]{Images/ERdiagram}}
+		\caption{ER diagram}
+ 	\end{figure}
+
+	\filbreak
 	\subsubsection{Appointment Manager and Notification Manager}
 		\label{sect:AppointmentManager}
 		\label{sect:NotificationManager}
