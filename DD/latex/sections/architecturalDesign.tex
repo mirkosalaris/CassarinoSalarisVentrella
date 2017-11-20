@@ -61,20 +61,20 @@
 	\filbreak
 	\subsubsection{Weather and Traffic Modules}
 		\label{sect:WeatherTrafficModules}
-		In the diagram we provide the representation of the Weather Module. The traffic module has exactly the same architecture and interactions. You can just derive the traffic diagram substituting \textit{"Weather"} with \textit{"Traffic"}. Both module are needed to notify the User of changes in traffic/weather that can influences his daily travels and they are needed from the component Solution Calculator to avoid bad solutions like, for instance, taking the bike when it rains. With the same convention as before, we represent here Solution Calculator but it will be detailed in another diagram.\newline
+		In the diagram, we provide the representation of the Weather Module. The traffic module has exactly the same architecture and interactions. You can just derive the traffic diagram substituting \textit{"Weather"} with \textit{"Traffic"}. Both modules are needed to notify the User of changes in traffic/weather that can influence his/her daily travels and they are used by the component Solution Calculator to avoid bad solutions like, for instance, taking the bike when it rains. With the same convention as before, we represent here Solution Calculator but it will be detailed in another diagram.\newline
 		The Weather \textit{(traffic)} module has a quite articulated architecture and it will be explained here and in section \ref{sect:RuntimeView} with an object diagram.\newline
 		It is composed by:
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Address Solver] this component has a really basic functionality and it is exploited from Weather Manager to "understand" \textit{(see below)} addresses. Provided an address as input it decompose it in its components and return a hierarchy.\newline
+			\item[Address Solver] this component has a really basic functionality and it is exploited by Weather Manager to "understand" \textit{(see below)} addresses. Provided an address as input, it decompose it in its components and return a hierarchy.\newline
 			Example: "Italy, Milan, via Pacini 32" -> transformed to:\newline "State:Italy"$\rightarrow$"City:Milan"$\rightarrow$"CityZone:NorthEast"$\rightarrow$"Street:Giovanni Pacini"$\rightarrow$"Number:32"
-			\item[Weather Manager] this serves as a registry to support the publish-subscribe architecture between Weather Querier and Weather Notifier. Moreover this component provide an external interface to let other components have information about weather. When it receives a request of weather information for a specific address, it asks Address Solver to interpret the address and then it asks to the appropriate Weather Querier the information.
+			\item[Weather Manager] this serves as a registry to support the publish-subscribe architecture between Weather Querier and Weather Notifier. Moreover, this component provides an external interface to let other components have information about weather. When it receives a request of weather information for a specific address, it asks Address Solver to interpret the address and then it asks the appropriate Weather Querier for the information.
 			\item[Weather Querier] it is the module responsible for retrieving the weather information and send them to the Weather Notifier.
-			\item[Weather Notifier] this is the component that decide if and when an User has to be notified. It subscribes to a specific Weather Querier and receives the information from it. 
+			\item[Weather Notifier] this is the component that decides if and when a User has to be notified. It subscribes to a specific Weather Querier and receives the information from it. 
 		\end{description}
 		\medskip
-		Both the Querier and the Notifier are instantiated by zone. The zone of the Querier are meant to be larger, like Italy, Spain, France and the zone of the Notifier are meant to be more specific, for instance: West Milan, East Milan, Venice, Turin.\newline
-		The Notifier has to execute an algorithm for each appointment to decide if and when to notify the User, so its load will depend on the number of appointments in that specific zone and (especially in the Traffic Module) on the day of the week and the time of the day. For this reason, a load balancing mechanism is required. When a 'node' is under load it can be splitted into two or more parts: "Milan"$\rightarrow$"WestMilan" and "EastMilan".\newline
-		The Querier has a more stable load and for this reason \textbf{no} load balancing mechanism has to be implemented. By the way, the zones of the Querier can be configured by the System Administrator, even dynamically.\newline
+		Both the Querier and the Notifier are instantiated by zone. The zone of the Querier are meant to be very wide, like Italy, Spain, France and the zone of the Notifier are meant to be more specific, for instance: West Milan, East Milan, Venice, Turin.\newline
+		The Notifier has to execute an algorithm for each appointment to decide if and when to notify the User, so its load will depend on the number of appointments in that specific zone and (especially in the Traffic Module) on the day of the week and the time of the day. For this reason, a load balancing mechanism is required. When a 'node' is under load it can be splitt into two or more parts: "Milan"$\rightarrow$"WestMilan" and "EastMilan".\newline
+		The Querier has a more stable load and, for this reason, \textbf{no} load balancing mechanism has to be implemented. By the way, the zones of the Querier can be configured by the System Administrator, even dynamically.\newline
 		The load balancing mechanism of the Notifier and the \defined{dynamically configurable} Querier has to be supported by the Manager: it is not a simple registry but it registers all the active Queriers and Notifiers and it manages the subscriptions when they are modified.\newline
 		The process is described in more details in section \ref{sect:algorithmDesign}.
 
@@ -88,23 +88,46 @@
 	
 \subsection{Runtime view}
 	\label{sect:RuntimeView}
-		\begin{figure}[H]
+	\subsubsection{Sequence Diagram - Sign Up}
+	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.9\paperwidth]{Images/signUp}}
 		\caption{Sequence Diagram - SignUp}
 	\end{figure}
-	\begin{figure}[H]
-	\centerline{\includegraphics[width=0.9\paperwidth]{Images/ModifySettings}}
-	\caption{Sequence Diagram - Modify Settings}
-\end{figure}
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\paperwidth]{Images/SD_InvitationCreation}}
-		\caption{Sequence Diagram - Invitation Creation}
-	\end{figure}
-	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\paperwidth]{Images/LocateNearest}}
-		\caption{Sequence Diagram - Locate Nearest Vehicle}
-	\end{figure}
 	
+	\subsubsection{Sequence Diagram - Modify Settings}
+	\begin{figure}[H]
+		\centerline{\includegraphics[width=0.9\paperwidth]{Images/ModifySettings}}
+		\caption{Sequence Diagram - Modify Settings}
+	\end{figure}
+
+	\subsubsection{Sequence Diagram - Invitation Creation}
+		\begin{figure}[H]
+			\centerline{\includegraphics[width=0.9\paperwidth]{Images/SD_InvitationCreation}}
+			\caption{Sequence Diagram - Invitation Creation}
+		\end{figure}
+		
+	\subsubsection{Sequence Diagram - Locate Nearest Vehicle}
+		\begin{figure}[H]
+			\centerline{\includegraphics[width=0.9\paperwidth]{Images/LocateNearest}}
+			\caption{Sequence Diagram - Locate Nearest Vehicle}
+		\end{figure}
+		
+	\subsubsection{Object Diagram - Weather \& Traffic Modules}
+		As said in the component diagram \hyperref[sect:WeatherTrafficModules]{description}, this architecture is exactly the same used in the Traffic Module and so we provide here only the object diagram of one of them, the Weather Module, for consistency with the component diagram.\newline
+		The two diagrams illustrate an evolution in the instances caused by a load balancing operation and a reconfiguration from the System Administrator. Both diagrams are not complete of all the instances and we used dashed lines to represent the fact that some instances have been cut, to have simpler and easier to understand diagrams.\newline
+		In the first diagram, we can see two Querier, one for Italy and one for France. This partition of the region have been chosen by the System Administrator (another option could have been Europe). The Querier are linked to the related Notifiers and to the Manager. The Manager keeps track of the Queriers, the active Notifiers and the Notifiers in the standby list.
+		\begin{figure}[H]
+			\centerline{\includegraphics[width=0.9\paperwidth]{Images/OD_WeatherModule_Before}}
+			\caption{Object Diagram - Weather Module Original State}
+		\end{figure}
+		\noindent
+		At some point, the Notifier related to Lombardy is under load and the load balancer split it into two Notifiers, respectively related to North Lombardy and South Lombardy. Their subscription to the Querier \inlinecode{italyWQ} is managed directly by the Manager as described in algorithm section (\ref{sect:WeatherTrafficAlgorithm}).\newline
+		The \inlinecode{franceWQ} Querier unexpectedly crashes and the Notifiers that were subscribed to it are put in the standby list by the Manager.\newline
+		The next diagram represents the final situation.
+		\begin{figure}[H]
+			\centerline{\includegraphics[width=0.9\paperwidth]{Images/OD_WeatherModule_After}}
+			\caption{Object Diagram - Weather Module After Balancing and Reconfiguration}
+		\end{figure}
 \subsection{Component interfaces}
 	% TODO
 	

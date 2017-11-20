@@ -1,19 +1,20 @@
 \subsection{Weather and Traffic modules - Dynamic configuration}
+	\label{sect:WeatherTrafficAlgorithm}
 	As we \hyperref[sect:WeatherTrafficModules]{previously described} the Weather and Traffic modules are subject to load balancing and \defined{dynamic configuration} by the System Administrator. This two mechanism causes 4 events to happen. How they are managed is described below:
 	\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-		\item[a Notifier is deleted] this is the only activity that is not managed by the Manager because there is no reason in doing it. If the Notifier is simply being closed, it detaches itself from the Querier. If the Notifier crashes or it is suddenly closed, the Querier will notice this when trying to notify it and it will detach the dead Notifier. No other actions are needed.
-		\item[a Notifier is created] the new Notifier communicates to the Manager its zone. The Manager will return a reference of the appropriate Querier using the Address Solver to interpret the zone of the Notifier. Thus, the Notifier can subscribe to the Querier.
-		\item[a new Quierier is deleted] all the Notifiers previously attached to the Querier have to be analyzed. If a less specific Querier exists \textit{(see below)}, they are attached to it, otherwise they are put in a standby list (they will not received any information about weather, or traffic)
-		\item[a new Quierier is instantiated] the standby list is scanned searching for Notifier that can be attached to the Querier (matching the two zone through the Address Solver). If a less specific Querier exists \textit{(see below)}, all the Notifier subscribed to it are analyzed and are eventually moved to the new Querier.
+		\item[a Notifier is deleted] this is the only activity that is not managed by the Manager because there is no reason for doing it. If the Notifier is simply being closed, it detaches itself from the Querier. If the Notifier crashes or it is suddenly closed, the Querier will notice this when trying to notify it and it will detach the dead Notifier. No other actions are needed.
+		\item[a Notifier is created] the new Notifier communicates its zone to the Manager. The Manager will return to the Notifier a reference to the appropriate Querier using the Address Solver to interpret the zone of the Notifier. Thus, the Notifier can subscribe itself to the Querier.
+		\item[a new Quierier is deleted] all the Notifiers previously attached to the Querier have to be analyzed. If a less specific Querier exists \textit{(see below)}, they are attached to it, otherwise they are put in a standby list (they will not receive any information about weather, or traffic)
+		\item[a new Querier is instantiated] the standby list is scanned searching for Notifier that can be attached to the Querier (matching the two zone through the Address Solver). If a less specific Querier exists \textit{(see below)}, all the Notifier subscribed to it are analyzed and are eventually moved to the new Querier.
 	\end{description}
 	\medskip
 	\textbf{Meaning of specificity of a Querier}\newline
-	Let's assume, for instance, that there are three Querier: Italy, Milan, Lazio, Paris. Milan and Lazio are more specific with respect to Italy and Italy is less specific with respect to Milan and Lazio. Paris has no relation of specificity with all the others.\newline
+	Let's assume, for instance, that there are four Querier: \inlinecode{ItalyQ}, \inlinecode{MilanQ}, \inlinecode{LazioQ}, \inlinecode{ParisQ}, respectively related to zones: Italy, Milan, Lazio, Paris. \inlinecode{MilanQ} and \inlinecode{LazioQ} are more specific with respect to \inlinecode{ItalyQ} because Milan and Lazio are inside the region Italy. On the other hand, \inlinecode{ItalyQ} is less specific with respect to \inlinecode{MilanQ} and \inlinecode{LazioQ}. \inlinecode{ParisQ} has no relation of specificity with all the others.\newline
 	Hence:
 	\begin{itemize}[label=--]
-		\item Lazio crashes $\rightarrow$ all the Notifiers associated to Lazio are moved to Italy
-		\item Rome is created $\rightarrow$ Italy is less specific than Rome, so it is scanned searching for Notifiers that can be associated to Rome: if there are such Notifiers, they are moved to Rome. Notice: the Notifiers that were associated to Lazio but are actually outside the regione of Rome would stay in Italy.
-		\item Paris crashes $\rightarrow$ all the Notifiers associated to Paris are moved to the standby list, because no 'less specific' Queriers are available.
+		\item \inlinecode{LazioQ} crashes $\rightarrow$ all the Notifiers subscribed to \inlinecode{LazioQ} are now moved to \inlinecode{ItalyQ}
+		\item \inlinecode{RomeQ} Querier is created $\rightarrow$ \inlinecode{ItalyQ} is less specific than \inlinecode{RomeQ}, so \inlinecode{ItalyQ} is scanned searching for Notifiers associated to region Rome: if there are such Notifiers, they are moved to \inlinecode{RomeQ}. Notice: the Notifiers that were associated to \inlinecode{LazioQ} but are actually outside the region of Rome would remain associated to \inlinecode{ItalyQ}.
+		\item \inlinecode{ParisQ} crashes $\rightarrow$ all the Notifiers associated to \inlinecode{ParisQ} are moved to the standby list, because no 'less specific' Queriers are available.
 	\end{itemize}
 	\smallskip
 	Notice that Queriers are meant to be wide regions and not single cities, this was just an example.
