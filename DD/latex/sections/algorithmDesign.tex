@@ -21,12 +21,12 @@
 
 \subsection{Solution Calculator - How it works}
 		Here is illustrated the procedure by which the S2B provides the user with the travel solutions for the selected appointment.
-		As we \hyperref[sect:Select TravelPlan Solution]{previously described} the TravelPlan Manager takes care of handling the three-step  articulated process: recovery of feasible travelPlanSolutions and other useful information, filtering and labeling.
+		As we \hyperref[sect:Select TravelPlan Solution]{previously described} the Solution Calculator takes care of handling the three-step  articulated process: recovery of feasible travelPlanSolutions and other useful information, filtering and labeling.
 	\subparagraph{recovery of feasible travelPlanSolutions and other useful information:}
 	
 		- Solution Calculator, through Appointment Manager, retrieves appointment information (departure location, destination, time, presence of passengers, baggage, ..);\newline
 		
-		- based on this information, TravelPlan Manager interface with Google, which provides it with a list of possible travel solutions - travelPlanSolutions;\newline
+		- based on this information, Solution Calculator interface with Google, which provides it with a list of possible travel solutions - travelPlanSolutions;\newline
 		
 		- each TravelPLan solution consists of more Ride (each with its own TravelMean, distance, time);\newline
 		
@@ -66,7 +66,7 @@
 	The maximum possible EcoScore is 0; \newline
 	
 	PseudoCode: \newline
-	calculateEcoScore( TravelPlan tp)&{\newline
+	calculateEcoScore( TravelPlan tp){\newline
 		score=0;\newline
 		for each Ride r in tp{\newline
 			score = score - r.travelMean.penalty * r.distance\newline
