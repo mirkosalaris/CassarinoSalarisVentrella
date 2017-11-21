@@ -1,1 +1,89 @@
-% TODO
+\newcommand{\requirements}[1]{
+	\begin{itemize}
+		\item[$\rightarrow$] \textbf{Requirements #1}\mbox{} %the mbox is needed to avoid text following the list to appear on the same line
+	\end{itemize}
+}
+
+Here we show the mapping between goals and requirements identified in the section 3.3 of the RASD and the modules of the business logic described in the previous sections of this document. We list only the components of the actual logic, omitting the DBMS, the Orchestrator and Mobile App and Web App, because they are omnipresent.
+
+\paragraph{Goal G1: a Person should be able to have his/her own Travlendar+ agenda}
+	\requirements{R1$\div$R6}
+	Components:
+	\begin{itemize}[label=--]
+		\item Account Manager: as it can be seen in the Sign Up Sequence Diagram (\hyperref[sect:sd_signUp]{2.4.1}), it is the component in charge of the sign up process
+	\end{itemize}
+
+\paragraph{Goal G2: a User should be able to customize the offered service}
+	\requirements{R7, R8}
+	Components:
+	\begin{itemize}[label=--]
+		\item Account Manager: it lets the user set preferences, constraints, break windows
+		\item Solution Calculator: it takes into account the settings of the User when calculating the solutions
+	\end{itemize}
+
+\paragraph{Goal G3: a User should be able to take note of all his/her appointments and their details}
+	\requirements{R9, R10}
+	Components:
+	\begin{itemize}[label=--]
+		\item Appointment Manager: it lets every User add new appointments
+	\end{itemize}
+
+\paragraph{Goal G4: a User should be able to manage his/her appointments}
+	\requirements{R11$\div$R16}
+	Components:
+	\begin{itemize}[label=--]
+		\item Appointment Manager: it lets Users visualize their schedule and modify their appointments
+	\end{itemize}
+
+\paragraph{Goal G5: for each appointment, the User should be assisted in the choice of the travel solution}
+	\requirements{R17$\div$R24}
+	Components:
+	\begin{itemize}[label=--]
+		\item Solution Calculator: it actually provides the available solutions
+		\item Weather Module: it provides weather information to support the Solution Calculator computation
+		\item Traffic Module: it provides traffic information to support the Solution Calculator computation
+		\item Notification Manager: it notifies the User when events that can influence his/her choices occurs
+	\end{itemize}
+
+\paragraph{Goal G6: a User should be able to invite other persons to his/her appointment}
+	\requirements{R25, R26}
+	Components:
+	\begin{itemize}[label=--]
+		\item Invitation Manager: it lets the User generate new invitation and lets other Users accept/refuse them
+		\item Notification Manager: it sends notification to the User
+	\end{itemize}
+
+\paragraph{Goal G7: a User is assisted in the purchase of a ticket when it is required}
+	\requirements{R27$\div$R31}
+	Components:
+	\begin{itemize}[label=--]
+		\item Account Manager: it lets the User register his credit card(s)
+		\item Ticket Manager: it provides ticket suggestions and let the User buy new tickets
+	\end{itemize}
+
+\paragraph{Goal G8: a User should be able to locate the nearest vehicle of a vehicle sharing system, if that is the transportation mean of choice of an incoming appointment}
+	\requirements{R32}
+	Components:
+	\begin{itemize}[label=--]
+		\item Appointment Manager: it classifies appointment as "incoming" when necessary and it provides appointment details
+		\item Vehicle Sharing Manager: it is in charge of the localization feature
+	\end{itemize}
+
+\paragraph{Goal G9: a User should be able to rent a shared vehicle, if that is the transportation mean of choice of an incoming appointment}
+	\requirements{R33, R34}
+	Components:
+	\begin{itemize}[label=--]
+		\item Appointment Manager: it classifies appointment as "incoming" when necessary and it provides appointment details
+		\item Vehicle Sharing Manager: it is in charge of the redirection to the Shared Vehicle Company
+	\end{itemize}
+
+\paragraph{Goal G10: a User should always be aware of the incoming appointments and how to reach them}
+	\requirements{R35$\div$R37}
+	Components:
+	\begin{itemize}[label=--]
+		\item Appointment Manager: it classifies appointment as "incoming" when necessary and it provides appointment details
+		\item Solution Calculator: it computes the Solution to be, eventually, shown to User in the Notification
+		\item Notification Manager: it sends the Notification to the User
+		\item Weather Module: it provides updates on the weather to know good and bad travel solutions
+		\item Traffic Module: it provides updates on the traffic to know good and bad travel solutions
+	\end{itemize}
