@@ -106,6 +106,7 @@
 \subsection{Runtime view}
 	\label{sect:RuntimeView}
 	\subsubsection{Sequence Diagram - Sign Up}
+	\label{sect:sd_signUp}
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.9\paperwidth]{Images/signUp}}
 		\caption{Sequence Diagram - SignUp}
@@ -136,7 +137,7 @@
 		
 	\subsubsection{Object Diagram - Weather \& Traffic Modules}
 		As said in the component diagram \hyperref[sect:WeatherTrafficModules]{description}, this architecture is exactly the same used in the Traffic Module and so we provide here only the object diagram of one of them, the Weather Module, for consistency with the component diagram.\newline
-		The two diagrams illustrate an evolution in the instances caused by a load balancing operation and a reconfiguration from the System Administrator. Both diagrams are not complete of all the instances and we used dashed lines to represent the fact that some instances have been cut, to have simpler and easier to understand diagrams.\newline
+		The two diagrams illustrate an evolution in the instances caused by a load balancing operation and an unexpected crash. Both diagrams are not complete of all the instances and we used dashed lines to represent the fact that some instances have been cut, to have simpler and easier to understand diagrams.\newline
 		In the first diagram, we can see two Querier, one for Italy and one for France. This partition of the region have been chosen by the System Administrator (another option could have been Europe). The Querier are linked to the related Notifiers and to the Manager. The Manager keeps track of the Queriers, the active Notifiers and the Notifiers in the standby list.
 		\begin{figure}[H]
 			\centerline{\includegraphics[width=0.9\paperwidth]{Images/OD_WeatherModule_Before}}
