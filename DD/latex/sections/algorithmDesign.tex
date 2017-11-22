@@ -20,56 +20,68 @@
 	Notice that Queriers are meant to be wide regions and not single cities, this was just an example.
 
 \subsection{Solution Calculator - How it works}
-		Here is illustrated the procedure by which the S2B provides the user with the travel solutions for the selected appointment.
-		As we \hyperref[sect:Select TravelPlan Solution]{previously described} the Solution Calculator takes care of handling the three-step  articulated process: recovery of feasible travelPlanSolutions and other useful information, filtering and labeling.
-	\subparagraph{recovery of feasible travelPlanSolutions and other useful information:}
+		Here it is illustrated the procedure by which the S2B provides the user with the travel solutions for the selected appointment.
+		As we \hyperref[sect:Select TravelPlan Solution]{previously described} the Solution Calculator takes care of handling the three-step  articulated process: recovery of feasible travelPlanSolutions, filtering and labeling.
 	
-		- Solution Calculator, through Appointment Manager, retrieves appointment information (departure location, destination, time, presence of passengers, baggage, ..);\newline
+	\paragraph{Recovery of feasible travelPlanSolutions:}
+	\begin{itemize}
+		\item  Solution Calculator, through Appointment Manager, retrieves appointment information (departure location, destination, time, presence of passengers, baggage, ..); 
+		\item based on this information, Solution Calculator interfaces with Google, which provides it with a list of possible travel solutions - travelPlanSolutions  \textit{(each TravelPlan solution consists of more Rides each with its own TravelMean, distance, time)}.
+	\end{itemize}
+
+	\paragraph{Filtering}
+	\begin{itemize}
+		\item Solution Calculator, through Account Manager, retrieves user's TravelMeanConstraints and Eco-Friendly preference (each TravelMean constraint refers to a particular Travel Mean specifying the distance beyond which it is not to be used or a time band forbidden);
 		
-		- based on this information, Solution Calculator interface with Google, which provides it with a list of possible travel solutions - travelPlanSolutions;\newline
+		\item Solution Calculator, through Weather Manager and Traffic Manager, retrieves information about weather and traffic conditions (this takes into account the reliability of this information so they are only considered if the appointment is an IncomingAppointment);
 		
-		- each TravelPLan solution consists of more Ride (each with its own TravelMean, distance, time);\newline
+		\item  for each TravelPlan in travelPlanSolutions, Solution Calculutor checks if there is a TravelPlan that does not meet the requirements, in particular: 
 		
-		- Solution Calculator, through Account Manager, retrieves user's TravelMeanConstraints and Eco-Friendly preference (each TravelMean constraint refers to a particular Travel Mean specifying the distance beyond which it is not to be used or a time band forbidden);\newline
+		\begin{itemize}	
+			\item if the user has specified the presence of passengers and the TravelMean of the Ride is not authorized for the carriage of passengers, TravelPlan is removed by travelPlanSolutions;
+			
+			\item if the user has specified baggage and the Ride's TravelMean is not suitable for baggage's trasportation, TravelPlan is removed from travelPlanSolutions;
+			
+			\item if Ride violates a TravelMeanConstraint (for example, the Ride has a TravelMean for which there is a TravelMeanConstraint that says TravelMean should not be used for a distance > x and Ride has a distance > x), TravelPlan is removed by travelPlanSolutions. 
+		\end{itemize}
 		
-		- Solution Calculator, through Weather Manager and Traffic Manager, retrieves information about weather and traffic conditions (this takes into account the reliability of this information so they are only considered if the appointment is an IncomingAppointment).
+		\end{itemize}
+	
+	
+	
+	\paragraph{Labeling}
+		\mbox{}\newline 
+		After filtering solutions in travelPlanSolutions, Solution Calculator:\newline
+	\begin{itemize}
+
 		
-	\subparagraph{filtering:}
-	 For each TravelPlan in travelPlanSolutions, Solution Calculutor checks if there is a TravelPlan that does not meet the requirements, in particular: \newline
 	
-	- if the user has specified the presence of passengers and the TravelMean of the Ride is not authorized for the carriage of passengers, TravelPlan is removed by travelPLanSolutions;\newline
+		\item calculates the cheapest  TravelPlan: the one for which the sum of all the estimated prices of individual Rides in TravelPlan results to be lowest if compared with the other TravelPlan in travelPlanSolutions  and sets a tag = "cheapest";
 	
-	- if the user has specified luggage and the Ride TravelMean is not baggage-enabled, TravelPlan is removed from travelPlanSolutions;\newline
+		\item calculates the fastest TravelPlan: the one for which the sum of all estimated Ride times of each Ride is the lowest if compared with the other TravelPlan in travelPlanSolutions and sets a tag = "fastest"; 
+		
+		\item calculates the most ecological TravelPlan: the one for wich  the sum of all EcoScores of each Ride is  the highest if compared with the other TravelPlan in travelPlanSolutions and sets a tag = "Eco-Friendlest" (for this operation a function calculateEcoScore (TravelPlan) , detailed below, is used);
 	
-	- if Ride violates a TravelMeanConstraint (for example, the Ride has a TravelMean for which there is a TravelMeanConstraint that says TravelMean should not be used for a distance > x and Ride has a distance > x), TravelPlan is removed by travelPlanSolutions. \newline
+		\item for each TravelPlan where there is a Ride with a TravelMean is not recommended in case of adverse weather conditions (eg rain, snow, ..), if weather forecasts are bad, set a tag = "warning: Weather";\newline
 	
+		\item for each TravelPlan where there is a Ride crossing an area where there is intense traffic, set a tag="warning: traffic". 
+		\end{itemize}
 	
-	
-	
-	\subparagraph{labeling:}
-	after filtering solutions in travelPlanSolutions, Solution Calculator:\newline
-	
-	- calculates the cheapest  TravelPlan: the one for which the sum of all the estimated prices of individual Rides in TravelPlan results to be lowest if compared with the other TravelPlan in travelPlanSolutions  and sets a tag = "cheapest";\newline
-	
-	- calculates the fastest TravelPlan: the one for which the sum of all estimated Ride times of each Ride is the lowest if compared with the other TravelPlan in travelPlanSolutions and sets a tag = "fastest"; \newline
-	- calculates the most ecological TravelPlan: the one for wich  the sum of all EcoScores of each Ride is  the highest if compared with the other TravelPlan in travelPlanSolutions and sets a tag = "Eco-Friendlest" (for this operation a function calculateEcoScore (TravelPlan) , detailed below, is used);\newline
-	
-	- for each TravelPlan where there is a Ride with a TravelMean is not recommended in case of adverse weather conditions (eg rain, snow, ..), if weather forecasts are bad, set a tag = "warning: Weather";\newline
-	
-	- for each TravelPlan where there is a Ride crossing an area where there is intense traffic, set a tag="warning: traffic"; \newline
-	
-	finally Solution Calculator sends TravelPlanSolutions to the user;\newline
+		Finally Solution Calculator sends TravelPlanSolutions to the user.\newline
 	
 	
-	\subparagraph{calculate EcoScore:}	
-	each TravelMean has associated a travelMeanEcoPenalty, more the TravelMean is 'Eco-Friendly', less the penalty is. 'The algorithm attributes to each TravelPlan an EcoScore considering all the Rides that belong to it.
-	The maximum possible EcoScore is 0; \newline
+	\paragraph{Calculate EcoScore:}	
+	\mbox{} \newline
+		Each TravelMean has associated a travelMeanEcoPenalty, more the TravelMean is 'Eco-Friendly', less the penalty is. 'The algorithm attributes to each TravelPlan an EcoScore considering all the Rides that belong to it.
+		The maximum possible EcoScore is 0; \newline
 	
 	PseudoCode: \newline
-	calculateEcoScore( TravelPlan tp){\newline
-		score=0;\newline
-		for each Ride r in tp{\newline
-			score = score - r.travelMean.penalty * r.distance\newline
-		}\newline
-		tp.Ecoscore=score;\newline
-	}\newline
+	\begin{lstlisting}[language=python, numbers=left]
+	calculateEcoScore(TravelPlan tp){
+		score = 0;
+		for each Ride r in tp{
+			score = score - r.travelMean.penalty * r.distance;
+		}
+		tp.Ecoscore = score;
+	}
+	\end{lstlisting}
