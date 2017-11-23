@@ -1,12 +1,12 @@
 \subsection{Overview}
-	Here we provide a high level representation of client-server interaction and of the submodule of the server.
-	The orchestrator is needed only during the creation of the communication: his role is to dispatch the request of the client to the appropriate component. After that, the component can communicate directly with the client and vice versa.\newline
-	In the server, the orchestrator and all the submodules are stateless. We thought to use the elastic component architectural pattern for the components. Moreover, the orchestrator can eventually be duplicated using a fixed dimension pool whose size is configurable by the system administrator.\newline
-	Further details on the submodule and the overall interaction will be provided in the next sections.
+	Here we provide a high level representation of client-server interaction and of the submodule of the server. Moreover, we include a brief indication on the deployment.\newline
+	The orchestrator is needed only on the client request: his role is to dispatch the request to the appropriate component based on the type of request. After that, the component can communicate directly with the client.\newline
+	In the server, the orchestrator and all the other submodules are stateless. We thought to use the elastic component architectural pattern for the components. Moreover, the orchestrator can eventually be duplicated using a fixed dimension pool whose size is configurable by the system administrator.\newline
+	The diagram only show the overall interaction between client and server and the role of the orchestrator: interactions between the submodules is not shown. Further details on the submodule and the overall interactions will be provided in the following sections.
 
 	\begin{figure}[H]
-		\centerline{\includegraphics[width=0.9\paperwidth]{Images/HighLevelArchitecture}}
-		\caption{High level Architecture Diagram - Client-Server interaction}
+		\centerline{\includegraphics[width=0.9\paperwidth]{Images/Overview}}
+		\caption{Overview - High level architecture}
 	\end{figure}
 
 \filbreak
