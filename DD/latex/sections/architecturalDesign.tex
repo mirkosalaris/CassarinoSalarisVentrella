@@ -35,8 +35,8 @@
 		\bigskip
 		Notification Manager provide an interface for the creation of new notification and it is composed by two module:
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Notification Scheduler] this is the module whose interface is actually exported and it manages the creation of new notifications, stores them in the database and schedules their dispatch. When it is time to send a notification this module uses the interface provided by Notifier and delegate to it the dispatching procedure.
-			\item[Notifier] it is in charge of the actual dispatch of the notification.
+			\item[Notification Scheduler] this is the module whose interface is actually exported and it manages the creation of new notifications, stores them in the database and schedules their dispatch. When it is time to send a notification this module uses the interface provided by Notification Dispatcher and delegate to it the dispatching procedure.
+			\item[Notification Dispatcher] it is in charge of the actual dispatch of the notification.
 		\end{description}
 		
 		\begin{figure}[H]	
@@ -49,7 +49,7 @@
 		\label{sect:InvitationManager}
 		The Invitation Manager component is the module that manages all the aspects related to invitations, from their creation to the acceptance/refusal of the invited Users/Persons. It is divided into two subcomponents. A sequence diagram is provided in section \ref{sect:RuntimeView}.
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Invitation Generator] it manages the creation of a new invitations 
+			\item[Invitation Generator] it manages the invitation from the point of view of the creator of an appointment: creation and management of invitations
 			\item[Invitation Handler] it is concerned with the acceptance/refusal of the invitations sent.
 		\end{description}
 		
@@ -149,8 +149,82 @@
 			\caption{Object Diagram - Weather Module After Balancing and Reconfiguration}
 		\end{figure}
 \subsection{Component interfaces}
-	% TODO
+	We describe here most of the interfaces used and provided by the components defined in this section. The interfaces we do not describe here are considered as trivial and as so, assumed to not need any description. An example of interfaces not described are the one used in the Weather/Traffic modules, where they are mainly the standard interfaces of any publish subscribe system.
+	\newline
+	The User who asks for the service is never passed as parameter because it is meant to be retrieved as a session parameter.
 	
+	\paragraph{Appointment Manager}
+		\subparagraph{AppointmentEditorInterface}
+			\begin{itemize}
+				\item \inlinecode{void newAppointment(String name, String description, Date, Time, Location)}
+				\item \inlinecode{void deleteAppointment(AppointmentId)}
+				\item \inlinecode{void updateName(AppointmentId, String name)}
+				\item \inlinecode{void updateDescription(AppointmentId, String description)}
+				\item \inlinecode{void updateDate(AppointmentId, Date)}
+				\item \inlinecode{void updateTime(AppointmentId, Time)}
+				\item \inlinecode{void updateLocation(AppointmentId, Location)}
+				\item \inlinecode{void setTravelPlan(AppointmentId, TravelPlan)}
+			\end{itemize}
+		\subparagraph{AppointmentViewerInterface}
+			\begin{itemize}
+				\item \inlinecode{Appointment[] getList(Date from, Date to)}
+				\item \inlinecode{Appointment getAppointment(AppointmentId)}
+			\end{itemize}
+		\subparagraph{AppointmentStorerInterface}
+			\begin{itemize}
+				\item \inlinecode{void update(AppointmentId, Appointment)}
+				\item \inlinecode{void deleteAppointment(AppointmentId)}
+				\item \inlinecode{void newAppointment(AppointmentId)}
+			\end{itemize}
+		\subparagraph{IncomingAppointmentSchedulerInterface}
+			\begin{itemize}
+				\item \inlinecode{void schedule(Appointment)}
+			\end{itemize}
+
+	\paragraph{Notification Manager}
+		\mbox{}\newline
+		This module makes use of the Data Interface, \inlinecode{Notificable}, that is an interface extended by all the objects that can be sent as Notification.
+		\subparagraph{NotificationManagerInterface}
+			\begin{itemize}
+				\item \inlinecode{void instantNotification(User, Notificable)}
+				\item \inlinecode{void schedule(User, Notificable, time, date)}
+				\item \inlinecode{void unschedule(NotificationId)}
+				\item \inlinecode{void reschedule(NotificationId, time, date)}
+			\end{itemize}
+
+		\subparagraph{NotificationDispatcherInt}
+			\begin{itemize}
+				\item \inlinecode{void notify(User, Notificable)}
+			\end{itemize}
+
+	\paragraph{Invitation Manager}
+		\subparagraph{InvitationGeneratorInterface}
+			\begin{itemize}
+				\item \inlinecode{void invite(Appointment, emails[])}
+				\item \inlinecode{void removeInvitation(Appointment, emails)}
+				\item \inlinecode{emails[] retrieveInvitations(Appointment)}
+			\end{itemize}
+
+		\subparagraph{InvitationHandlerInterface}
+			\begin{itemize}
+				\item \inlinecode{void accept(AppointmentId)}
+				\item \inlinecode{void reject(AppointmentId)}
+				\item \inlinecode{Invitation[] retrieveInvitations()}
+			\end{itemize}
+
+	\paragraph{Ticket Manager}
+		\subparagraph{PaymentHandlerInterface}
+			\begin{itemize}
+				\item \inlinecode{void pay(Ticket, TransportationCompany)}
+			\end{itemize}
+		\subparagraph{PurchaseManagerInterface}
+			\begin{itemize}
+				\item \inlinecode{Tickets[] retrieveTickets(Ride)}
+			\end{itemize}
+		\subparagraph{RideControllerInterface}
+			\begin{itemize}
+				\item \inlinecode{Map(Ride,Tickets[]) getTickets(TravelPlan)}
+			\end{itemize}
 \subsection{Selected architectural styles and patterns}
 	% TODO
 	
