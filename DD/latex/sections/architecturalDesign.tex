@@ -1,8 +1,8 @@
 \subsection{Overview}
-	Here we provide a high level representation of client-server interaction and of the submodule of the server. Moreover, we include a brief indication on the deployment.\newline
+	Here we provide a high-level representation of client-server interaction and of the submodule of the server. Moreover, we include a brief indication of the deployment.\newline
 	The orchestrator is needed only on the client request: his role is to dispatch the request to the appropriate component based on the type of request. After that, the component can communicate directly with the client.\newline
 	In the server, the orchestrator and all the other submodules are stateless. We thought to use the elastic component architectural pattern for the components. Moreover, the orchestrator can eventually be duplicated using a fixed dimension pool whose size is configurable by the system administrator.\newline
-	The diagram only show the overall interaction between client and server and the role of the orchestrator: interactions between the submodules is not shown. Further details on the submodule and the overall interactions will be provided in the following sections.
+	The diagram only shows the overall interaction between client and server and the role of the orchestrator: interactions between the submodules are not shown. Further details on the submodule and the overall interactions will be provided in the following sections.
 
 	\begin{figure}[H]
 		\centerline{\includegraphics[width=0.9\paperwidth]{Images/Overview}}
@@ -11,9 +11,9 @@
 
 \filbreak
 \subsection{Component view}
-	This section starts with the presentation of the Entity Relationship diagram. In the other diagram following ER model, we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app (through the web server), without adding complexity to the diagrams.
+	This section starts with the presentation of the Entity-Relationship diagram. some of the diagrams following the ER model, we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app \textit{(through the web server)}, without adding complexity to the diagrams.
 	\subsubsection{ER diagram}
-	The following ER diagram represents the conceptual schema of the system database. In Ticket entity we don't specify all the attributes because they depend from ticket Typology and from Transportation Company they belong. Ticket entity can be split into two categories of tickets, ordinary and pass tickets. Below these two, we have another hierarchy in which we include some examples.
+	The following ER diagram represents the conceptual schema of the system database. Ticket Entity has to be considered as an \textit{"abstract"} entity, meaning that we don't know and don't specify all the attributes because they depend from the ticket Typology and from the Transportation Company to which they belong. We only provide a classification of Ticket into two categories, ordinary and pass tickets. Below these two, we include examples of "real tickets" just to convey how the schema will be at implementation time.
 	
     \begin{figure}[H]	
 		\centerline{\includegraphics[width=0.9\paperwidth]{Images/ERdiagram}}
@@ -72,8 +72,8 @@
 			\item[Weather Notifier] this is the component that decides if and when a User has to be notified. It subscribes to a specific Weather Querier and receives the information from it. 
 		\end{description}
 		\medskip
-		Both the Querier and the Notifier are instantiated by zone. The zone of the Querier are meant to be very wide, like Italy, Spain, France and the zone of the Notifier are meant to be more specific, for instance: West Milan, East Milan, Venice, Turin.\newline
-		The Notifier has to execute an algorithm for each appointment to decide if and when to notify the User, so its load will depend on the number of appointments in that specific zone and (especially in the Traffic Module) on the day of the week and the time of the day. For this reason, a load balancing mechanism is required. When a 'node' is under load it can be splitt into two or more parts: "Milan"$\rightarrow$"WestMilan" and "EastMilan".\newline
+		Both the Querier and the Notifier are instantiated by zone. The zones of the Querier are meant to be very wide, like Italy, Spain, France and the zone of the Notifier are meant to be more specific, for instance: West Milan, East Milan, Venice, Turin.\newline
+		The Notifier has to execute an algorithm for each appointment to decide if and when to notify the User, so its load will depend on the number of appointments in that specific zone and (especially in the Traffic Module) on the day of the week and the time of the day. For this reason, a load balancing mechanism is required. When a 'node' is under load it can be split into two or more parts: "Milan"$\rightarrow$"WestMilan" and "EastMilan".\newline
 		The Querier has a more stable load and, for this reason, \textbf{no} load balancing mechanism has to be implemented. By the way, the zones of the Querier can be configured by the System Administrator, even dynamically.\newline
 		The load balancing mechanism of the Notifier and the \defined{dynamically configurable} Querier has to be supported by the Manager: it is not a simple registry but it registers all the active Queriers and Notifiers and it manages the subscriptions when they are modified.\newline
 		The process is described in more details in section \ref{sect:algorithmDesign}.
@@ -100,9 +100,6 @@
 			\caption{Component Diagram - Ticket Manager}
 		\end{figure}
 
-\subsection{Deployment view}
-	% TODO
-	
 \subsection{Runtime view}
 	\label{sect:RuntimeView}
 	\subsubsection{Sequence Diagram - Sign Up}
@@ -138,7 +135,7 @@
 	\subsubsection{Object Diagram - Weather \& Traffic Modules}
 		As said in the component diagram \hyperref[sect:WeatherTrafficModules]{description}, this architecture is exactly the same used in the Traffic Module and so we provide here only the object diagram of one of them, the Weather Module, for consistency with the component diagram.\newline
 		The two diagrams illustrate an evolution in the instances caused by a load balancing operation and an unexpected crash. Both diagrams are not complete of all the instances and we used dashed lines to represent the fact that some instances have been cut, to have simpler and easier to understand diagrams.\newline
-		In the first diagram, we can see two Querier, one for Italy and one for France. This partition of the region have been chosen by the System Administrator (another option could have been Europe). The Querier are linked to the related Notifiers and to the Manager. The Manager keeps track of the Queriers, the active Notifiers and the Notifiers in the standby list.
+		In the first diagram, we can see two Querier, one for Italy and one for France. This partition of the region has been chosen by the System Administrator (another option could have been Europe). The Queriers are linked to the related Notifiers and to the Manager. The Manager keeps track of the Queriers, the active Notifiers and the Notifiers in the standby list.
 		\begin{figure}[H]
 			\centerline{\includegraphics[width=0.9\paperwidth]{Images/OD_WeatherModule_Before}}
 			\caption{Object Diagram - Weather Module Original State}

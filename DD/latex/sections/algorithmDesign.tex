@@ -31,9 +31,9 @@
 
 	\paragraph{Filtering}
 	\begin{itemize}
-		\item Solution Calculator, through Account Manager, retrieves user's TravelMeanConstraints and Eco-Friendly preference (each TravelMean constraint refers to a particular Travel Mean specifying the distance beyond which it is not to be used or a time band forbidden);
-		
-		\item Solution Calculator, through Weather Manager and Traffic Manager, retrieves information about weather and traffic conditions (this takes into account the reliability of this information so they are only considered if the appointment is an IncomingAppointment);
+		\item Solution Calculator, through Account Manager, retrieves user's TravelMeanConstraints and Eco-Friendly preference (each TravelMean constraint refers to a particular Travel Mean specifying the distance beyond which it is not to be used or a time band to be avoided);
+
+		\item Solution Calculator, through Weather Manager and Traffic Manager, retrieves information about weather and traffic conditions (this takes into account the reliability of this information so they are only considered if the appointment is an \defined{Incoming Appointment});
 		
 		\item  for each TravelPlan in travelPlanSolutions, Solution Calculutor checks if there is a TravelPlan that does not meet the requirements, in particular: 
 		
