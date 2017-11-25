@@ -226,7 +226,32 @@
 				\item \inlinecode{Map(Ride,Tickets[]) getTickets(TravelPlan)}
 			\end{itemize}
 \subsection{Selected architectural styles and patterns}
-	% TODO
+
+	The following architectural styles have been used:
+	\subsubsection{	Client-server:}
+
+	the front end (mobile app and employee app) are clients
+	communicating with the application server. The browser supporting the web
+	app is a client communicating with the web server. The application server
+	behaves as a client quering the database (server).
+	
+	\subsubsection{Service-Oriented Architecture (SOA):}
+
+	the way components interact
+	with the application server is thought to be service-oriented. The single com-
+	ponents are analysed from a high-level point of view depending on the service
+	the offer. SOA allows to easily extend the system by building and adding in-
+	dependent modules to the core. Moreover, being the modules decoupled, their
+	testing can be carried out independently module by module.
+	
+	\subsubsection{Model-View-Controller (MVC):}
+
+	MVC pattern is followed throughout
+	the whole system design. The clients are front-end components (views) inter-
+	acting with logic components (controllers) which drive the information flow and
+	the information retrieval from the database (model).
 	
 \subsection{Other design decisions}
-	% TODO
+	\subsubsection{Passorw Storage:}
+	Users’ passwords are not stored in plaintext, but they are hashed and salted
+	with strong cryptographic hash functions.
