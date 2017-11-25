@@ -3,12 +3,13 @@
 > Politecnico di Milano  
 > Authors: Cassarino Pietro, Salaris Mirko, Ventrella Piervincenzo
 
-**RASD**:
+We tagged the commits in which the deliverables has been actually updated, in the case you wish to look at the progress.
+
+**Notice: RASD**:
 Before the 29th October deadline we uploaded the RASD file to `./RASD/RASD.pdf`  
 We later moved it to `./Deliverables/RASDv1.0.pdf`, but the file is absolutely the same.  
 This is the last commit before 29th October: [RASDv1.0][RASDv1.0]
  * Path of Alloy file: [RASD/alloy.als](./RASD/alloy.als)
- * Notice: we tagged the commits in which the RASD file has been actually updated, in the case you wish to look at the progress
 
  **Folder Structure**:
 ```
@@ -18,7 +19,9 @@ This is the last commit before 29th October: [RASDv1.0][RASDv1.0]
 │   ├── snippets/
 │   └── UMLdiagrams/
 ├── Deliverables/
-│   └── RASDv1.0.pdf*
+│   ├── DDv1.0.pdf*
+│   ├── RASDv1.0.pdf*
+│   └── RASDv2.0.pdf*
 ├── RASD/
 │   ├── latex/
 │   ├── snippet/
