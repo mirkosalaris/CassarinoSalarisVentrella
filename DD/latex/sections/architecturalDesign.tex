@@ -232,30 +232,25 @@
 \subsection{Selected architectural styles and patterns}
 
 	The following architectural styles have been used:
-	\subsubsection{	Client-server:}
-
-	the front end (mobile app and employee app) are clients
-	communicating with the application server. The browser supporting the web
+	\subsubsection{Client-server}
+	The mobile is a client
+	communicating directly with the application server. The browser supporting the web
 	app is a client communicating with the web server. The application server
-	behaves as a client quering the database (server).
+	behaves as a client querying the database server.
 	
-	\subsubsection{Service-Oriented Architecture (SOA):}
+	\subsubsection{Service-Oriented Architecture (SOA)}
 
-	the way components interact
-	with the application server is thought to be service-oriented. The single com-
-	ponents are analysed from a high-level point of view depending on the service
-	the offer. SOA allows to easily extend the system by building and adding in-
-	dependent modules to the core. Moreover, being the modules decoupled, their
-	testing can be carried out independently module by module.
+	The way clients interact
+	with the application server is thought to be service-oriented. The single components are analyzed from a high-level point of view depending on the service
+	the offer. SOA allows to easily extend the system by building and adding independent modules to the core.
 	
-	\subsubsection{Model-View-Controller (MVC):}
+	\subsubsection{Model-View-Controller (MVC)}
 
 	MVC pattern is followed throughout
-	the whole system design. The clients are front-end components (views) inter-
-	acting with logic components (controllers) which drive the information flow and
-	the information retrieval from the database (model).
+	the whole system design. The clients are front-end components \textit{(views)} interacting with logic components \textit{(controllers)} which drive the information flow and
+	the information retrieval from the database \textit{(model)}.
 	
 \subsection{Other design decisions}
-	\subsubsection{Passorw Storage:}
-	Users’ passwords are not stored in plaintext, but they are hashed and salted
+	\subsubsection{Password Storage:}
+	Users' passwords are not stored in plain text, but they are hashed and salted
 	with strong cryptographic hash functions.
