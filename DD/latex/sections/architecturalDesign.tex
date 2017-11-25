@@ -89,8 +89,8 @@
 		Ticket Manager role is to handle the process that goes from the User selection of a travel plan solution to the purchase or the registration of a ticket.\newline
 		It is composed by:
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Ride Controller] it receives the travel plan selected by the User and, for each ride, checks if it contains a transportation mean of an affiliated company which requires tickets. Ride controller forwards to Purchase Manager all the rides for which the User could buy a ticket.
-			\item[Purchase Manager] it provides to the User the list of possible tickets to purchase. The DB contains only the ticket models of the affiliated transportation companies, so it could be necessary to interface with the Transportation Companies API in order to obtain, in real time, additional information about the ride (e.g., number of available seats, departure time, etc.). For instance, if we need an ATM bus ticket, Purchase Manager takes it from the DB, because the ticket model is enough (for this kind of ticket we don't need to specify departures time or seat number); at the contrary, if we need a Trenitalia ticket, Purchase Manager interfaces with the Transportation Companies API to obtain, in real time, all the necessary information. \newline
+			\item[Ride Controller] it receives the travel plan selected by the User and, for each ride, checks if it contains a transportation mean of an affiliated company which requires tickets. Ride Controller forwards to Purchase Manager all the rides for which the User could buy a ticket. At the end of the process, Ride Controller provides the list of possible tickets to the user.
+			\item[Purchase Manager] it provides to Ride Controller the list of possible tickets to purchase. The DB contains only the ticket models of the affiliated transportation companies, so it could be necessary to interface with the Transportation Companies API in order to obtain, in real time, additional information about the ride (e.g., number of available seats, departure time, etc.). For instance, if we need an ATM bus ticket, Purchase Manager takes it from the DB, because the ticket model is enough (for this kind of ticket we don't need to specify departures time or seat number); at the contrary, if we need a Trenitalia ticket, Purchase Manager interfaces with the Transportation Companies API to obtain, in real time, all the necessary information. \newline
 			Purchase Manager role is also to register into the DB an eventual pass bought by User externally from the system.
 			\item[Payment Handler] it handles the phase in which the User chooses the ticket and proceeds to the payment. It interfaces with the DB to have information about User's credit cards data and also with the Transportation Companies API, in order to forward the payment.  
 		\end{description}
@@ -215,11 +215,15 @@
 	\paragraph{Ticket Manager}
 		\subparagraph{PaymentHandlerInterface}
 			\begin{itemize}
-				\item \inlinecode{void pay(Ticket, TransportationCompany)}
+				\item \inlinecode{void pay(Ticket)}
 			\end{itemize}
-		\subparagraph{PurchaseManagerInterface}
+		\subparagraph{PurchaseManagerInternalInterface}
 			\begin{itemize}
 				\item \inlinecode{Tickets[] retrieveTickets(Ride)}
+			\end{itemize}
+		\subparagraph{PurchaseManagerExternalInterface}
+			\begin{itemize}
+				\item \inlinecode{void storeTicket(Ticket)}
 			\end{itemize}
 		\subparagraph{RideControllerInterface}
 			\begin{itemize}
