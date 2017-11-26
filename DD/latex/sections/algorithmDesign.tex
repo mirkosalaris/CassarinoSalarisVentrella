@@ -1,6 +1,6 @@
 \subsection{Weather and Traffic modules - Dynamic configuration}
 	\label{sect:WeatherTrafficAlgorithm}
-	As we \hyperref[sect:WeatherTrafficModules]{previously described} the Weather and Traffic modules are subject to load balancing and \defined{dynamic configuration} by the System Administrator. This two mechanism causes 4 events to happen. How they are managed is described below:
+	As we \hyperref[sect:WeatherTrafficModules]{previously described} the Weather and Traffic modules are subject to load balancing and \defined{dynamic configuration} by the System Administrator. These two mechanisms cause four events to happen. How they are managed is described below:
 	\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
 		\item[a Notifier is deleted] this is the only activity that is not managed by the Manager because there is no reason for doing it. If the Notifier is simply being closed, it detaches itself from the Querier. If the Notifier crashes or it is suddenly closed, the Querier will notice this when trying to notify it and it will detach the dead Notifier. No other actions are needed.
 		\item[a Notifier is created] the new Notifier communicates its zone to the Manager. The Manager will return to the Notifier a reference to the appropriate Querier using the Address Solver to interpret the zone of the Notifier. Thus, the Notifier can subscribe itself to the Querier.

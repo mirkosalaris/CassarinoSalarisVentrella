@@ -11,7 +11,7 @@
 
 \filbreak
 \subsection{Component view}
-	This section starts with the presentation of the Entity-Relationship diagram. some of the diagrams following the ER model, we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app \textit{(through the web server)}, without adding complexity to the diagrams.
+	This section starts with the presentation of the Entity-Relationship diagram. Some of the diagrams following the ER model, we include a fictitious component, App, that will be highlighted in green and serves the purpose of representing both the mobile app and the web app \textit{(through the web server)}, without adding complexity to the diagrams.
 	\subsubsection{ER diagram}
 	The following ER diagram represents the conceptual schema of the system database. Ticket Entity has to be considered as an \textit{"abstract"} entity, meaning that we don't know and don't specify all the attributes because they depend from the ticket Typology and from the Transportation Company to which they belong. We only provide a classification of Ticket into two categories, ordinary and pass tickets. Below these two, we include examples of "real tickets" just to convey how the schema will be at implementation time.
 	
@@ -28,14 +28,14 @@
 		\medskip\newline
 		Appointment Manager has three subcomponents:		
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Appointment Handler] it is the only subcomponents communicating with the database: it manages all the read and write operations related to appointments. It is responsible for the final consistency check of the appointment before writing it to database. It exports an interface to let external components read appointments details and an internal interface to let subcomponents of Appointment Manager read and write appointments' details.
-			\item[Appointment Editor] this provides an interface to easily change appointments' details and store it to database through the interface of Appointment Handler. Every time an appointment is created or details of an appointment changes, this send to Incoming Appointment Scheduler the appointment. This module interacts with an external module "Solution Calculator" to compute travel solutions. In this diagram it is displayed in dashed line because it will be described in another diagram.
+			\item[Appointment Handler] it is the only subcomponent communicating with the database: it manages all the read and write operations related to appointments. It is responsible for the final consistency check of the appointment before writing it to database. It exports an interface to let external components read appointments details and an internal interface to let subcomponents of Appointment Manager read and write appointments' details.
+			\item[Appointment Editor] this provides an interface to easily change appointments' details and store it to database through the interface of Appointment Handler. Every time an appointment is created or details of an appointment change, this sends to Incoming Appointment Scheduler the appointment. This module interacts with an external module "Solution Calculator" to compute travel solutions. In this diagram it is displayed in dashed line because it will not be described here.
 			\item[Incoming Appointment Scheduler] for each appointment (provided by Appointment Editor) this module executes an algorithm to decide when that specific appointment will become an \defined{incoming appointment}. An appointment becomes incoming according to a combination of the time of the appointment and the travel plan chosen, to let the User receive a notification at an appropriate time. This is done generating a \defined{future notification} through the interface provided by Notification Manager.
 		\end{description}
 		\bigskip
 		Notification Manager provide an interface for the creation of new notification and it is composed by two module:
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Notification Scheduler] this is the module whose interface is actually exported and it manages the creation of new notifications, stores them in the database and schedules their dispatch. When it is time to send a notification this module uses the interface provided by Notification Dispatcher and delegate to it the dispatching procedure.
+			\item[Notification Scheduler] this is the module whose interface is actually exported and it manages the creation of new notifications, stores them in the database and schedules their dispatch. When it is time to send a notification this module uses the interface provided by Notification Dispatcher and delegates to it the dispatching procedure.
 			\item[Notification Dispatcher] it is in charge of the actual dispatch of the notification.
 		\end{description}
 		
@@ -61,11 +61,11 @@
 	\filbreak
 	\subsubsection{Weather and Traffic Modules}
 		\label{sect:WeatherTrafficModules}
-		In the diagram, we provide the representation of the Weather Module. The traffic module has exactly the same architecture and interactions. You can just derive the traffic diagram substituting \textit{"Weather"} with \textit{"Traffic"}. Both modules are needed to notify the User of changes in traffic/weather that can influence his/her daily travels and they are used by the component Solution Calculator to avoid bad solutions like, for instance, taking the bike when it rains. With the same convention as before, we represent here Solution Calculator but it will be detailed in another diagram.\newline
+		In the diagram, we provide the representation of the Weather Module. The traffic module has exactly the same architecture and interactions. You can just derive the traffic diagram substituting \textit{"Weather"} with \textit{"Traffic"}. Both modules are needed to notify the User of changes in traffic/weather that can influence his/her daily travels and they are used by the component Solution Calculator to avoid bad solutions like, for instance, taking the bike when it rains. With the same convention as before, we represent here Solution Calculator but it will not be detailed here. \newline
 		The Weather \textit{(traffic)} module has a quite articulated architecture and it will be explained here and in section \ref{sect:RuntimeView} with an object diagram.\newline
 		It is composed by:
 		\begin{description}[before={\renewcommand{\makelabel}[1]{-- \textit{##1}:}}]
-			\item[Address Solver] this component has a really basic functionality and it is exploited by Weather Manager to "understand" \textit{(see below)} addresses. Provided an address as input, it decompose it in its components and return a hierarchy.\newline
+			\item[Address Solver] this component has a really basic functionality and it is exploited by Weather Manager to "understand" \textit{(see below)} addresses. Provided an address as input, it decomposes it in its components and returns a hierarchy.\newline
 			Example: "Italy, Milan, via Pacini 32" -> transformed to:\newline "State:Italy"$\rightarrow$"City:Milan"$\rightarrow$"CityZone:NorthEast"$\rightarrow$"Street:Giovanni Pacini"$\rightarrow$"Number:32"
 			\item[Weather Manager] this serves as a registry to support the publish-subscribe architecture between Weather Querier and Weather Notifier. Moreover, this component provides an external interface to let other components have information about weather. When it receives a request of weather information for a specific address, it asks Address Solver to interpret the address and then it asks the appropriate Weather Querier for the information.
 			\item[Weather Querier] it is the module responsible for retrieving the weather information and send them to the Weather Notifier.
@@ -246,7 +246,7 @@
 
 	The way clients interact
 	with the application server is thought to be service-oriented. The single components are analyzed from a high-level point of view depending on the service
-	the offer. SOA allows to easily extend the system by building and adding independent modules to the core.
+	they offer. SOA allows to easily extend the system by building and adding independent modules to the core.
 	
 	\subsubsection{Model-View-Controller (MVC)}
 
