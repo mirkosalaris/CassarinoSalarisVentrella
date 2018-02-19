@@ -3,16 +3,16 @@
 > Politecnico di Milano  
 > Authors: Cassarino Pietro, Salaris Mirko, Ventrella Piervincenzo
 
-We tagged the commits in which the deliverables has been actually updated, in the case you wish to look at the progress.
+### Useful files you could be interested in
 
-**Notice: RASD**:
-Before the 29th October deadline we uploaded the RASD file to `./RASD/RASD.pdf`  
-We later moved it to `./Deliverables/RASDv1.0.pdf`, but the file is absolutely the same.  
-This is the last commit before 29th October: [RASDv1.0][RASDv1.0]
- * Path of Alloy file: [RASD/alloy.als](./RASD/alloy.als)
+ * Problem assignment: [Project assignment.pdf](./Project%20assignment.pdf)
+ * Deliverables: you can look into [Deliverables](./Deliverables/) folder for both the RASD and the DD
+ * Alloy modeling file: [RASD/alloy.als](./RASD/alloy.als)
 
- **Folder Structure**:
+### Folder Structure
 ```
+$ tree --dirsfirst -nF -L 2
+
 .
 ├── DD/
 │   ├── latex/
@@ -22,6 +22,9 @@ This is the last commit before 29th October: [RASDv1.0][RASDv1.0]
 │   ├── DDv1.0.pdf*
 │   ├── RASDv1.0.pdf*
 │   └── RASDv2.0.pdf*
+├── Presentation files/
+│   ├── Presentation.pdf*
+│   ├── Presentation.pptx*
 ├── RASD/
 │   ├── latex/
 │   ├── snippet/
@@ -30,7 +33,7 @@ This is the last commit before 29th October: [RASDv1.0][RASDv1.0]
 │   ├── custom_theme.thm*
 │   └── final_model.xml*
 ├── LICENSE*
+├── Project assignment.pdf*
 ├── README.md*
-```
 
-[RASDv1.0]: ../11e00cb8087cc637f1511dd427828502ef4939ea/RASD/RASD.pdf
+```
